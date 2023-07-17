@@ -1,0 +1,670 @@
+= 1.0.0 - July 1, 2017 =
+
+* Initial release.
+
+= 1.0.1 - July 28, 2017 =
+
+* Featue - Added document download buttons to order overview
+
+= 1.0.2 - August 31, 2017 =
+
+* Fix - Javascript Issues with Firefox/IE
+
+= 1.0.3 - October 20, 2017 =
+
+* Fix - Javascript issue with IE11
+* Fix - Removed include of none existing CSS file
+* Tweak - Improved language code resolving
+
+= 1.0.4 - November 08, 2017 =
+
+* Fix - Fatal Error in Widgets Page
+
+= 1.0.5 - November 16, 2017 =
+
+* Fix - Woocommerce order emails not send 
+* Fix - Settings page not loading
+
+= 1.0.6 - November 22, 2017 =
+
+* Fix - Order completion not updating correctly
+
+= 1.0.7 - December 01, 2017 =
+
+* Fix - Order status transitions after manual task
+* Dev - Updated to WeArePlanet SDK 1.1.1
+
+= 1.0.8 - December 04, 2017 =
+
+* Fix - Webhook not updated correctly
+
+= 1.0.9 - December 08, 2017 =
+
+* Fix - Payment Method Image not updating
+* Fix - Improved exception handling in checkout
+
+= 1.0.10 - January 24, 2018 =
+
+* Fix - First and last name not updated correctly during checkout
+* Dev - Updated to WeArePlanet SDK 1.1.2
+
+= 1.0.11 - January 30, 2018 =
+
+* Tweak - Only show payment method, if customer entered full address
+* Fix - Email language if WooCommerce Multilingual is installed 
+* Fix - Javascript validation error display
+
+= 1.0.12 - January 31, 2018 =
+
+* Fix - Javascript not always included during checkout
+* Fix - Issue with different browsers autofill feature
+
+= 1.0.13 - March 16, 2018 =
+
+* Tweak - Improved Styling
+* Tweak - Renamed private variables to avoid issue with other plugins
+
+= 1.1.0 - April 11, 2018 =
+
+* Fix - Order Pay process
+* Tweak - Additional Hooks to use with other plugins
+* Dev - Internal Structure Changes
+* Dev - Updated to WeArePlanet SDK 1.1.6
+
+= 1.1.1 - April 20, 2018 =
+
+* Fix - Issue in Checkout Javascript
+
+= 1.1.2 - May 22, 2018 =
+
+* Fix - Issue with refunds
+* Tweak- Improved error messages for configuration issues
+
+= 1.1.3 - June 19, 2018 =
+
+* Fix - Method image not always loading
+* Fix - Text domain
+* Fix - Refund status update
+* Localization - Added german translations
+
+= 1.1.4 - July 05, 2018 =
+
+* Tweak - Webhook processing
+
+= 1.1.5 - July 13, 2018 =
+
+* Fix - Fixes Fatal Error with newest version of WooCommerce Multilingual
+
+= 1.1.6 - July 19, 2018 =
+
+* Tweak - Updated settings page
+* Dev - Updated to WeArePlanet SDK 1.1.8
+
+= 1.1.7 - July 19, 2018 =
+
+* Dev - Updated to WeArePlanet SDK 1.1.9
+
+= 1.1.8 - August 16, 2018 =
+
+* Fix - Errormessage not displayed in all cases
+* Tweak - Improved javascript
+
+= 1.1.9 - August 30, 2018 =
+
+* Tweak - Settings descriptions
+* Doc - Improved documentation
+
+= 1.1.10 - September 07, 2018 =
+
+* Tweak - Fall back to payment page, if iframe can not be initialized
+
+= 1.1.11 - September 20, 2018 =
+
+* Fix - Improved handling of backend actions
+
+= 1.1.12 - November 13, 2018 =
+
+* Feature - Added option to send global product attributes to WeArePlanet
+* Tweak - Improved customer experience if the payment fails.
+
+= 1.1.13 - November 16, 2018 =
+
+* Tweak - Integrated hooks to remove product attribute options
+
+= 1.1.14 - December 05, 2018 =
+
+* Fix - Improved available payment method caching.
+* Fix - Fixes Refund failure message not displayed.
+* Feature - Added ability to use custom 'Date Of Birth' or 'Gender' field in checkout.
+
+= 1.1.15 - December 10, 2018 =
+
+* Tweak - Improved email confirmation with Germanized Plugin
+
+= 1.1.16 - December 14, 2018 =
+
+* Fix - Fixes issue with WooCommerce versions < 3.5
+
+= 1.1.17 - December 21, 2018 =
+
+* Tweak - Tweak email sending behaviour, when Germanized is active
+
+= 1.1.18 - January 18, 2019 =
+
+* Fix - Issue with browser navigation button during the checkout
+
+= 1.1.19 - February 8, 2019 =
+
+* Fix - Improved language detection
+
+= 1.1.20 - February 11, 2019 =
+
+* Tweak - Only check available payment methods on checkout pages
+
+= 1.2.0 - March 19, 2019 =
+
+* Tweak - Additional Actions/Filters to use with other plugins
+* Fix - Get transaction language from order
+
+= 1.2.1 - March 26, 2019 =
+
+* Fix - Item amounts for refunds
+
+= 1.2.2 - March 28, 2019 =
+
+* Tweak - Added additional hooks for subscriptions
+
+= 1.2.3 - March 29, 2019 =
+
+* Fix - Method not always showing
+
+= 1.2.4 - April 03, 2019 =
+
+* Fix - Issue with checkout JS
+* Tweak - Show warning for tax rounding at subtotal level
+
+= 1.2.5 - June 07, 2019 =
+
+* Docs - Improved state graph and documentation
+* Dev - Updated supported WooCommerce versions
+
+= 1.2.6 - July 09, 2019 =
+
+* Fix - Issue with shipping address
+* Fix - Issue with payment method not showing
+
+= 1.2.7 - July 17, 2019 =
+
+* Fix - Issue with refunds
+* Tweak - Only load backend javascript on order page
+
+= 1.2.8 - July 29, 2019 =
+
+* Fix - Issues with email not being sent
+
+= 1.2.9 - October 3, 2019 =
+
+* Fix - Issues with postal state not transmitted correctly
+
+= 1.2.10 - October 16, 2019 =
+
+* Tweaks - Improved compatibility with other plugins
+
+= 1.2.11 - October 29, 2019 =
+
+* Fix - Fixes issue with token webhook
+
+= 1.2.12 - November 27, 2019 =
+
+* Fix - Update used PHP SDK.
+
+= 1.2.13 - December 5, 2019 =
+
+* Fix - Document download
+* Dev - Update used PHP SDK
+
+= 1.2.14 - December 5, 2019 =
+
+* Fix - Document download
+* Dev - Update used PHP SDK
+
+= 1.2.15 - December 19, 2019 =
+
+* Fix - Discount display
+
+= 1.2.16 - December 19, 2019 =
+
+* Fix - Discount display
+
+= 1.3.0 - January 21, 2020 =
+
+* Feature - Add lightbox integration
+
+= 1.3.1 - January 27, 2020 =
+
+* Feature - Enforce Line Item consistency
+
+= 1.3.2 - January 27, 2020 =
+
+* Buxfix - Fix reload
+
+= 1.3.3 - February 04, 2020 =
+
+* Update Translations
+
+= 1.3.4 - February 24, 2020 =
+
+* Fix js email validation
+
+= 1.3.5 - February 25, 2020 =
+
+* Remove noise from logs
+
+= 1.3.6 - March 05, 2020 =
+
+* Fix input validation on lightbox integration
+
+= 1.3.7 - April 06, 2020 =
+
+* Update logging
+
+= 1.3.8 - April 06, 2020 =
+
+* Update logging
+
+= 1.3.9 - April 09, 2020 =
+
+* Update SDK
+* Update Readme
+
+= 1.3.10 - July 15, 2020 =
+
+* Improve error handling during order creation.
+
+= 1.3.11 - October 14, 2020 =
+
+* Update author to wallee AG.
+
+= 1.4 - November 11, 2020 =
+
+* Update author url to wallee AG.
+* Update wallee SDK
+
+= 1.5 - November 27, 2020 =
+
+* Shorten table names
+
+= 1.5.1 - December 18, 2020 =
+
+* Added EAN code to line items
+
+= 1.5.2 - December 29, 2020 =
+
+* Bug Fix - truncate line item name when over 150 chars
+
+= 1.5.3 - June 7, 2021 =
+
+* Tested plugin against wordpress version 5.7.2 and woocommerce 5.3.0
+
+= 1.5.4 - June 13, 2021 =
+
+* Updated the webhook for invoice payment method
+
+= 1.5.5 - July 21, 2021 =
+
+* Testing Wordpress version 5.8
+
+= 1.5.6 - July 28, 2021 =
+
+* Fixed coupons using lightbox integration type
+
+= 1.5.7 - August 2, 2021 =
+
+* Migrate travis
+
+= 1.5.7 - August 2, 2021 =
+
+* Fixed coupons using lightbox integration type
+
+= 1.5.9 - August 10, 2021 =
+
+* Improved error reporting for api errors
+
+= 1.6.0 - August 10, 2021 =
+
+* Handle deprecated Webhooks for order's stuck in 'hold' status
+* Update SDK to 3.0.1
+
+= 1.7.0 - October 4, 2021 =
+
+* Revert payment flow change done in v1.5.4
+
+= 1.7.1 - November 22, 2021 =
+
+* add german translations
+
+= 1.7.1 - November 22, 2021 =
+
+* adjust translation date
+
+= 1.7.3 - January 25, 2022 =
+
+* checkout loading fix
+
+= 1.7.4 - February 08, 2022 =
+
+* updated JS snippet
+* tested against WP 5.9, WC 6.1.1
+
+= 1.7.5 - February 28, 2022 =
+
+* updated documentation
+
+= 1.7.6 - March 1, 2022 =
+
+* create new transaction when subscription is removed from cart to prevent issues with payment choice
+
+= 1.7.7 - March 8, 2022 =
+
+* test release for GitLab Ci/CD instegration
+
+= 1.7.8 - March 10, 2022 =
+
+* test release for GitLab Ci/CD instegration, no changes to code, just an empty release
+
+= 1.7.9 - March 10, 2022 =
+
+* test release for GitLab Ci/CD instegration, no changes to code, just an empty release
+
+= 1.7.10 - March 22, 2022 =
+
+* remove double slash from enqueue url
+
+= 1.7.11 - April 11, 2022 =
+
+* add payment method descriptions when address is empty
+
+= 1.7.12 - May 02, 2022 =
+
+* support link update in documentation
+
+= 1.7.14 - May 11, 2022 =
+
+* added order reference number to order info
+* tested against Woocommerce 6.3.1, Wordpress 5.9.3
+
+= 1.7.13 - May 09, 2022 =
+
+* allow filter for jmerchant to select order id or order number
+* tested against Woocommerce 6.3.1, Wordpress 5.9.3
+
+= 1.7.15 - June 22, 2022 =
+
+* enable translatepress support for line item translations into the portal
+* tested against Woocommerce 6.3.1, Wordpress 6.0, Translatepress 2.2.9
+
+= 1.7.15 - June 15, 2022 =
+
+* fix for non whitelabelled reference
+
+= 1.7.17 - June 27, 2022 =
+
+* fix for upstream translation
+
+improve links on readme
+
+trademark requirements fix
+
+multiple code improvements for security and best practices
+
+Travis improvements
+
+Adjust documentation (remove setup assistant)
+
+Fix line item requires value
+
+Numerous fixes to meet Wordpress community standards and guidelines
+
+Travis build fix for deployment
+
+Travis build fix for deployment
+
+Travis build fix for deployment
+
+Travis build fix for deployment
+
+changes to build pipeline
+
+Minor bugfix for dependencies
+
+sanitation bugfix
+
+travis timeout fix
+
+fixes for escaping output
+
+major version update
+
+Features:
+- Support of Wordpress 6.1
+- Support of Woocommerce 7.0.1
+Bugfixes:
+- Fix that when 0 manual task are needed, the message ‘0 manuelle Tasks benötigen Ihre Aufmerksamkeit’ is shown.
+Tested against:
+- PHP 7.4.32
+- Wordpress: 6.1
+- Woocommerce: 6.7.0
+
+## Features:
+- Added analytics headers.
+- Support of Wordpress 6.1.1
+- Support of Woocommerce 7.1.0
+
+## Tested against:
+- PHP 7.4.32
+- Wordpress: 6.1.1
+- Woocommerce: 7.1.0
+
+## Features:
+- Compatibility improvement.
+- Support of Wordpress 6.1.1
+- Support of Woocommerce 7.1.0
+
+## Tested against:
+- PHP 7.4.32
+- Wordpress: 6.1.1
+- Woocommerce: 7.1.0
+
+## Features:
+- Compatibility improvement.
+- Support of Wordpress 6.1.1
+- Support of Woocommerce 7.1.0
+
+## Tested against:
+- PHP 7.4.32
+- Wordpress: 6.1.1
+- Woocommerce: 7.1.0
+
+## Feature
+- Support of Woocommerce 7.1.1 to 7.3.0
+
+## Bug
+- Fix the typo *stdClass::$eventd* to **stdClass::$eventId**
+
+## Tested Against
+- PHP 7.4.32
+- Wordpress 6.1.1
+- Woocommerce 7.3.0
+
+## Feature
+- Make the latest version of the plugin available on the marketplace
+
+## Tested Against
+- PHP 7.4.32
+- Wordpress 6.1.1
+- Woocommerce 7.3.0
+
+## Feature
+- Upgrade the **PHP sdk version** to 3.2.0 to add compatibility with PHP 8.1
+- Support of Woocommerce 7.4.0
+- Loading jQuery BlockUI only if it is available
+
+## Bug
+- Removal of *woocommerce* trademark from translations and error message
+
+## Tested Against
+- PHP 8.1
+- Wordpress 6.1.1
+- Woocommerce 7.4.0
+- PHP sdk 3.2.0
+
+## Bugfix
+- Fix incompatibilities with the new WooCommerce version 7.5.0
+
+## Tested Against
+- PHP 8.1
+- Wordpress 6.1.1
+- Woocommerce 7.5.0
+- PHP SDK 3.2.0
+
+= 2.1.9 - March 22, 2023 =
+
+## Feature
+- Smart Coupons Compatibility
+
+## Tested Against
+- PHP 8.1
+- Wordpress 6.1.1
+- Woocommerce 7.5.0
+- PHP SDK 3.2.0
+
+= 2.1.10 - March 30, 2023 =
+
+## Bugfix
+- Prevent Customer from upgrading to unsupported version of WooCommerce (7.5.+)
+
+## Tested Against
+- PHP 8.1
+- Wordpress 6.1.1
+- Woocommerce 7.4.1
+- PHP SDK 3.2.0
+
+= 2.1.11 - April 13, 2023 =
+
+## Bugfix
+- Fix the Smart Coupon impact on renewal of Subscriptions
+
+## Tested Against
+- PHP 8.1
+- Wordpress 6.2
+- Woocommerce 7.4.1
+- PHP SDK 3.2.0
+
+= 2.1.12 - April 20, 2023 =
+
+* [Features] Provide a *Warning Message* in case the installed Woocommerce version is not supported
+* [Features] Support of Woocommerce 7.5.0
+* [Features] Support of Woocommerce 7.5.1
+
+* [Tested Against] PHP 8.1
+* [Tested Against] Wordpress 6.2.0
+* [Tested Against] Woocommerce 7.5.1
+* [Tested Against] PHP SDK 3.2.0
+
+= 2.1.13 - April 25, 2023 =
+
+* [Features] Support of Woocommerce 7.6.0
+
+* [Tested Against] PHP 8.1
+* [Tested Against] Wordpress 6.2.0
+* [Tested Against] Woocommerce 7.6.0
+* [Tested Against] PHP SDK 3.2.0
+
+= 2.1.14 - April 27, 2023 =
+
+* [Features] Support of Woocommerce 7.6.1
+
+* [Tested Against] PHP 8.1
+* [Tested Against] Wordpress 6.2.0
+* [Tested Against] Woocommerce 7.6.1
+* [Tested Against] PHP SDK 3.2.0
+
+* [Features] Provide a fallback to handle payment when Woocommerce latest release break the iframe / lightbox 
+* [Features] Support of Woocommerce 7.7.0
+* [BugFix] Fix the line item inconsistency when using Taxes and a Coupon
+* [BugFix] Fix the parameter organisation name when using the payment method **Powerpay Invoice**
+
+* [Tested Against] PHP 8.0.28
+* [Tested Against] Wordpress 6.2.0
+* [Tested Against] Woocommerce 7.7.0
+* [Tested Against] PHP SDK 3.2.0
+
+* [BugFix] Fix the thankyou page redirection issue
+
+* [Tested Against] PHP 8.0.28
+* [Tested Against] Wordpress 6.2.0
+* [Tested Against] Woocommerce 7.7.0
+* [Tested Against] PHP SDK 3.2.0
+
+* [Features] Support of Wordpress 6.2.1
+* [Features] Support of Wordpress 6.2.2
+* [Features] Support of Woocommerce 7.7.1
+* [BugFix] Fix the fatal error raised when using non-whitelabel payment method
+* [BugFix] Fix the error raised when using the Coupon *Sign Up Fee % Discount*
+
+* [Tested Against] PHP 8.0.28
+* [Tested Against] Wordpress 6.2.0
+* [Tested Against] Woocommerce 7.7.0
+* [Tested Against] PHP SDK 3.2.0
+
+* [Features] Support of Wordpress 6.2.1
+* [Features] Support of Wordpress 6.2.2
+* [Features] Support of Woocommerce 7.7.1
+* [BugFix] Fix the fatal error raised when using non-whitelabel payment method
+* [BugFix] Fix the error raised when using the Coupon *Sign Up Fee % Discount*
+
+* [Tested Against] PHP 8.0.28
+* [Tested Against] Wordpress 6.2.0
+* [Tested Against] Woocommerce 7.7.0
+* [Tested Against] PHP SDK 3.2.0
+
+= 2.1.19 - June 13, 2023 =
+
+* [Features] Add compatibility with plugin **YITH**
+* [BugFix] Fix the duplication of transaction created in the portal when we make a payment
+* [BugFix] Correct release notes
+
+* [Tested Against] PHP 8.0.28
+* [Tested Against] Wordpress 6.2.0
+* [Tested Against] Woocommerce 7.7.1
+* [Tested Against] PHP SDK 3.2.0
+
+= 2.1.20 - June 16, 2023 =
+
+* [Features] Support of Woocommerce 7.8.0
+
+* [Tested Against] PHP 8.0.28
+* [Tested Against] Wordpress 6.2.2
+* [Tested Against] Woocommerce 7.8.0
+* [Tested Against] PHP SDK 3.2.0
+
+= 2.1.21 - June 22, 2023 =
+
+* [BugFix] Make the latest version of the plugin available on the marketplace
+
+* [Tested Against] PHP 8.0.28
+* [Tested Against] Wordpress 6.2.2
+* [Tested Against] Woocommerce 7.8.0
+* [Tested Against] PHP SDK 3.2.0
+
+= 2.1.22 - July 11, 2023 =
+
+* [Features] Support of Woocommerce 7.8.1
+* [Features] Support of Woocommerce 7.8.2
+* [BugFix] Fix the impossibility of changing the payment method of a subscription
+
+* [Tested Against] PHP 8.0.28
+* [Tested Against] Wordpress 6.2.2
+* [Tested Against] Woocommerce 7.8.2
+* [Tested Against] PHP SDK 3.2.0
+

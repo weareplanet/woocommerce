@@ -1,0 +1,647 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: WeArePlanet\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date:2021-11-30 16:16+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+
+#: includes/class-wc-weareplanet-helper.php:53
+msgid "The API access data is incomplete."
+msgstr "Die API-Zugangsdaten sind unvollständig."
+
+#. 1: item name 2: old stock quantity 3: new stock quantity
+#: includes/class-wc-weareplanet-helper.php:439
+#: includes/webhook/class-wc-weareplanet-webhook-transaction-completion.php:90
+#, php-format
+msgid "%1$s stock increased from %2$s to %3$s."
+msgstr "%1$s Bestand ist von %2$s auf %3$s gestiegen."
+
+#: includes/class-wc-weareplanet-migration.php:90
+#, php-format
+msgid "PHP %s+ is required. (You're running version %s)"
+msgstr "PHP %s+ ist erforderlich. (Sie verwenden die Version %s)"
+
+#: includes/class-wc-weareplanet-migration.php:93
+#, php-format
+msgid "Wordpress %s+ is required. (You're running version %s)"
+msgstr "Wordpress %s+ ist erforderlich. (Sie verwenden die Version %s)"
+
+#: includes/class-wc-weareplanet-migration.php:98	
+#, php-format
+msgid "Woocommerce %s+ has to be active."
+msgstr "Woocommerce %s+ muss aktiviert sein."
+
+#: includes/class-wc-weareplanet-migration.php:104
+#, php-format
+msgid "Woocommerce %s+ is required. (You're running version %s)"
+msgstr "Woocommerce %s+ ist erforderlich. (Sie verwenden die Version %s)"
+
+#: includes/class-wc-weareplanet-migration.php:116
+msgid "Could not activate plugin WeArePlanet."
+msgstr "Das Plugin WeArePlanet konnte nicht aktiviert werden."
+
+#: includes/class-wc-weareplanet-migration.php:118
+msgid "Please check the following requirements before activating:"
+msgstr "Bitte prüfen Sie vor der Aktivierung die folgenden Voraussetzungen:"
+
+#: includes/class-wc-weareplanet-migration.php:260
+msgid "View Documentation"
+msgstr "Dokumentation anzeigen"
+
+#: includes/class-wc-weareplanet-migration.php:260
+#: includes/admin/class-wc-weareplanet-admin-settings-page.php:148
+msgid "Documentation"
+msgstr "Dokumentation"
+
+#: includes/class-wc-weareplanet-migration.php:587
+#, php-format
+msgid "A version of the WeArePlanet plugin is yet to be released for this version of WooCommerce."
+msgstr "Eine Version des WeArePlanet Plugin ist für diese Version von WooCommerce noch nicht freigegeben."
+
+#: includes/class-wc-weareplanet-customer-document.php:57
+msgid "Order Documents"
+msgstr "Bestellungsdokumente"
+
+#: includes/class-wc-weareplanet-customer-document.php:68
+msgid "Download Invoice"
+msgstr "Rechnung herunterladen"
+
+#: includes/class-wc-weareplanet-customer-document.php:80
+msgid "Download Packing Slip"
+msgstr "Download Lieferschein"
+
+#: includes/class-wc-weareplanet-customer-document.php:150
+msgid "There was an error downloading the document."
+msgstr "Beim Herunterladen des Dokuments ist ein Fehler aufgetreten."
+
+#: includes/class-wc-weareplanet-gateway.php:139
+#, php-format
+msgid "Enable %s"
+msgstr "Aktivieren Sie %s"
+
+#: includes/class-wc-weareplanet-gateway.php:146
+msgid "This controls the title which the user sees during checkout."
+msgstr "Dies steuert den Titel, den der Benutzer während der Kaufabwicklung sieht."
+
+#: includes/class-wc-weareplanet-gateway.php:151
+msgid "[not set]"
+msgstr "[nicht gesetzt]"
+
+#: includes/class-wc-weareplanet-gateway.php:152
+msgid "Payment method description that the customer will see on your checkout."
+msgstr "Zeigen Sie die Beschreibung der Zahlungsmethode im Checkout an."
+
+#: includes/class-wc-weareplanet-gateway.php:155
+msgid "Show description"
+msgstr "Beschreibung anzeigen"
+
+#: includes/class-wc-weareplanet-gateway.php:157
+#: includes/class-wc-weareplanet-gateway.php:165
+msgid "Yes"
+msgstr "Ja"
+
+#: includes/class-wc-weareplanet-gateway.php:159
+msgid "Show the payment method's description on the checkout page."
+msgstr "Zeigen Sie die Beschreibung der Zahlungsmethode im Checkout an."
+
+#: includes/class-wc-weareplanet-gateway.php:163
+msgid "Show method image"
+msgstr "Bild der Zahlungsmethode anzeigen"
+
+#: includes/class-wc-weareplanet-gateway.php:167
+msgid "Show the payment method's image on the checkout page."
+msgstr "Zeigen Sie das Bild der Zahlungsmethode im Checkout an."
+
+#: includes/class-wc-weareplanet-gateway.php:329
+msgid "Please fill out all required fields."
+msgstr "Bitte füllen Sie alle erforderlichen Felder aus."
+
+#: includes/class-wc-weareplanet-gateway.php:381
+msgid "The checkout timed out, please try again."
+msgstr "Der Checkout wurde abgebrochen, bitte versuchen Sie es erneut."
+
+#: includes/class-wc-weareplanet-gateway.php:391
+msgid ""
+"There was an issue, while processing your order. Please try again or use "
+"another payment method."
+msgstr "Es gab ein Problem bei der Bearbeitung Ihrer Bestellung. Bitte versuchen Sie es erneut oder verwenden Sie eine andere Zahlungsmethode."
+
+#: includes/class-wc-weareplanet-gateway.php:477
+msgid "There was a problem creating the refund."
+msgstr "Es gab ein Problem bei der Ausführung der Rückerstattung."
+
+#: includes/admin/class-wc-weareplanet-admin-document.php:59
+#: includes/admin/class-wc-weareplanet-admin-document.php:141
+msgid "Invoice"
+msgstr "Rechnung"
+
+#: includes/admin/class-wc-weareplanet-admin-document.php:70
+#: includes/admin/class-wc-weareplanet-admin-document.php:155
+msgid "Packing Slip"
+msgstr "Lieferschein"
+
+#: includes/admin/class-wc-weareplanet-admin-document.php:95
+msgid "weareplanet Documents"
+msgstr "weareplanet Dokumente"
+
+#: includes/admin/class-wc-weareplanet-admin-document.php:202
+msgid "Could not fetch the document from WeArePlanet."
+msgstr "Das Dokument von WeArePlanet konnte nicht abgerufen werden."
+
+#: includes/admin/class-wc-weareplanet-admin.php:133
+msgid "There is a completion/void in progress."
+msgstr "Eine Verbuchung/Stornierung ist in Verarbeitung."
+
+#: includes/admin/class-wc-weareplanet-admin.php:134
+#: includes/admin/class-wc-weareplanet-admin-refund.php:61
+msgid "Update"
+msgstr "Aktualisierung"
+
+#: includes/admin/class-wc-weareplanet-admin.php:137
+msgid "Void"
+msgstr "Stornierung"
+
+#: includes/admin/class-wc-weareplanet-admin.php:138
+msgid "Completion"
+msgstr "Verbuchung"
+
+#: includes/admin/class-wc-weareplanet-admin.php:175
+msgid ""
+"Are you sure you wish to process this void? This action cannot be undone."
+msgstr "Sind Sie sicher, dass Sie diese Stornierung ausführen möchten? Diese Aktion kann nicht rückgängig gemacht werden."
+
+#: includes/admin/class-wc-weareplanet-admin.php:176
+msgid ""
+"Are you sure you wish to process this completion? This action cannot be "
+"undone."
+msgstr "Sind Sie sicher, dass Sie diese Verbuchung ausführen möchten? Diese Aktion kann nicht rückgängig gemacht werden."
+
+#: includes/admin/class-wc-weareplanet-admin.php:228
+msgid "View Settings"
+msgstr "Einstellungen anzeigen"
+
+#: includes/admin/class-wc-weareplanet-admin.php:228
+msgid "Settings"
+msgstr "Einstellungen"
+
+#: includes/admin/class-wc-weareplanet-admin.php:256
+#: includes/admin/class-wc-weareplanet-admin.php:267
+msgid "Send attribute to WeArePlanet."
+msgstr "Eigenschaft an WeArePlanet senden."
+
+#: includes/admin/class-wc-weareplanet-admin-refund.php:60
+msgid "There is a refund in progress."
+msgstr "Eine Rückerstattung ist in Verarbeituung."
+
+#: includes/admin/class-wc-weareplanet-admin-refund.php:94
+msgid "Could not load corresponding transaction"
+msgstr "Die entsprechende Transaktion konnte nicht geladen werden"
+
+#: includes/admin/class-wc-weareplanet-admin-refund.php:101
+msgid "Please wait until the pending refund is processed."
+msgstr "Bitte warten Sie, bis die ausstehende Rückerstattung bearbeitet ist."
+
+#: includes/admin/class-wc-weareplanet-admin-refund.php:155
+#: includes/admin/class-wc-weareplanet-admin-refund.php:162
+#, php-format
+msgid ""
+"There has been an error while sending the refund to the gateway. Error: %s"
+msgstr "Beim Senden der Rückerstattung an das Gateway ist ein Fehler aufgetreten. Fehler: %s"
+
+#: includes/admin/class-wc-weareplanet-admin-refund.php:182
+#, php-format
+msgid "Error updating refund job with id %d: %s"
+msgstr "Fehler bei der Aktualisierung des Rückerstattungsauftrags mit der ID %d: %s"
+
+#: includes/admin/class-wc-weareplanet-admin-order-completion.php:46
+#: includes/admin/class-wc-weareplanet-admin-order-void.php:46
+msgid "Cancel"
+msgstr "Stornieren"
+
+#: includes/admin/class-wc-weareplanet-admin-order-completion.php:48
+msgid "Execute Completion"
+msgstr "Verbuchung ausführen"
+
+#: includes/admin/class-wc-weareplanet-admin-order-completion.php:50
+msgid "Restock not completed items"
+msgstr "Nicht verbuchte Artikel wieder dem Inventar hinzufügen."
+
+#: includes/admin/class-wc-weareplanet-admin-order-completion.php:52
+msgid "Completion Amount"
+msgstr "Zu verbuchender Betrag"
+
+#: includes/admin/class-wc-weareplanet-admin-order-completion.php:118
+msgid "The tax rate can not be changed."
+msgstr "Der Steuersatz kann nicht geändert werden."
+
+#: includes/admin/class-wc-weareplanet-admin-order-completion.php:127
+msgid ""
+"The line item total does not correspond to the total amount to complete."
+msgstr "Die Summe der Einzelposten entspricht nicht dem Gesamtbetrag, der zu verbuchen ist."
+
+#: includes/admin/class-wc-weareplanet-admin-order-completion.php:141
+msgid "The transaction is not in a state to be completed."
+msgstr "Im aktuellen Transaktionsstatus kann die Transaktion nicht abgeschlossen werden."
+
+#: includes/admin/class-wc-weareplanet-admin-order-completion.php:146
+msgid "Please wait until the existing completion is processed."
+msgstr "Bitte warten Sie, bis der Transaktionsabschluss durchgeführt wurde."
+
+#: includes/admin/class-wc-weareplanet-admin-order-completion.php:150
+msgid "There is a void in process. The order can not be completed."
+msgstr "Eine Transaktionsstornierung wird durchgeführt. Die Bestellung kann daher nicht abgeschlossen werden."
+
+#: includes/admin/class-wc-weareplanet-admin-order-completion.php:179
+msgid "The completion is updated automatically once the result is available."
+msgstr "Der Transaktionsabschluss wird automatisch aktualisiert, sobald das Ergebnis verfügbar ist."
+
+#: includes/admin/class-wc-weareplanet-admin-order-completion.php:298
+#, php-format
+msgid "Error updating completion job with id %d: %s"
+msgstr "Fehler bei der Aktualisierung des Abschlussauftrags mit der ID %d: %s"
+
+#: includes/admin/class-wc-weareplanet-admin-order-void.php:48
+msgid "Execute Void"
+msgstr "Stornierung ausführen"
+
+#: includes/admin/class-wc-weareplanet-admin-order-void.php:49
+msgid "Restock items"
+msgstr "Artikel wieder auffüllen"
+
+#: includes/admin/class-wc-weareplanet-admin-order-void.php:83
+msgid "The transaction is not in a state to be voided."
+msgstr "Im aktuellen Transaktionsstatus kann die Transaktion nicht storniert werden."
+
+#: includes/admin/class-wc-weareplanet-admin-order-void.php:88
+msgid "Please wait until the existing void is processed."
+msgstr "Bitte warten Sie, bis die Transaktion storniert wurde."
+
+#: includes/admin/class-wc-weareplanet-admin-order-void.php:92
+msgid "There is a completion in process. The order can not be voided."
+msgstr "Es ist ein Transaktionsabschluss in Bearbeitung. Der Auftrag kann nicht storniert werden."
+
+#: includes/admin/class-wc-weareplanet-admin-order-void.php:117
+msgid "The transaction is updated automatically once the result is available."
+msgstr "Die Transaktion wird automatisch aktualisiert, sobald das Ergebnis verfügbar ist."
+
+#: includes/admin/class-wc-weareplanet-admin-order-void.php:186
+#, php-format
+msgid "Error updating void job with id %d: %s"
+msgstr "Fehler beim Aktualisieren eines ungültigen Auftrags mit der ID %d: %s"
+
+#: includes/admin/class-wc-weareplanet-admin-transaction.php:79
+msgid "General Details"
+msgstr "Allgemeine Details"
+
+#: includes/admin/class-wc-weareplanet-admin-transaction.php:84
+msgid "Payment Method"
+msgstr "Zahlungsmethode"
+
+#: includes/admin/class-wc-weareplanet-admin-transaction.php:97
+msgid "Transaction State"
+msgstr "Transaktionsstatus"
+
+#: includes/admin/class-wc-weareplanet-admin-transaction.php:103
+msgid "Failure Reason"
+msgstr "Grund des Scheiterns"
+
+#: includes/admin/class-wc-weareplanet-admin-transaction.php:108
+msgid "Authorization Amount"
+msgstr "Autorisierter Betrag"
+
+#: includes/admin/class-wc-weareplanet-admin-transaction.php:112
+msgid "Transaction"
+msgstr "Transaktion"
+
+#: includes/admin/class-wc-weareplanet-admin-transaction.php:116
+msgid "View in WeArePlanet"
+msgstr "Ansicht in WeArePlanet"
+
+#: includes/admin/class-wc-weareplanet-admin-transaction.php:162
+msgid "Authorized"
+msgstr "Authorized"
+
+#: includes/admin/class-wc-weareplanet-admin-transaction.php:164
+msgid "Completed"
+msgstr "Completed"
+
+#: includes/admin/class-wc-weareplanet-admin-transaction.php:166
+msgid "Confirmed"
+msgstr "Confirmed"
+
+#: includes/admin/class-wc-weareplanet-admin-transaction.php:168
+msgid "Decline"
+msgstr "Decline"
+
+#: includes/admin/class-wc-weareplanet-admin-transaction.php:170
+msgid "Failed"
+msgstr "Failed"
+
+#: includes/admin/class-wc-weareplanet-admin-transaction.php:172
+msgid "Fulfill"
+msgstr "Fulfill"
+
+#: includes/admin/class-wc-weareplanet-admin-transaction.php:174
+msgid "Pending"
+msgstr "Pending"
+
+#: includes/admin/class-wc-weareplanet-admin-transaction.php:176
+msgid "Processing"
+msgstr "Processing"
+
+#: includes/admin/class-wc-weareplanet-admin-transaction.php:178
+msgid "Voided"
+msgstr "Voided"
+
+#: includes/admin/class-wc-weareplanet-admin-transaction.php:180
+msgid "Unknown State"
+msgstr "Unbekannter Status"
+
+#: includes/admin/class-wc-weareplanet-admin-settings-page.php:77
+msgid "Could not update payment method configuration."
+msgstr "Die Konfiguration der Zahlungsmethode konnte nicht aktualisiert werden."
+
+#: includes/admin/class-wc-weareplanet-admin-settings-page.php:86
+msgid ""
+"Could not install webhooks, please check if the feature is active in your "
+"space."
+msgstr "Webhooks konnten nicht installiert werden, bitte prüfen Sie, ob die Funktion in Ihrem WeArePlanet Space aktiv ist."
+
+#: includes/admin/class-wc-weareplanet-admin-settings-page.php:95
+msgid "Could not update the manual task list."
+msgstr "Die manuelle Aufgabenliste konnte nicht aktualisiert werden."
+
+#: includes/admin/class-wc-weareplanet-admin-settings-page.php:107
+msgid ""
+"Please check your credentials and grant the application user the necessary "
+"rights (Account Admin) for your space."
+msgstr "Bitte überprüfen Sie Ihre Anmeldedaten und erteilen Sie dem Anwendungsbenutzer die erforderlichen Rechte (Account Admin) für Ihren Bereich."
+
+#: includes/admin/class-wc-weareplanet-admin-settings-page.php:149
+msgid "Sign Up"
+msgstr "Anmelden"
+
+#: includes/admin/class-wc-weareplanet-admin-settings-page.php:155
+msgid "General Settings"
+msgstr "Allgemeine Einstellungen"
+
+#: includes/admin/class-wc-weareplanet-admin-settings-page.php:157
+msgid ""
+"Enter your application user credentials and space id, if you don't have an "
+"account already sign up above."
+msgstr "Geben Sie Ihre Anmeldedaten und Ihre Space-ID ein, wenn Sie noch kein Konto haben. Falls Sie bereits ein Konto haben, melden Sie sich oben an."
+
+#: includes/admin/class-wc-weareplanet-admin-settings-page.php:164
+msgid "Space Id"
+msgstr "Space Id"
+
+#: includes/admin/class-wc-weareplanet-admin-settings-page.php:168
+#: includes/admin/class-wc-weareplanet-admin-settings-page.php:177
+#: includes/admin/class-wc-weareplanet-admin-settings-page.php:185
+msgid "(required)"
+msgstr "(erforderlich)"
+
+#: includes/admin/class-wc-weareplanet-admin-settings-page.php:172
+msgid "User Id"
+msgstr "User Id"
+
+#: includes/admin/class-wc-weareplanet-admin-settings-page.php:173
+msgid ""
+"The user needs to have full permissions in the space this shop is linked to."
+msgstr "Der Benutzer muss in dem Bereich, mit dem dieser Shop verknüpft ist, volle Rechte haben."
+
+#: includes/admin/class-wc-weareplanet-admin-settings-page.php:181
+msgid "Authentication Key"
+msgstr "Authentication Key"
+
+#: includes/admin/class-wc-weareplanet-admin-settings-page.php:194
+msgid "Email Options"
+msgstr "Email Optionen"
+
+#: includes/admin/class-wc-weareplanet-admin-settings-page.php:200
+msgid "Send Order Email"
+msgstr "Bestellungsbestätigung per E-Mail senden"
+
+#: includes/admin/class-wc-weareplanet-admin-settings-page.php:201
+msgid "Send the order email of WooCommerce."
+msgstr "Senden Sie die Bestell-E-Mail von WooCommerce."
+
+#: includes/admin/class-wc-weareplanet-admin-settings-page.php:214
+msgid "Document Options"
+msgstr "Dokumentsoptionen"
+
+#: includes/admin/class-wc-weareplanet-admin-settings-page.php:220
+msgid "Invoice Download"
+msgstr "Rechnung Download"
+
+#: includes/admin/class-wc-weareplanet-admin-settings-page.php:221
+msgid "Allow customers to download the invoice."
+msgstr "Erlauben Sie Ihren Kunden, die Rechnung herunterzuladen."
+
+#: includes/admin/class-wc-weareplanet-admin-settings-page.php:228
+msgid "Packing Slip Download"
+msgstr "Lieferschein Download"
+
+#: includes/admin/class-wc-weareplanet-admin-settings-page.php:229
+msgid "Allow customers to download the packing slip."
+msgstr "Ermöglichen Sie den Kunden das Herunterladen des Lieferscheins."
+
+#: includes/admin/class-wc-weareplanet-admin-settings-page.php:242
+msgid "Space View Options"
+msgstr "Space View Optionen"
+
+#: includes/admin/class-wc-weareplanet-admin-settings-page.php:248
+msgid "Space View Id"
+msgstr "Space View Id"
+
+#: includes/admin/class-wc-weareplanet-admin-settings-page.php:249
+msgid ""
+"The Space View Id allows to control the styling of the payment form and the "
+"payment page within the space."
+msgstr "Die Space View Id erlaubt es, das Styling des Zahlungsformulars und der Zahlungsseite innerhalb des Space zu steuern."
+
+#: includes/webhook/class-wc-weareplanet-webhook-delivery-indication.php:53
+msgid "A manual decision about whether to accept the payment is required."
+msgstr "Es muss manuell entschieden werden, ob die Zahlung akzeptiert werden soll."
+
+#: includes/service/class-wc-weareplanet-service-refund.php:167
+msgid "Could not distribute the rounding difference."
+msgstr "Die Rundungsdifferenz konnte nicht verteilt werden."
+
+#: includes/service/class-wc-weareplanet-service-transaction.php:374
+msgid "The checkout expired, please try again."
+msgstr "Der Checkout ist abgelaufen, bitte versuchen Sie es erneut."
+
+#: views/admin-notices/manual-tasks.php:18
+msgid "There is a manual task that needs your attention."
+msgstr "Es gibt eine manuelle Aufgabe, die Ihre Aufmerksamkeit erfordert."
+
+#: views/admin-notices/manual-tasks.php:21
+#, php-format
+msgid "There is %s manual task that needs your attention."
+msgid_plural "There are %s manual tasks that need your attention"
+msgstr[0] "Es gibt %s manuelle Aufgabe, die Ihre Aufmerksamkeit erfordert"
+msgstr[1] "Es gibt %s manuelle Aufgaben, die Ihre Aufmerksamkeit erfordern"
+
+#: views/admin-notices/manual-tasks.php:26
+msgid "View"
+msgstr "Ansicht"
+
+#: views/admin-notices/round-subtotal-warning.php:15
+msgid ""
+"The WeArePlanet payment method are not available, if the taxes are rounded at "
+"subtotal level. Please disable the 'Round tax at subtotal level, instead of "
+"rounding per line' in the tax settings to enable the WeArePlanet payment methods."
+msgstr "Die WeArePlanet Zahlungsmethode ist nicht verfügbar, wenn die Steuern auf Zwischensummenebene gerundet werden."
+"Bitte deaktivieren Sie in den Steuereinstellungen die Option Steuern auf Zwischensummenebene runden, anstatt pro Zeile zu runden,"
+"um die WeArePlanet-Zahlungsmethoden zu aktivieren."
+
+#: views/admin-notices/migration-failed.php:15
+msgid "There was an issue executing the migration for WeArePlanet."
+msgstr "Es gab ein Problem bei der Ausführung der Migration für WeArePlanet."
+
+#: views/admin-notices/plugin-deactivated.php:14
+msgid "WeArePlanet deactivated because it depends on WooCommerce."
+msgstr "WeArePlanet deaktiviert, weil es von WooCommerce abhängt."
+
+#. Name of the plugin
+msgid "WeArePlanet"
+msgstr "WeArePlanet"
+
+#. Description of the plugin
+msgid "Process WooCommerce payments with WeArePlanet."
+msgstr "Verarbeiten Sie WooCommerce-Zahlungen mit WeArePlanet."
+
+#. URI of the plugin
+msgid "https://wordpress.org/plugins/woo-weareplanet"
+msgstr "https://wordpress.org/plugins/woo-weareplanet"
+
+#. Author of the plugin
+msgid "wallee AG"
+msgstr "wallee AG"
+
+#. Author URI of the plugin
+msgid "https://www.wallee.com"
+msgstr "https://www.wallee.com"
+
+
+#: includes/admin/class-wc-weareplanet-admin-settings-page.php:277
+msgid "Require that the transaction line items total is matching the order total."
+msgstr "Verlangen, dass die Summe der Transaktionspositionen mit der Auftragssumme übereinstimmt."
+
+#: includes/admin/class-wc-weareplanet-admin-settings-page.php:276
+msgid "Enforce Consistency"
+msgstr "Konsistenz erzwingen"
+
+#: includes/admin/class-wc-weareplanet-admin-settings-page.php:270
+msgid "Line Items Options"
+msgstr "Optionen für Einzelposten"
+
+#: includes/class-wc-weareplanet-helper.php:207
+msgid "Adjustment"
+msgstr "Anpassung"
+
+#: includes/admin/class-wc-weareplanet-admin-settings-page.php:253
+msgid "The integration type controls how the payment form is integrated into the WooCommerce checkout. The Lightbox integration type offers better performance but with a less compelling checkout experience."
+msgstr "Der Integrationstyp steuert, wie das Zahlungsformular in die WooCommerce Kasse integriert wird. Der Integrationstyp Lightbox bietet eine bessere Leistung, aber ein weniger überzeugendes Checkout Erlebnis."
+
+#: includes/admin/class-wc-weareplanet-admin-settings-page.php:252
+msgid "Integration Type"
+msgstr "Integrationstyp"
+
+#: includes/admin/class-wc-weareplanet-admin-settings-page.php:245
+msgid "Integration Options"
+msgstr "Integrationsmöglichkeiten"
+
+#: views/admin-notices/round-subtotal-warning.php:15
+msgid "The WeArePlanet payment methods are not available, if the taxes are rounded at subtotal level. Please disable the 'Round tax at subtotal level, instead of rounding per line' in the tax settings to enable the WeArePlanet payment methods."
+msgstr "Die WeArePlanet Zahlungsarten sind nicht verfügbar, wenn die Steuern auf Zwischensummenebene gerundet werden. Bitte deaktivieren Sie die Option 'Steuern auf Zwischensummenebene runden, anstatt pro Zeile zu runden' in den Steuereinstellungen, um die WeArePlanet Zahlungsmethoden zu aktivieren."
+
+#: woocommerce-weareplanet.php:296
+msgctxt "Order status"
+msgid "Manual Decision"
+msgstr "Manuelle Entscheidung"
+
+#: woocommerce-weareplanet.php:295
+msgctxt "Order status"
+msgid "Waiting"
+msgstr "Warten"
+
+#: woocommerce-weareplanet.php:294
+msgctxt "Order status"
+msgid "Redirected"
+msgstr "Weitergeleitet"
+
+#: woocommerce-weareplanet.php:289
+msgid "Manual Decision <span class=\"count\">(%s)</span>"
+msgid_plural "Manual Decision <span class=\"count\">(%s)</span>"
+msgstr[0] "Manuelle Entscheidung <span class=\"count\">(%s)</span>"
+msgstr[1] "Manuelle Entscheidung <span class=\"count\">(%s)</span>"
+
+#: woocommerce-weareplanet.php:280
+msgid "Waiting <span class=\"count\">(%s)</span>"
+msgid_plural "Waiting <span class=\"count\">(%s)</span>"
+msgstr[0] "Wartend <span class=\"count\">(%s)</span>"
+msgstr[1] "Wartende <span class=\"count\">(%s)</span>"
+
+#: woocommerce-weareplanet.php:271
+msgid "WeArePlanet Processing <span class=\"count\">(%s)</span>"
+msgid_plural "WeArePlanet Processing <span class=\"count\">(%s)</span>"
+msgstr[0] "WeArePlanet Verarbeitung <span class=\"count\">(%s)</span>"
+msgstr[1] "WeArePlanet Verarbeitungen <span class=\"count\">(%s)</span>"
+
+#: includes/class-wc-weareplanet-cron.php:31
+msgid "Every Five Minutes"
+msgstr "Alle fünf Minuten"
+
+#: includes/class-wc-weareplanet-gateway.php:149
+msgid "Description"
+msgstr "Beschreibung"
+
+#: includes/class-wc-weareplanet-gateway.php:143
+msgid "Title"
+msgstr "Titel"
+
+#: includes/class-wc-weareplanet-gateway.php:137
+msgid "Enable/Disable"
+msgstr "Aktivieren/Deaktivieren"
+
+#: includes/class-wc-weareplanet-migration.php:113
+msgid "Install the PHP cUrl extension or ensure the 'stream_socket_client' function is available."
+msgstr "Installieren Sie die PHP cUrl-Erweiterung oder stellen Sie sicher, dass die Funktion 'stream_socket_client' verfügbar ist."
+
+#: includes/admin/class-wc-weareplanet-admin.php:262
+#: includes/admin/class-wc-weareplanet-admin.php:270
+msgid "Should this product attribute be sent to WeArePlanet as line item attribute?"
+msgstr "Soll dieses Produktattribut als Positionsattribut an WeArePlanet gesendet werden?"
+
+#: includes/admin/class-wc-weareplanet-admin-document.php:93
+msgid "WeArePlanet Documents"
+msgstr "WeArePlanet Documents"
+
+#: includes/admin/class-wc-weareplanet-admin-transaction.php:43
+msgid "WeArePlanet Transaction"
+msgstr "WeArePlanet Transaction"
+
+#: includes/class-wc-weareplanet-gateway.php:143
+#: includes/admin/class-wc-weareplanet-admin-notices.php:104
+#: includes/admin/class-wc-weareplanet-admin-settings-page.php:104
+msgid "'WooCommerce > Settings > WeArePlanet > Enforce Consistency' and 'WooCommerce > Settings > Tax > Rounding' are both enabled. Please disable at least one of them."
+msgstr "'WooCommerce > Einstellungen > WeArePlanet > Konsistenz erzwingen' and 'WooCommerce > Einstellungen > Steuer > Runden' sind beide aktiviert. Bitte deaktivieren Sie mindestens eines von beiden."
+
+#: includes/webhook/class-wc-weareplanet-webhook-transaction-invoice.php:56
+msgid "Invoice Not Settled"
+msgstr "Nicht beglichene Rechnung"
+
+
+#: includes/webhook/class-wc-weareplanet-webhook-transaction-invoice.php:59
+msgid "Invoice Settled"
+msgstr "Beglichene Rechnung"

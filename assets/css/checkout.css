@@ -1,0 +1,12 @@
+/**
+ * WeArePlanet WooCommerce
+ *
+ * This WooCommerce plugin enables to process payments with WeArePlanet (https://www.weareplanet.com/).
+ *
+ * @author wallee AG (http://www.wallee.com/)
+ * @license http://www.apache.org/licenses/LICENSE-2.0 Apache Software License (ASL 2.0)
+ */
+/* Order button disabled */
+#place_order.weareplanet-disabled{
+	cursor:not-allowed;
+}

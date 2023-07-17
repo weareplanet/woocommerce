@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<meta name="keywords" value="WeArePlanet, WooCommerce, Wordpress Plugin, WooCommerce Extension, Payment, Payment Integration, Documentation"><meta name="description" value="The documentation for the WeArePlanet plugin that enables processing payments with WeArePlanet.">		<link rel="canonical" href="https://plugin-documentation.wallee.com/wallee-payment/woocommerce/master/docs/en/documentation.html" />
+		<title>WeArePlanet WooCommerce</title>
+		<link href="assets/monokai-sublime.css" rel="stylesheet" />
+		<link href="assets/base.css" rel="stylesheet" />
+	</head>
+	<body class="documentation">
+		<div class="layout-wrapper">
+							<div class="layout-title">
+					<h1>WeArePlanet WooCommerce</h1>
+<h2>Documentation</h2>				</div>
+										<div class="layout-navigation">
+					<ul class="nav">
+	<li>
+		<a href="https://www.weareplanet.com/contact/sales">
+			Sign Up
+		</a>
+	</li>
+	<li>
+		<a href="https://github.com/weareplanet/woocommerce/releases/tag/2.1.22/">
+			Source
+		</a>
+	</li>
+</ul>				</div>
+										<div class="layout-content">
+												<div class="col-body">
+							<div class="col-body-wrapper">
+																	<div class="body-container">
+																						<div class="chapter" id="_prerequisites">
+	<div class="chapter-title">
+		<h1>
+			<span class="title-number">1</span>Prerequisites					</h1>
+	</div>
+	<div class="chapter-body">
+					<div class="paragraph">
+<p>If you don&#8217;t already have one, create a <a href="https://www.weareplanet.com/contact/sales/">WeArePlanet</a> account.</p>
+</div>					</div>
+</div>	<div class="chapter" id="_installation">
+	<div class="chapter-title">
+		<h1>
+			<span class="title-number">2</span>Installation					</h1>
+	</div>
+	<div class="chapter-body">
+					<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Install the extension directly from your Wordpress backend by going to Plugins &#8594; Add New. There search for WeArePlanet.</p>
+</li>
+<li>
+<p>The plugin will now be visible under Plugins. You can install the plugin directly from here. Once it is installed, you will be able to open the configuration.</p>
+</li>
+</ol>
+</div><div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+You will be automatically notified once there are updates available for the plugin within WooCommerce.
+</td>
+</tr>
+</table>
+</div>					</div>
+</div>	<div class="chapter" id="_configuration">
+	<div class="chapter-title">
+		<h1>
+			<span class="title-number">3</span>Configuration					</h1>
+	</div>
+	<div class="chapter-body">
+					<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Navigate to WooCommerce &#8594; Settings &#8594; WeArePlanet in your Wordpress backend and enter the WeArePlanet Space ID, User ID and Authentification Key that you can manually create an <a href="https://paymentshub.weareplanet.com/en-us/doc/permission-concept#_create_application_users" target="_blank">application user</a>.</p>
+<div class="imageblock">
+<div class="content">
+<img src="resource/settings.png" alt="settings"/>
+</div>
+</div>
+</li>
+<li>
+<p>Optionally disable downloading invoice and packing slip. These settings allow customers to download the documents from their order overview in the WooCommerce frontend.</p>
+</li>
+<li>
+<p>After saving the configuration, the payment methods are created in the WooCommerce store and the necessary webhooks are set up.</p>
+</li>
+</ol>
+</div><div class="paragraph">
+<p>The main configuration is now finished. You should see the payment methods in your checkout. To view the payment method configuration in the Wordpress backend go to
+WooCommerce &gt; Settings &gt; Payment.</p>
+</div>					</div>
+</div>	<div class="chapter" id="_payment_method_configuration">
+	<div class="chapter-title">
+		<h1>
+			<span class="title-number">4</span>Payment method configuration					</h1>
+	</div>
+	<div class="chapter-body">
+							<div class="section" id="_setup">
+	<div class="section-title">
+		<h2>
+			<span class="title-number">4.1</span>Setup					</h2>
+	</div>
+	<div class="section-body">
+					<div class="paragraph">
+<p>The WeArePlanet payment method configurations are synchronized automatically into the WooCommerce store. There are just a few payment method settings in the WooCommerce store in WooCommerce &gt; Settings &gt; Payment.</p>
+</div><div class="imageblock">
+<div class="content">
+<img src="resource/method.png" alt="Method Settings"/>
+</div>
+</div>					</div>
+</div>					<div class="section" id="_customization">
+	<div class="section-title">
+		<h2>
+			<span class="title-number">4.2</span>Customization					</h2>
+	</div>
+	<div class="section-body">
+					<div class="paragraph">
+<p>If you want to change the payment method description, title, logo, etc you need to do this in the <a href="https://paymentshub.weareplanet.com/space/select?target=/payment/method-configuration/list" target="_blank">payment method configuration</a>. Changes will be synchronized automatically.</p>
+</div>					</div>
+</div>			</div>
+</div>	<div class="chapter" id="_woocommerce_order_status">
+	<div class="chapter-title">
+		<h1>
+			<span class="title-number">5</span>WooCommerce Order Status					</h1>
+	</div>
+	<div class="chapter-body">
+					<div class="paragraph">
+<p>The Payment Process of WeArePlanet is <strong>completely standardized</strong> for <strong>every payment method</strong>. This gives you the ability to simply add
+a payment method or processor without changes inside of your WooCommerce configuration. An overview about the states and the payment processes of WeArePlanet
+can be found in the <a href="https://paymentshub.weareplanet.com/en-us/doc/payment/transaction-process" target="_blank">Payment Documentation</a>.</p>
+</div><div class="paragraph">
+<p>Below you find a diagram that shows the state machine of the WooCommerce order including additional information for the state transitions.</p>
+</div><div class="imageblock">
+<div class="content">
+<img src="resource/woocommerce-order-status-graph.svg" alt="woocommerce order status graph"/>
+</div>
+</div><div class="olist glossary">
+<ol class="glossary">
+<li>
+<p>When the user is redirected to WeArePlanet to process the payment the order within WooCommerce is marked as <code>Redirected</code>. Along this the transaction within WeArePlanet is created resp. updated with the latest address, line items etc.</p>
+</li>
+<li>
+<p>When the transaction is marked as <code>authorized</code> in WeArePlanet the order within WooCommerce will be marked as <code>On hold</code>. The amount is only reserved at this point. The order is not yet ready to be fulfilled.</p>
+</li>
+<li>
+<p>When the transaction fails during the authorization process the WooCommerce order is marked as <code>Failed</code>.</p>
+</li>
+<li>
+<p>In case the delivery indication is <code>pending</code>, the order within WooCommerce will move into either <code>Waiting</code> or <code>Manual Decision</code>. <code>Waiting</code> means that the transaction is completed but the delivery indication is not yet decided. E.g. the money still needs to be cleared by the customer bank. The status will automatically update later on. <code>Manual Decision</code> means that in this case you have to review and decide the outcome of the delivery indication manually. See more details in <a href="#_on_hold_orders">On hold orders</a>.</p>
+</li>
+<li>
+<p>In case the decision about the fulfillment is negative, the order within WooCommerce will be marked as <code>canceled</code> which means you should not be fulfilled the order.</p>
+</li>
+<li>
+<p>If you decide to void an authorized transaction (in case for example the products ordered are no longer in stock), the order within WooCommerce will also be marked as <code>canceled</code>.</p>
+</li>
+<li>
+<p>When the transaction is marked in WeArePlanet as <code>fulfill</code> the order within WooCommerce will be be marked as <code>Processing</code> (for physical goods) or <code>Completed</code> (for virtual/downloadable products). This is when you can start the fulfillment process. Once this state has been reached the plugin does not change the status of the order anymore.</p>
+</li>
+</ol>
+</div><div class="paragraph">
+<p>For information about deferred completion, see <a href="#_complete_capture_an_order">Complete (capture) an order</a>.</p>
+</div>					</div>
+</div>	<div class="chapter" id="_transaction_management">
+	<div class="chapter-title">
+		<h1>
+			<span class="title-number">6</span>Transaction management					</h1>
+	</div>
+	<div class="chapter-body">
+					<div class="paragraph">
+<p>You can capture, cancel and refund transactions directly from within the Wordpress backend. Please note
+if you refund, void or capture transaction inside WeArePlanet the events will not be synchronized into
+WooCommerce.</p>
+</div>							<div class="section" id="_complete_capture_an_order">
+	<div class="section-title">
+		<h2>
+			<span class="title-number">6.1</span>Complete (capture) an order					</h2>
+	</div>
+	<div class="section-body">
+					<div class="paragraph">
+<p>You have the possibility for your transactions to have the payment only authorized after the order is placed. Inside the <a href="https://paymentshub.weareplanet.com/space/select?target=/payment/connector-configuration/list" target="_blank">connector configuration</a> you have the option, if the payment method supports it, to define whether the payment should be completed immediately or deferred.</p>
+</div><div class="paragraph">
+<p>In order to capture a transaction, open the order and click on the <code>Completion</code> button.</p>
+</div><div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+When the completion is pending in WeArePlanet the order will stay in on hold state.
+</td>
+</tr>
+</table>
+</div><div class="imageblock">
+<div class="content">
+<img src="resource/order-capture-woocommerce.png" alt="order capture woocommerce"/>
+</div>
+</div><div class="paragraph">
+<p><strong>Deferred payment completion</strong></p>
+</div><div class="paragraph">
+<p>Retailers often have the case that they want to authorize transactions only and start the fulfillment process once all items are shippable. This is also possible with WeArePlanet.</p>
+</div><div class="paragraph">
+<p>However, certain processes should be followed. If you have configured payment completion to be deferred you should capture the transaction before you initiate the shipment
+as it can always happen that a completion fails. If you want to be sure that you do not ship items for which you have not been paid you should postpone the shipment until
+the fulfill state is reached. Initially the transaction will be in the <code>Authorized</code> state in WeArePlanet and <code>On hold</code> in WooCommerce. If you want to start the fulfillment process make sure you initiate the completion process as described above. Once the completion was successful the order will switch into the <code>Fulfill</code> state in WeArePlanet and into <code>Processing</code> state in WooCommerce.</p>
+</div><div class="paragraph">
+<p>You can now start the fulfillment process and switch the order into the <code>Processing</code> state in WooCommerce.</p>
+</div><div class="paragraph">
+<p>For a streamlined deferred completion process in your shop, we recommend the following steps:</p>
+</div><div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Filter all  orders and select <code>On hold</code> orders.</p>
+</li>
+<li>
+<p>Capture all <code>onHold</code> orders. Once the completion has successfully finished the order will automatically switch into the <code>Processing</code> or <code>Completed</code> state depending on the type of products (digital, physical).</p>
+</li>
+<li>
+<p>You can now start to fulfill all orders in the <code>Processing</code> state.</p>
+</li>
+</ol>
+</div>					</div>
+</div>					<div class="section" id="_void_a_transaction">
+	<div class="section-title">
+		<h2>
+			<span class="title-number">6.2</span>Void a transaction					</h2>
+	</div>
+	<div class="section-body">
+					<div class="paragraph">
+<p>In order to void a transaction, open the order and click on the <code>Void</code> button.</p>
+</div><div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+You can only void transactions that are not yet completed.
+</td>
+</tr>
+</table>
+</div><div class="imageblock">
+<div class="content">
+<img src="resource/order-void-woocommerce.png" alt="order void woocommerce"/>
+</div>
+</div>					</div>
+</div>					<div class="section" id="_refund_of_a_transaction">
+	<div class="section-title">
+		<h2>
+			<span class="title-number">6.3</span>Refund of a transaction					</h2>
+	</div>
+	<div class="section-body">
+					<div class="paragraph">
+<p>You have the possibility to refund already completed transactions. In order to do so, open the order and click on the <code>Refund</code> button.</p>
+</div><div class="imageblock">
+<div class="content">
+<img src="resource/order-refund-woocommerce.png" alt="order refund woocommerce"/>
+</div>
+</div><div class="paragraph">
+<p>Enter the amount you wish to refund. You can make partial or full refunds.</p>
+</div><div class="imageblock">
+<div class="content">
+<img src="resource/order-refund-woocommerce2.png" alt="order refund woocommerce2"/>
+</div>
+</div><div class="paragraph">
+<p>You can carry out as many individual refunds as you wish until you have reached the quantity of the original order.
+The status of the order then automatically switches to complete.</p>
+</div><div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+It can take some time until you see the refund in WooCommerce. Refunds will only be visible once they have been processed successfully.
+</td>
+</tr>
+</table>
+</div>					</div>
+</div>					<div class="section" id="_on_hold_orders">
+	<div class="section-title">
+		<h2>
+			<span class="title-number">6.4</span>On hold orders					</h2>
+	</div>
+	<div class="section-body">
+					<div class="paragraph">
+<p>As long as the delivery should not be done the state of the order will be in <code>On Hold</code>. This happens when the transaction in WeArePlanet
+has not reached the fulfill state.</p>
+</div><div class="paragraph">
+<p>There are essentially two reasons why this can happen:</p>
+</div><div class="ulist">
+<ul>
+<li>
+<p>The transaction is not completed. In this case you have to complete the transaction as written above.</p>
+</li>
+<li>
+<p>As long as we are not able to tell you if you should fulfill the order. The delivery decision is done automatically. If this does not happen
+within the defined time frame, WeArePlanet will generate a manual task which you should observe and follow the instructions.
+When there is a manual task we will also display it in the Wordpress Backend.</p>
+</li>
+</ul>
+</div><div class="paragraph">
+<p>You can find more information about manual tasks in our <a href="https://paymentshub.weareplanet.com/en-us/doc/manual-tasks" target="_blank">Manual Task Documentation</a>.</p>
+</div>					</div>
+</div>					<div class="section" id="_limitations_of_the_synchronization_between_whitelabelname_and_woocommerce">
+	<div class="section-title">
+		<h2>
+			<span class="title-number">6.5</span>Limitations of the synchronization between WeArePlanet and WooCommerce					</h2>
+	</div>
+	<div class="section-body">
+					<div class="paragraph">
+<p>Please note that captures, voids and refunds done in WeArePlanet are not synchronized into WooCommerce.
+You should therefore always perform captures, voids and refunds inside the WooCommerce backend and not inside WeArePlanet.</p>
+</div>					</div>
+</div>					<div class="section" id="_tokenization">
+	<div class="section-title">
+		<h2>
+			<span class="title-number">6.6</span>Tokenization					</h2>
+	</div>
+	<div class="section-body">
+					<div class="paragraph">
+<p>In case the payment method supports tokenization you can store the payment details of your customer for future purchases.
+In order to use this feature make sure that the <strong>One-Click-Payment Mode</strong> in your <a href="https://paymentshub.weareplanet.com/space/select?target=/payment/method-configuration/list">payment method configuration</a> is set to <code>allow</code> or <code>force</code> storage.</p>
+</div><div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+Tokenization is not available for guest checkouts.
+</td>
+</tr>
+</table>
+</div>					</div>
+</div>					<div class="section" id="_woocommerce_subscriptions">
+	<div class="section-title">
+		<h2>
+			<span class="title-number">6.7</span>WooCommerce subscriptions					</h2>
+	</div>
+	<div class="section-body">
+					<div class="paragraph">
+<p>In case you want to sell Subscriptions with WooCommerce and WeArePlanet this is possible. However, you need to get the WeArePlanet Subscription Plugin for
+Woocommerce that you can also get directly from your Wordpress backend in Plugins &#8594; Search &#8594; WeArePlanet Subscriptions.</p>
+</div><div class="paragraph">
+<p>This plugin is needed to sell subscription products and process recurring orders. Additionally, the plugin <strong>requires</strong> <a href="https://woocommerce.com/products/woocommerce-subscriptions" target="_blank">WooCommerce Subscription</a> to be installed.</p>
+</div>					</div>
+</div>			</div>
+</div>	<div class="chapter" id="_error_logging">
+	<div class="chapter-title">
+		<h1>
+			<span class="title-number">7</span>Error logging					</h1>
+	</div>
+	<div class="chapter-body">
+					<div class="paragraph">
+<p>The extension uses the default WooCommerce logging functions which are automatically active in your WooCommerce store.
+The extension will log various unexpected errors or information which can help identify the cause of the error. You can find the logs in your WooCommerce backend in Woocommerce &gt; Status &gt; Logs.</p>
+</div>					</div>
+</div>	<div class="chapter" id="_faq">
+	<div class="chapter-title">
+		<h1>
+			<span class="title-number">8</span>FAQ					</h1>
+	</div>
+	<div class="chapter-body">
+							<div class="section" id="_how_can_i_make_the_payment_methods_appear_in_the_checkout">
+	<div class="section-title">
+		<h2>
+			<span class="title-number">8.1</span>How can I make the payment methods appear in the checkout?					</h2>
+	</div>
+	<div class="section-body">
+					<div class="paragraph">
+<p>Make sure that you followed the <a href="#_configuration">Configuration</a> section by stating your WeArePlanet space ID and application user&#8217;s access information in the settings page. By saving the configuration form the synchronization of the payment methods and the set up of the webhooks are initiated.
+Ensure the payment method are visible in the WooCommerce Settings &gt; Payment section and the methods are active.</p>
+</div><div class="paragraph">
+<p>If this does not solve the problem, make sure no other plugin is hiding the payment methods.</p>
+</div>					</div>
+</div>					<div class="section" id="_how_can_i_send_the_product_attributes_to_whitelabelname">
+	<div class="section-title">
+		<h2>
+			<span class="title-number">8.2</span>How can I send the product attributes to WeArePlanet?					</h2>
+	</div>
+	<div class="section-body">
+					<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+It is only possible to send the global product attributes to WeArePlanet, the custom product attributes are not supported.
+</td>
+</tr>
+</table>
+</div><div class="paragraph">
+<p>To send a product attribute to WeArePlanet edit the attribute in Products &#8594; Attributes, select the option <strong>Send attribute to WeArePlanet.</strong> and save.</p>
+</div>					</div>
+</div>					<div class="section" id="_how_can_i_update_the_plugin">
+	<div class="section-title">
+		<h2>
+			<span class="title-number">8.3</span>How can I update the plugin?					</h2>
+	</div>
+	<div class="section-body">
+					<div class="paragraph">
+<p>Plugin updates can be done directly in your Wordpress backend under Plugins.
+Search for the plugin WeArePlanet and click on <code>update now</code>. To perform the update, WordPress will need to access your web server. You will therefore have to enter your FTP credentials to proceed.</p>
+</div>					</div>
+</div>					<div class="section" id="_how_can_i_translate_the_plugin">
+	<div class="section-title">
+		<h2>
+			<span class="title-number">8.4</span>How can I translate the plugin?					</h2>
+	</div>
+	<div class="section-body">
+					<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Install the Wordpress Loco Translate plugin.</p>
+</li>
+<li>
+<p>Go to <strong>Loco Translate &gt; Plugins</strong>.</p>
+</li>
+<li>
+<p>Click on <strong>WooCommere WeArePlanet</strong>.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Click on the existing language and adapt the translations.</p>
+</li>
+<li>
+<p>Cick <strong>New Langugage</strong> and translate the strings.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>					</div>
+</div>					<div class="section" id="_how_can_i_add_the_value_of_a_strong_date_of_birth_strong_or_strong_gender_strong_input_field_from_my_checkout_form_to_the_whitelabelname_addresses">
+	<div class="section-title">
+		<h2>
+			<span class="title-number">8.5</span>How can I add the value of a <strong>Date Of Birth</strong> or <strong>Gender</strong> input field from my checkout form to the WeArePlanet addresses?					</h2>
+	</div>
+	<div class="section-body">
+							<div class="section" id="_billing_address_date_of_birth">
+	<div class="section-title">
+		<h3>
+			<span class="title-number">8.5.1</span>Billing Address Date of Birth					</h3>
+	</div>
+	<div class="section-body">
+					<div class="paragraph">
+<p>For a custom billing date of birth input field to be used in the address the following conditions must be fulfilled:</p>
+</div><div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The form field name has to be 'billing_date_of_birth' or '_billing_date_of_birth' or an action has to be registered for the filter 'wc_weareplanet_billing_date_of_birth_field_name' which returns the field name.</p>
+</li>
+<li>
+<p>The field must be submitted in the 'post_data' parameter in the <strong>update_order_review</strong> request.</p>
+</li>
+<li>
+<p>The date must be saved on the order meta data with the key 'billing_date_of_birth' or '_billing_date_of_birth' or an action has to be registered for the filter 'wc_weareplanet_billing_date_of_birth_order_meta_name' which returns the meta key.</p>
+</li>
+<li>
+<p>The value must be in one of the following formats 'd.m.Y', 'd-m-Y', 'm/d/Y', 'Y-m-d', 'Y/m/d', or an action has to be registered for the filter 'wc_weareplanet_custom_date_of_birth_format' which returns a custom date format. (For more information on the date format check the following link: <a href="https://secure.php.net/manual/en/datetime.createfromformat.php">PHP DateTime Format</a>)</p>
+</li>
+</ol>
+</div>					</div>
+</div>					<div class="section" id="_billing_address_gender">
+	<div class="section-title">
+		<h3>
+			<span class="title-number">8.5.2</span>Billing Address Gender					</h3>
+	</div>
+	<div class="section-body">
+					<div class="paragraph">
+<p>For a custom billing gender input field to be used in the address the following conditions must be fulfilled:</p>
+</div><div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The form field name has to be 'billing_gender' or '_billing_gender' or an action has to be registered for the filter 'wc_weareplanet_billing_gender_field_name' which returns the field name.</p>
+</li>
+<li>
+<p>The field must be submitted in the 'post_data' parameter in the <strong>update_order_review</strong> request.</p>
+</li>
+<li>
+<p>The date must be saved on the order meta data with the key 'billing_gender' or '_billing_gender' or an action has to be registered for the filter 'wc_weareplanet_billing_gender_order_meta_name' which returns the meta key.</p>
+</li>
+<li>
+<p>The value must be either 'm' or 'male' for male and 'f' or 'female' for female.</p>
+</li>
+</ol>
+</div>					</div>
+</div>					<div class="section" id="_shipping_address_date_of_birth">
+	<div class="section-title">
+		<h3>
+			<span class="title-number">8.5.3</span>Shipping Address Date of Birth					</h3>
+	</div>
+	<div class="section-body">
+					<div class="paragraph">
+<p>For a custom shipping date of birth input field to be used in the address the following conditions must be fulfilled:</p>
+</div><div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The form field name has to be 'shipping_date_of_birth' or '_shipping_date_of_birth' or an action has to be registered for the filter 'wc_weareplanet_shipping_date_of_birth_field_name' which returns the field name.</p>
+</li>
+<li>
+<p>The field must be submitted in the 'post_data' parameter in the <strong>update_order_review</strong> request.</p>
+</li>
+<li>
+<p>The date must be saved on the order meta data with the key 'shipping_date_of_birth' or '_shipping_date_of_birth' or an action has to be registered for the filter 'wc_weareplanet_shipping_date_of_birth_order_meta_name' which returns the meta key.</p>
+</li>
+<li>
+<p>The value must be in one of the following formats 'd.m.Y', 'd-m-Y', 'm/d/Y', 'Y-m-d', 'Y/m/d', or an action has to be registered for the filter 'wc_weareplanet_custom_date_of_birth_format' which returns a custom date format. (For more information on the date format check the following link: <a href="https://secure.php.net/manual/en/datetime.createfromformat.php">PHP DateTime Format</a>)</p>
+</li>
+</ol>
+</div>					</div>
+</div>					<div class="section" id="_shipping_address_gender">
+	<div class="section-title">
+		<h3>
+			<span class="title-number">8.5.4</span>Shipping Address Gender					</h3>
+	</div>
+	<div class="section-body">
+					<div class="paragraph">
+<p>For a custom shipping gender input field to be used in the address the following conditions must be fulfilled:</p>
+</div><div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The form field name has to be 'shipping_gender' or '_shipping_gender' or an action has to be registered for the filter 'wc_weareplanet_shipping_gender_field_name' which returns the field name.</p>
+</li>
+<li>
+<p>The field must be submitted in the 'post_data' parameter in the <strong>update_order_review</strong> request.</p>
+</li>
+<li>
+<p>The date must be saved on the order meta data with the key 'shipping_gender' or '_shipping_gender' or an action has to be registered for the filter 'wc_weareplanet_shipping_gender_order_meta_name' which returns the meta key.</p>
+</li>
+<li>
+<p>The value must be either 'm' or 'male' for male and 'f' or 'female' for female.</p>
+</li>
+</ol>
+</div>					</div>
+</div>			</div>
+</div>			</div>
+</div>	<div class="chapter" id="_support">
+	<div class="chapter-title">
+		<h1>
+			<span class="title-number">9</span>Support					</h1>
+	</div>
+	<div class="chapter-body">
+					<div class="paragraph">
+<p>If you need help, feel free to contact our <a href="https://paymentshub.weareplanet.com/space/select?target=/support">support</a>.</p>
+</div>					</div>
+</div>																			</div>
+															</div>
+						</div>
+						<div class="col-right">
+		<div class="col-right-wrapper">
+							<div class="table-of-contents">
+	<ul class="nav">
+					<li class="nav-level-1">
+	<a href="#_prerequisites">
+		<span class="item-number">1</span>
+		<span class="item-title">Prerequisites</span>
+			</a>
+    </li>					<li class="nav-level-1">
+	<a href="#_installation">
+		<span class="item-number">2</span>
+		<span class="item-title">Installation</span>
+			</a>
+    </li>					<li class="nav-level-1">
+	<a href="#_configuration">
+		<span class="item-number">3</span>
+		<span class="item-title">Configuration</span>
+			</a>
+    </li>					<li class="nav-level-1">
+	<a href="#_payment_method_configuration">
+		<span class="item-number">4</span>
+		<span class="item-title">Payment method configuration</span>
+			</a>
+        	<ul  class="nav">
+    		    			<li class="nav-level-2">
+	<a href="#_setup">
+		<span class="item-number">4.1</span>
+		<span class="item-title">Setup</span>
+			</a>
+    </li>    		    			<li class="nav-level-2">
+	<a href="#_customization">
+		<span class="item-number">4.2</span>
+		<span class="item-title">Customization</span>
+			</a>
+    </li>    		    	</ul>
+    </li>					<li class="nav-level-1">
+	<a href="#_woocommerce_order_status">
+		<span class="item-number">5</span>
+		<span class="item-title">WooCommerce Order Status</span>
+			</a>
+    </li>					<li class="nav-level-1">
+	<a href="#_transaction_management">
+		<span class="item-number">6</span>
+		<span class="item-title">Transaction management</span>
+			</a>
+        	<ul  class="nav">
+    		    			<li class="nav-level-2">
+	<a href="#_complete_capture_an_order">
+		<span class="item-number">6.1</span>
+		<span class="item-title">Complete (capture) an order</span>
+			</a>
+    </li>    		    			<li class="nav-level-2">
+	<a href="#_void_a_transaction">
+		<span class="item-number">6.2</span>
+		<span class="item-title">Void a transaction</span>
+			</a>
+    </li>    		    			<li class="nav-level-2">
+	<a href="#_refund_of_a_transaction">
+		<span class="item-number">6.3</span>
+		<span class="item-title">Refund of a transaction</span>
+			</a>
+    </li>    		    			<li class="nav-level-2">
+	<a href="#_on_hold_orders">
+		<span class="item-number">6.4</span>
+		<span class="item-title">On hold orders</span>
+			</a>
+    </li>    		    			<li class="nav-level-2">
+	<a href="#_limitations_of_the_synchronization_between_whitelabelname_and_woocommerce">
+		<span class="item-number">6.5</span>
+		<span class="item-title">Limitations of the synchronization between WeArePlanet and WooCommerce</span>
+			</a>
+    </li>    		    			<li class="nav-level-2">
+	<a href="#_tokenization">
+		<span class="item-number">6.6</span>
+		<span class="item-title">Tokenization</span>
+			</a>
+    </li>    		    			<li class="nav-level-2">
+	<a href="#_woocommerce_subscriptions">
+		<span class="item-number">6.7</span>
+		<span class="item-title">WooCommerce subscriptions</span>
+			</a>
+    </li>    		    	</ul>
+    </li>					<li class="nav-level-1">
+	<a href="#_error_logging">
+		<span class="item-number">7</span>
+		<span class="item-title">Error logging</span>
+			</a>
+    </li>					<li class="nav-level-1">
+	<a href="#_faq">
+		<span class="item-number">8</span>
+		<span class="item-title">FAQ</span>
+			</a>
+        	<ul  class="nav">
+    		    			<li class="nav-level-2">
+	<a href="#_how_can_i_make_the_payment_methods_appear_in_the_checkout">
+		<span class="item-number">8.1</span>
+		<span class="item-title">How can I make the payment methods appear in the checkout?</span>
+			</a>
+    </li>    		    			<li class="nav-level-2">
+	<a href="#_how_can_i_send_the_product_attributes_to_whitelabelname">
+		<span class="item-number">8.2</span>
+		<span class="item-title">How can I send the product attributes to WeArePlanet?</span>
+			</a>
+    </li>    		    			<li class="nav-level-2">
+	<a href="#_how_can_i_update_the_plugin">
+		<span class="item-number">8.3</span>
+		<span class="item-title">How can I update the plugin?</span>
+			</a>
+    </li>    		    			<li class="nav-level-2">
+	<a href="#_how_can_i_translate_the_plugin">
+		<span class="item-number">8.4</span>
+		<span class="item-title">How can I translate the plugin?</span>
+			</a>
+    </li>    		    			<li class="nav-level-2">
+	<a href="#_how_can_i_add_the_value_of_a_strong_date_of_birth_strong_or_strong_gender_strong_input_field_from_my_checkout_form_to_the_whitelabelname_addresses">
+		<span class="item-number">8.5</span>
+		<span class="item-title">How can I add the value of a &lt;strong&gt;Date Of Birth&lt;/strong&gt; or &lt;strong&gt;Gender&lt;/strong&gt; input field from my checkout form to the WeArePlanet addresses?</span>
+			</a>
+        	<ul  class="nav">
+    		    			<li class="nav-level-3">
+	<a href="#_billing_address_date_of_birth">
+		<span class="item-number">8.5.1</span>
+		<span class="item-title">Billing Address Date of Birth</span>
+			</a>
+    </li>    		    			<li class="nav-level-3">
+	<a href="#_billing_address_gender">
+		<span class="item-number">8.5.2</span>
+		<span class="item-title">Billing Address Gender</span>
+			</a>
+    </li>    		    			<li class="nav-level-3">
+	<a href="#_shipping_address_date_of_birth">
+		<span class="item-number">8.5.3</span>
+		<span class="item-title">Shipping Address Date of Birth</span>
+			</a>
+    </li>    		    			<li class="nav-level-3">
+	<a href="#_shipping_address_gender">
+		<span class="item-number">8.5.4</span>
+		<span class="item-title">Shipping Address Gender</span>
+			</a>
+    </li>    		    	</ul>
+    </li>    		    	</ul>
+    </li>					<li class="nav-level-1">
+	<a href="#_support">
+		<span class="item-number">9</span>
+		<span class="item-title">Support</span>
+			</a>
+    </li>			</ul>
+</div>					</div>
+	</div>
+				</div>
+					</div>
+
+		<script type="text/javascript" src="assets/jquery.js"></script>
+		<script type="text/javascript" src="assets/scrollspy.js"></script>
+		<script type="text/javascript" src="assets/sticky-kit.js"></script>
+		<script type="text/javascript" src="assets/highlight.js"></script>
+		<script type="text/javascript" src="assets/base.js"></script>
+	</body>
+</html>
