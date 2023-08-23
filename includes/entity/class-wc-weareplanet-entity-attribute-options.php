@@ -77,7 +77,7 @@ class WC_WeArePlanet_Entity_Attribute_Options extends WC_WeArePlanet_Entity_Abst
 			// phpcs:ignore
 			$wpdb->prepare(
 				'SELECT * FROM %1$s WHERE attribute_id = %2$d',
-				$wpdb->prefix . self::get_table_name() .
+				$wpdb->prefix . self::get_table_name(),
 				$attribute_id
 			),
 			ARRAY_A
