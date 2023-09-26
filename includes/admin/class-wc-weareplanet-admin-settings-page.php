@@ -187,7 +187,7 @@ class WC_WeArePlanet_Admin_Settings_Page extends WC_Settings_Page {
 		$settings = array(
 			array(
 				'links' => array(
-					'https://plugin-documentation.weareplanet.com/weareplanet/woocommerce/2.1.23/docs/en/documentation.html' => __( 'Documentation', 'woo-weareplanet' ),
+					'https://plugin-documentation.weareplanet.com/weareplanet/woocommerce/2.1.24/docs/en/documentation.html' => __( 'Documentation', 'woo-weareplanet' ),
 					'https://www.weareplanet.com/contact/sales' => __( 'Sign Up', 'woo-weareplanet' ),
 				),
 				'type'  => 'weareplanet_links',
