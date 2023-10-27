@@ -19,7 +19,7 @@ This repository contains the WeArePlanet plugin that enables WooCommerce to proc
 
 ## Support
 
-Support queries can be issued on the [WeArePlanet support site](https://paymentshub.weareplanet.com/space/select?target=/support).
+For support queries please contact [WeArePlanet support](mailto:support@datatrans.ch?subject=Support%20on%20WooCommerce%20-%20Topic%3A).
 
 
 ## License
