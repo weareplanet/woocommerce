@@ -25,7 +25,7 @@ namespace WeArePlanet\Sdk\Http;
  *
  * @category Class
  * @package  WeArePlanet\Sdk\Http
- * @author   customweb GmbH
+ * @author   Planet Merchant Services Ltd.
  * @license  http://www.apache.org/licenses/LICENSE-2.0 Apache License v2
  */
 final class HttpResponse {

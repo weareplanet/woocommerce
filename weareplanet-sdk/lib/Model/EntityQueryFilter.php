@@ -29,7 +29,7 @@ use \WeArePlanet\Sdk\ObjectSerializer;
  * @category    Class
  * @description The query filter allows to restrict the entities which are returned.
  * @package     WeArePlanet\Sdk
- * @author      customweb GmbH
+ * @author      Planet Merchant Services Ltd.
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache License v2
  */
 class EntityQueryFilter implements ModelInterface, ArrayAccess

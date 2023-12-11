@@ -1,6 +1,6 @@
 {
     "name": "weareplanet/sdk",
-    "version": "3.2.0",
+    "version": "4.0.2",
 	"description": "WeArePlanet SDK for PHP",
 	"keywords": [
 		"weareplanet",
@@ -13,8 +13,9 @@
 	"license": "Apache-2.0",
 	"authors": [
 		{
-			"name": "wallee AG",
-			"homepage": "https://wallee.com"
+			"name": "Planet Merchant Services Ltd.",
+			"email": "support@datatrans.ch",
+			"homepage": "https://www.weareplanet.com/"
 		}
 	],
 	"require": {

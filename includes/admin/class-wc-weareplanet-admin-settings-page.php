@@ -8,7 +8,7 @@
  *
  * @category Class
  * @package  WeArePlanet
- * @author   wallee AG (http://www.wallee.com/)
+ * @author   Planet Merchant Services Ltd (https://www.weareplanet.com)
  * @license  http://www.apache.org/licenses/LICENSE-2.0 Apache Software License (ASL 2.0)
  */
 
@@ -187,7 +187,7 @@ class WC_WeArePlanet_Admin_Settings_Page extends WC_Settings_Page {
 		$settings = array(
 			array(
 				'links' => array(
-					'https://plugin-documentation.weareplanet.com/weareplanet/woocommerce/2.1.24/docs/en/documentation.html' => __( 'Documentation', 'woo-weareplanet' ),
+					'https://plugin-documentation.weareplanet.com/weareplanet/woocommerce/2.1.26/docs/en/documentation.html' => __( 'Documentation', 'woo-weareplanet' ),
 					'https://www.weareplanet.com/contact/sales' => __( 'Sign Up', 'woo-weareplanet' ),
 				),
 				'type'  => 'weareplanet_links',

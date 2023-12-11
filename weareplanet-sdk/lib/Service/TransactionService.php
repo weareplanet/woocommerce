@@ -31,7 +31,7 @@ use WeArePlanet\Sdk\ObjectSerializer;
  *
  * @category Class
  * @package  WeArePlanet\Sdk
- * @author   customweb GmbH
+ * @author   Planet Merchant Services Ltd.
  * @license  http://www.apache.org/licenses/LICENSE-2.0 Apache License v2
  */
 class TransactionService {
@@ -2106,5 +2106,6 @@ class TransactionService {
 			throw $e;
 		}
 	}
+
 
 }

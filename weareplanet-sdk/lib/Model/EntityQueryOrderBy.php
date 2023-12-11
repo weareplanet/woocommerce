@@ -29,7 +29,7 @@ use \WeArePlanet\Sdk\ObjectSerializer;
  * @category    Class
  * @description The 'order by' allows to order the returned entities.
  * @package     WeArePlanet\Sdk
- * @author      customweb GmbH
+ * @author      Planet Merchant Services Ltd.
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache License v2
  */
 class EntityQueryOrderBy implements ModelInterface, ArrayAccess

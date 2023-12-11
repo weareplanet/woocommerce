@@ -27,7 +27,7 @@ use \WeArePlanet\Sdk\ObjectSerializer;
  * @category    Class
  * @description The filter type defines how the filter is interpreted. Depending of the type different properties are relevant on the filter itself.
  * @package     WeArePlanet\Sdk
- * @author      customweb GmbH
+ * @author      Planet Merchant Services Ltd.
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache License v2
  */
 class EntityQueryFilterType

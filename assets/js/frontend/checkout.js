@@ -4,7 +4,7 @@
  * This plugin will add support for all WeArePlanet payments methods and connect the WeArePlanet servers to your WooCommerce webshop (https://www.weareplanet.com/).
  *
  * @package  WeArePlanet
- * @author   wallee AG (http://www.wallee.com/)
+ * @author   Planet Merchant Services Ltd (https://www.weareplanet.com)
  * @license  http://www.apache.org/licenses/LICENSE-2.0 Apache Software License (ASL 2.0)
  */
 
@@ -484,7 +484,7 @@ jQuery(
 						return false;
 					}
 					var selected_payment_method = $( 'input[name=payment_method]:checked' ).val();
-					var paymentMethodConfigurationId = $( '#wallee-method-configuration-' + selected_payment_method ).data( 'configuration-id' );
+					var paymentMethodConfigurationId = $( '#weareplanet-method-configuration-' + selected_payment_method ).data( 'configuration-id' );
 					window.LightboxCheckoutHandler.startPayment(
 						paymentMethodConfigurationId,
 						function () {

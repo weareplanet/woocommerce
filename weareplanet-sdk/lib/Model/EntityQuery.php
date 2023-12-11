@@ -29,7 +29,7 @@ use \WeArePlanet\Sdk\ObjectSerializer;
  * @category    Class
  * @description The entity query allows to search for specific entities by providing filters. This is similar to a SQL query.
  * @package     WeArePlanet\Sdk
- * @author      customweb GmbH
+ * @author      Planet Merchant Services Ltd.
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache License v2
  */
 class EntityQuery implements ModelInterface, ArrayAccess

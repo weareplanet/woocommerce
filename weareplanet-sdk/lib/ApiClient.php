@@ -30,7 +30,7 @@ use WeArePlanet\Sdk\Http\HttpClientFactory;
  *
  * @category Class
  * @package  WeArePlanet\Sdk
- * @author   customweb GmbH
+ * @author   Planet Merchant Services Ltd.
  * @license  http://www.apache.org/licenses/LICENSE-2.0 Apache License v2
  */
 final class ApiClient {
@@ -48,7 +48,7 @@ final class ApiClient {
 	 * @var array
 	 */
 	private $defaultHeaders = [
-        'x-meta-sdk-version' => "3.2.0",
+        'x-meta-sdk-version' => "4.0.2",
         'x-meta-sdk-language' => 'php',
         'x-meta-sdk-provider' => "WeArePlanet",
     ];
@@ -58,7 +58,7 @@ final class ApiClient {
 	 *
 	 * @var string
 	 */
-	private $userAgent = 'PHP-Client/3.2.0/php';
+	private $userAgent = 'PHP-Client/4.0.2/php';
 
 	/**
 	 * The path to the certificate authority file.
@@ -897,6 +897,18 @@ final class ApiClient {
         return $this->paymentProcessorService;
     }
     
+    protected $paymentWebAppService;
+
+    /**
+     * @return \WeArePlanet\Sdk\Service\PaymentWebAppService
+     */
+    public function getPaymentWebAppService() {
+        if(is_null($this->paymentWebAppService)){
+            $this->paymentWebAppService = new \WeArePlanet\Sdk\Service\PaymentWebAppService($this);
+        }
+        return $this->paymentWebAppService;
+    }
+    
     protected $permissionService;
 
     /**
@@ -1123,6 +1135,30 @@ final class ApiClient {
             $this->userSpaceRoleService = new \WeArePlanet\Sdk\Service\UserSpaceRoleService($this);
         }
         return $this->userSpaceRoleService;
+    }
+    
+    protected $webAppService;
+
+    /**
+     * @return \WeArePlanet\Sdk\Service\WebAppService
+     */
+    public function getWebAppService() {
+        if(is_null($this->webAppService)){
+            $this->webAppService = new \WeArePlanet\Sdk\Service\WebAppService($this);
+        }
+        return $this->webAppService;
+    }
+    
+    protected $webhookEncryptionService;
+
+    /**
+     * @return \WeArePlanet\Sdk\Service\WebhookEncryptionService
+     */
+    public function getWebhookEncryptionService() {
+        if(is_null($this->webhookEncryptionService)){
+            $this->webhookEncryptionService = new \WeArePlanet\Sdk\Service\WebhookEncryptionService($this);
+        }
+        return $this->webhookEncryptionService;
     }
     
     protected $webhookListenerService;

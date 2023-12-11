@@ -27,7 +27,7 @@ use WeArePlanet\Sdk\ObjectSerializer;
  *
  * @category Class
  * @package  WeArePlanet\Sdk\Http
- * @author   customweb GmbH
+ * @author   Planet Merchant Services Ltd.
  * @license  http://www.apache.org/licenses/LICENSE-2.0 Apache License v2
  */
 final class HttpRequest {
@@ -76,11 +76,11 @@ final class HttpRequest {
 	const HEADER_KEY_ACCEPT = 'accept';
 	
 	/**
-	 * The key of the 'x-wallee-logtoken' header.
+	 * The key of the 'x-weareplanet-logtoken' header.
 	 *
 	 * @var string
 	 */
-	const HEADER_LOG_TOKEN = 'x-wallee-logtoken';
+	const HEADER_LOG_TOKEN = 'x-weareplanet-logtoken';
 
 	/**
 	 * The object serializer.

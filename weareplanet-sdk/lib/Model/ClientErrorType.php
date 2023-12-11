@@ -27,7 +27,7 @@ use \WeArePlanet\Sdk\ObjectSerializer;
  * @category    Class
  * @description The type of Client Errors which can be returned by a service.
  * @package     WeArePlanet\Sdk
- * @author      customweb GmbH
+ * @author      Planet Merchant Services Ltd.
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache License v2
  */
 class ClientErrorType

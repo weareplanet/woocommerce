@@ -27,7 +27,7 @@ use \WeArePlanet\Sdk\ObjectSerializer;
  * @category    Class
  * @description The tokenization mode controls how the tokenization of payment information is applied on the transaction.
  * @package     WeArePlanet\Sdk
- * @author      customweb GmbH
+ * @author      Planet Merchant Services Ltd.
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache License v2
  */
 class TokenizationMode

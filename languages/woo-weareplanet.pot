@@ -525,12 +525,12 @@ msgid "https://wordpress.org/plugins/woo-weareplanet"
 msgstr "https://wordpress.org/plugins/woo-weareplanet"
 
 #. Author of the plugin
-msgid "wallee AG"
-msgstr "wallee AG"
+msgid "Planet Merchant Services Ltd"
+msgstr "Planet Merchant Services Ltd"
 
 #. Author URI of the plugin
-msgid "https://www.wallee.com"
-msgstr "https://www.wallee.com"
+msgid "https://www.weareplanet.com"
+msgstr "https://www.weareplanet.com"
 
 
 #: includes/admin/class-wc-weareplanet-admin-settings-page.php:277

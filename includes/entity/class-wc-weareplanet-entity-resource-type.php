@@ -8,7 +8,7 @@
  *
  * @category Class
  * @package  WeArePlanet
- * @author   wallee AG (http://www.wallee.com/)
+ * @author   Planet Merchant Services Ltd (https://www.weareplanet.com)
  * @license  http://www.apache.org/licenses/LICENSE-2.0 Apache Software License (ASL 2.0)
  */
 

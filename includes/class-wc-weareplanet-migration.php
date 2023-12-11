@@ -8,7 +8,7 @@
  *
  * @category Class
  * @package  WeArePlanet
- * @author   wallee AG (http://www.wallee.com/)
+ * @author   Planet Merchant Services Ltd (https://www.weareplanet.com)
  * @license  http://www.apache.org/licenses/LICENSE-2.0 Apache Software License (ASL 2.0)
  */
 
@@ -249,7 +249,7 @@ class WC_WeArePlanet_Migration {
 	public static function plugin_row_meta( $links, $file ) {
 		if ( WC_WEAREPLANET_PLUGIN_BASENAME === $file ) {
 			$row_meta = array(
-				'docs' => '<a href="https://plugin-documentation.weareplanet.com/weareplanet/woocommerce/2.1.24/docs/en/documentation.html" aria-label="' . esc_attr__( 'View Documentation', 'woo-weareplanet' ) . '">' . esc_html__( 'Documentation', 'woo-weareplanet' ) . '</a>',
+				'docs' => '<a href="https://plugin-documentation.weareplanet.com/weareplanet/woocommerce/2.1.26/docs/en/documentation.html" aria-label="' . esc_attr__( 'View Documentation', 'woo-weareplanet' ) . '">' . esc_html__( 'Documentation', 'woo-weareplanet' ) . '</a>',
 			);
 
 			return array_merge( $links, $row_meta );
