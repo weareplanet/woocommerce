@@ -484,7 +484,7 @@ jQuery(
 						return false;
 					}
 					var selected_payment_method = $( 'input[name=payment_method]:checked' ).val();
-					var paymentMethodConfigurationId = $( '#wallee-method-configuration-' + selected_payment_method ).data( 'configuration-id' );
+					var paymentMethodConfigurationId = $( '#weareplanet-method-configuration-' + selected_payment_method ).data( 'configuration-id' );
 					window.LightboxCheckoutHandler.startPayment(
 						paymentMethodConfigurationId,
 						function () {

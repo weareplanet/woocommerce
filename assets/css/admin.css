@@ -8,13 +8,13 @@
  */
 /* Icons for status */
 @font-face {
-  font-family: 'woocommerce-wallee';
-  src: url('../font/woocommerce-wallee.eot?8310684');
-  src: url('../font/woocommerce-wallee.eot?8310684#iefix') format('embedded-opentype'),
-	   url('../font/woocommerce-wallee.woff2?8310684') format('woff2'),
-	   url('../font/woocommerce-wallee.woff?8310684') format('woff'),
-	   url('../font/woocommerce-wallee.ttf?8310684') format('truetype'),
-	   url('../font/woocommerce-wallee.svg?8310684#woocommerce-wallee') format('svg');
+  font-family: 'woocommerce-weareplanet';
+  src: url('../font/woocommerce-weareplanet.eot?8310684');
+  src: url('../font/woocommerce-weareplanet.eot?8310684#iefix') format('embedded-opentype'),
+	   url('../font/woocommerce-weareplanet.woff2?8310684') format('woff2'),
+	   url('../font/woocommerce-weareplanet.woff?8310684') format('woff'),
+	   url('../font/woocommerce-weareplanet.ttf?8310684') format('truetype'),
+	   url('../font/woocommerce-weareplanet.svg?8310684#woocommerce-weareplanet') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -22,7 +22,7 @@
 /* Status Icons */
 .widefat .column-order_status mark.wearep-redirected::after, .widefat .column-order_status mark.wearep-waiting::after,
 	.widefat .column-order_status mark.wearep-manual::after {
-	font-family: woocommerce-wallee;
+	font-family: woocommerce-weareplanet;
 	speak: none;
 	font-weight: 400;
 	text-transform: none;
@@ -91,8 +91,8 @@
 	width: 2em
 }
 
-.order_actions .weareplanet-button-download-invoice::after, .widefat .wc_actions .weareplanet-action-button.wallee-button-download-invoice::after {
-	font-family: woocommerce-wallee;
+.order_actions .weareplanet-button-download-invoice::after, .widefat .wc_actions .weareplanet-action-button.weareplanet-button-download-invoice::after {
+	font-family: woocommerce-weareplanet;
 	speak: none;
 	font-weight: 400;
 	text-transform: none;
@@ -109,8 +109,8 @@
 	margin: 0px;
 }
 
-.order_actions .weareplanet-button-download-packingslip::after, .widefat .wc_actions .weareplanet-action-button.wallee-button-download-packingslip::after  {
-	font-family: woocommerce-wallee;
+.order_actions .weareplanet-button-download-packingslip::after, .widefat .wc_actions .weareplanet-action-button.weareplanet-button-download-packingslip::after  {
+	font-family: woocommerce-weareplanet;
 	speak: none;
 	font-weight: 400;
 	text-transform: none;
