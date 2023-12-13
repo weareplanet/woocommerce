@@ -112,7 +112,7 @@ class WC_WeArePlanet_Helper {
 	 * @return string
 	 */
 	public function get_base_gateway_url() {
-		return get_option( 'wc_weareplanet_base_gateway_url', 'https://app-weareplanet.com/' );
+		return get_option( 'wc_weareplanet_base_gateway_url', 'https://paymentshub.weareplanet.com/' );
 	}
 
 
@@ -551,14 +551,14 @@ class WC_WeArePlanet_Helper {
 			do_action( 'wc_weareplanet_restocked_order', $order );
 		}
 	}
-	
+
 	/**
 	 * @return array
 	 */
 	protected static function getDefaultHeaderData()
 	{
 		$version = WC_VERSION;
-		
+
 		$shop_version = str_replace('v', '', $version);
 		list ($major_version, $minor_version) = explode('.', $shop_version, 3);
 		return [

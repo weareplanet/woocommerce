@@ -3,7 +3,7 @@
  * Plugin Name: WeArePlanet
  * Plugin URI: https://wordpress.org/plugins/woo-weareplanet
  * Description: Process WooCommerce payments with WeArePlanet.
- * Version: 2.1.26
+ * Version: 2.1.27
  * License: Apache2
  * License URI: http://www.apache.org/licenses/LICENSE-2.0
  * Author: Planet Merchant Services Ltd
@@ -46,7 +46,7 @@ if ( ! class_exists( 'WooCommerce_WeArePlanet' ) ) {
 		 *
 		 * @var string
 		 */
-		private $version = '2.1.26';
+		private $version = '2.1.27';
 
 		/**
 		 * The single instance of the class.
