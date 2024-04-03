@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: WeArePlanet
- * Plugin URI: https://wordpress.org/plugins/woo-weareplanet
+ *
  * Description: Process WooCommerce payments with WeArePlanet.
  * Version: 3.0.0
  * License: Apache2

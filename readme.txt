@@ -23,7 +23,7 @@ To use this extension, a WeArePlanet account is required. Sign up on [WeArePlane
 
 == Documentation ==
 
-Additional documentation for this plugin is available [here](https://plugin-documentation.weareplanet.com/weareplanet/woocommerce/3.0.0/docs/en/documentation.html).
+Additional documentation for this plugin is available [here](https://plugin-documentation.weareplanet.com/weareplanet/woocommerce/3.0.1/docs/en/documentation.html).
 
 == Support ==
 
