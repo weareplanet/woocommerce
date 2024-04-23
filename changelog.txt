@@ -727,3 +727,32 @@ Tested against:
 - [Tested Against] Woocommerce 8.5.2
 - [Tested Against] PHP SDK 4.0.2
 
+= 3.0.1 - April 3 2024 =
+- [Feature] Added support to High Performance Order Storage (HPOS).
+- [Tested Against] PHP 8.2
+- [Tested Against] Wordpress 6.5
+- [Tested Against] Woocommerce 8.7.0
+- [Tested Against] PHP SDK 4.0.2
+
+= 3.0.2 - April 22 2024 =
+- [Hotfix] Fixed completion in the backend with coupon.
+- [Hotfix] Fixed tax amount not sent correctly to the portal.
+- [Tested Against] PHP 8.2
+- [Tested Against] Wordpress 6.5
+- [Tested Against] Woocommerce 8.7.0
+- [Tested Against] PHP SDK 4.0.2
+
+= 3.0.3 - April 23 2024 =
+- [Hotfix] Version increment for release
+- [Tested Against] PHP 8.2
+- [Tested Against] Wordpress 6.5
+- [Tested Against] Woocommerce 8.7.0
+- [Tested Against] PHP SDK 4.0.2
+
+= 3.0.4 - April 23 2024 =
+- [Hotfix] Restore version and tested against comments in base file
+- [Tested Against] PHP 8.2
+- [Tested Against] Wordpress 6.5
+- [Tested Against] Woocommerce 8.7.0
+- [Tested Against] PHP SDK 4.0.2
+

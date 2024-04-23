@@ -3,15 +3,15 @@
  * Plugin Name: WeArePlanet
  *
  * Description: Process WooCommerce payments with WeArePlanet.
- * Version: 3.0.0
  * License: Apache2
+ * Version: 3.0.4
  * License URI: http://www.apache.org/licenses/LICENSE-2.0
  * Author: Planet Merchant Services Ltd
  * Author URI: https://www.weareplanet.com
- * Requires at least: 4.7
- * Tested up to: 6.3
- * WC requires at least: 3.0.0
- * WC tested up to: 7.8.2
+ * Requires at least: 6.0
+ * Requires PHP: 7.4
+ * WC requires at least: 8.0.0
+ * WC tested up to: 8.7.0
  *
  * Text Domain: weareplanet
  * Domain Path: /languages/
@@ -39,14 +39,14 @@ if ( ! class_exists( 'WooCommerce_WeArePlanet' ) ) {
 		const CK_INTEGRATION = 'wc_weareplanet_integration';
 		const CK_ORDER_REFERENCE = 'wc_weareplanet_order_reference';
 		const CK_ENFORCE_CONSISTENCY = 'wc_weareplanet_enforce_consistency';
-		const WC_MAXIMUM_VERSION = '8.5.2';
+		const WC_MAXIMUM_VERSION = '8.7.0';
 
 		/**
 		 * WooCommerce WeArePlanet version.
 		 *
 		 * @var string
 		 */
-		private $version = '3.0.0';
+		private $version = '3.0.4';
 
 		/**
 		 * The single instance of the class.
@@ -447,6 +447,14 @@ if ( ! class_exists( 'WooCommerce_WeArePlanet' ) ) {
 				10,
 				2
 			);
+
+
+			add_action( 'before_woocommerce_init', function() {
+				if ( class_exists( \Automattic\WooCommerce\Utilities\FeaturesUtil::class ) ) {
+					\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'custom_order_tables', __FILE__, true );
+				}
+			} );
+
 		}
 
 		/**
