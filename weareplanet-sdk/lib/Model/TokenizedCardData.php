@@ -24,15 +24,15 @@ use \ArrayAccess;
 use \WeArePlanet\Sdk\ObjectSerializer;
 
 /**
- * Tax model
+ * TokenizedCardData model
  *
  * @category    Class
- * @description 
+ * @description This model holds the card data in plain.
  * @package     WeArePlanet\Sdk
  * @author      Planet Merchant Services Ltd.
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache License v2
  */
-class Tax implements ModelInterface, ArrayAccess
+class TokenizedCardData implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -41,7 +41,7 @@ class Tax implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $swaggerModelName = 'Tax';
+    protected static $swaggerModelName = 'TokenizedCardData';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -49,8 +49,9 @@ class Tax implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'rate' => 'float',
-        'title' => 'string'
+        'cryptogram' => '\WeArePlanet\Sdk\Model\CardCryptogram',
+        'recurring_indicator' => '\WeArePlanet\Sdk\Model\RecurringIndicator',
+        'token_requestor_id' => 'string'
     ];
 
     /**
@@ -59,8 +60,9 @@ class Tax implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerFormats = [
-        'rate' => null,
-        'title' => null
+        'cryptogram' => null,
+        'recurring_indicator' => null,
+        'token_requestor_id' => null
     ];
 
     /**
@@ -70,8 +72,9 @@ class Tax implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'rate' => 'rate',
-        'title' => 'title'
+        'cryptogram' => 'cryptogram',
+        'recurring_indicator' => 'recurringIndicator',
+        'token_requestor_id' => 'tokenRequestorId'
     ];
 
     /**
@@ -80,8 +83,9 @@ class Tax implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'rate' => 'setRate',
-        'title' => 'setTitle'
+        'cryptogram' => 'setCryptogram',
+        'recurring_indicator' => 'setRecurringIndicator',
+        'token_requestor_id' => 'setTokenRequestorId'
     ];
 
     /**
@@ -90,8 +94,9 @@ class Tax implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'rate' => 'getRate',
-        'title' => 'getTitle'
+        'cryptogram' => 'getCryptogram',
+        'recurring_indicator' => 'getRecurringIndicator',
+        'token_requestor_id' => 'getTokenRequestorId'
     ];
 
     
@@ -112,9 +117,11 @@ class Tax implements ModelInterface, ArrayAccess
     public function __construct(array $data = null)
     {
         
-        $this->container['rate'] = isset($data['rate']) ? $data['rate'] : null;
+        $this->container['cryptogram'] = isset($data['cryptogram']) ? $data['cryptogram'] : null;
         
-        $this->container['title'] = isset($data['title']) ? $data['title'] : null;
+        $this->container['recurring_indicator'] = isset($data['recurring_indicator']) ? $data['recurring_indicator'] : null;
+        
+        $this->container['token_requestor_id'] = isset($data['token_requestor_id']) ? $data['token_requestor_id'] : null;
         
     }
 
@@ -126,14 +133,6 @@ class Tax implements ModelInterface, ArrayAccess
     public function listInvalidProperties()
     {
         $invalidProperties = [];
-
-        if (!is_null($this->container['title']) && (mb_strlen($this->container['title']) > 40)) {
-            $invalidProperties[] = "invalid value for 'title', the character length must be smaller than or equal to 40.";
-        }
-
-        if (!is_null($this->container['title']) && (mb_strlen($this->container['title']) < 2)) {
-            $invalidProperties[] = "invalid value for 'title', the character length must be bigger than or equal to 2.";
-        }
 
         return $invalidProperties;
     }
@@ -216,57 +215,75 @@ class Tax implements ModelInterface, ArrayAccess
     
 
     /**
-     * Gets rate
+     * Gets cryptogram
      *
-     * @return float
+     * @return \WeArePlanet\Sdk\Model\CardCryptogram
      */
-    public function getRate()
+    public function getCryptogram()
     {
-        return $this->container['rate'];
+        return $this->container['cryptogram'];
     }
 
     /**
-     * Sets rate
+     * Sets cryptogram
      *
-     * @param float $rate The tax rate to be applied.
+     * @param \WeArePlanet\Sdk\Model\CardCryptogram $cryptogram The additional authentication value used to secure the tokenized card transactions.
      *
      * @return $this
      */
-    public function setRate($rate)
+    public function setCryptogram($cryptogram)
     {
-        $this->container['rate'] = $rate;
+        $this->container['cryptogram'] = $cryptogram;
 
         return $this;
     }
     
 
     /**
-     * Gets title
+     * Gets recurring_indicator
      *
-     * @return string
+     * @return \WeArePlanet\Sdk\Model\RecurringIndicator
      */
-    public function getTitle()
+    public function getRecurringIndicator()
     {
-        return $this->container['title'];
+        return $this->container['recurring_indicator'];
     }
 
     /**
-     * Sets title
+     * Sets recurring_indicator
      *
-     * @param string $title The name of the tax.
+     * @param \WeArePlanet\Sdk\Model\RecurringIndicator $recurring_indicator 
      *
      * @return $this
      */
-    public function setTitle($title)
+    public function setRecurringIndicator($recurring_indicator)
     {
-        if (!is_null($title) && (mb_strlen($title) > 40)) {
-            throw new \InvalidArgumentException('invalid length for $title when calling Tax., must be smaller than or equal to 40.');
-        }
-        if (!is_null($title) && (mb_strlen($title) < 2)) {
-            throw new \InvalidArgumentException('invalid length for $title when calling Tax., must be bigger than or equal to 2.');
-        }
+        $this->container['recurring_indicator'] = $recurring_indicator;
 
-        $this->container['title'] = $title;
+        return $this;
+    }
+    
+
+    /**
+     * Gets token_requestor_id
+     *
+     * @return string
+     */
+    public function getTokenRequestorId()
+    {
+        return $this->container['token_requestor_id'];
+    }
+
+    /**
+     * Sets token_requestor_id
+     *
+     * @param string $token_requestor_id 
+     *
+     * @return $this
+     */
+    public function setTokenRequestorId($token_requestor_id)
+    {
+        $this->container['token_requestor_id'] = $token_requestor_id;
 
         return $this;
     }

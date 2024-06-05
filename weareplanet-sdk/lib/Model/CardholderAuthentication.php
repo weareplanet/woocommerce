@@ -24,15 +24,15 @@ use \ArrayAccess;
 use \WeArePlanet\Sdk\ObjectSerializer;
 
 /**
- * Tax model
+ * CardholderAuthentication model
  *
  * @category    Class
- * @description 
+ * @description This model holds the cardholder authentication data (e.g. 3-D Secure authentication).
  * @package     WeArePlanet\Sdk
  * @author      Planet Merchant Services Ltd.
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache License v2
  */
-class Tax implements ModelInterface, ArrayAccess
+class CardholderAuthentication implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -41,7 +41,7 @@ class Tax implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $swaggerModelName = 'Tax';
+    protected static $swaggerModelName = 'CardholderAuthentication';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -49,8 +49,11 @@ class Tax implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'rate' => 'float',
-        'title' => 'string'
+        'authentication_identifier' => 'string',
+        'authentication_response' => '\WeArePlanet\Sdk\Model\CardAuthenticationResponse',
+        'authentication_value' => 'string',
+        'electronic_commerce_indicator' => 'string',
+        'version' => '\WeArePlanet\Sdk\Model\CardAuthenticationVersion'
     ];
 
     /**
@@ -59,8 +62,11 @@ class Tax implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerFormats = [
-        'rate' => null,
-        'title' => null
+        'authentication_identifier' => null,
+        'authentication_response' => null,
+        'authentication_value' => null,
+        'electronic_commerce_indicator' => null,
+        'version' => null
     ];
 
     /**
@@ -70,8 +76,11 @@ class Tax implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'rate' => 'rate',
-        'title' => 'title'
+        'authentication_identifier' => 'authenticationIdentifier',
+        'authentication_response' => 'authenticationResponse',
+        'authentication_value' => 'authenticationValue',
+        'electronic_commerce_indicator' => 'electronicCommerceIndicator',
+        'version' => 'version'
     ];
 
     /**
@@ -80,8 +89,11 @@ class Tax implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'rate' => 'setRate',
-        'title' => 'setTitle'
+        'authentication_identifier' => 'setAuthenticationIdentifier',
+        'authentication_response' => 'setAuthenticationResponse',
+        'authentication_value' => 'setAuthenticationValue',
+        'electronic_commerce_indicator' => 'setElectronicCommerceIndicator',
+        'version' => 'setVersion'
     ];
 
     /**
@@ -90,8 +102,11 @@ class Tax implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'rate' => 'getRate',
-        'title' => 'getTitle'
+        'authentication_identifier' => 'getAuthenticationIdentifier',
+        'authentication_response' => 'getAuthenticationResponse',
+        'authentication_value' => 'getAuthenticationValue',
+        'electronic_commerce_indicator' => 'getElectronicCommerceIndicator',
+        'version' => 'getVersion'
     ];
 
     
@@ -112,9 +127,15 @@ class Tax implements ModelInterface, ArrayAccess
     public function __construct(array $data = null)
     {
         
-        $this->container['rate'] = isset($data['rate']) ? $data['rate'] : null;
+        $this->container['authentication_identifier'] = isset($data['authentication_identifier']) ? $data['authentication_identifier'] : null;
         
-        $this->container['title'] = isset($data['title']) ? $data['title'] : null;
+        $this->container['authentication_response'] = isset($data['authentication_response']) ? $data['authentication_response'] : null;
+        
+        $this->container['authentication_value'] = isset($data['authentication_value']) ? $data['authentication_value'] : null;
+        
+        $this->container['electronic_commerce_indicator'] = isset($data['electronic_commerce_indicator']) ? $data['electronic_commerce_indicator'] : null;
+        
+        $this->container['version'] = isset($data['version']) ? $data['version'] : null;
         
     }
 
@@ -126,14 +147,6 @@ class Tax implements ModelInterface, ArrayAccess
     public function listInvalidProperties()
     {
         $invalidProperties = [];
-
-        if (!is_null($this->container['title']) && (mb_strlen($this->container['title']) > 40)) {
-            $invalidProperties[] = "invalid value for 'title', the character length must be smaller than or equal to 40.";
-        }
-
-        if (!is_null($this->container['title']) && (mb_strlen($this->container['title']) < 2)) {
-            $invalidProperties[] = "invalid value for 'title', the character length must be bigger than or equal to 2.";
-        }
 
         return $invalidProperties;
     }
@@ -216,57 +229,125 @@ class Tax implements ModelInterface, ArrayAccess
     
 
     /**
-     * Gets rate
+     * Gets authentication_identifier
      *
-     * @return float
+     * @return string
      */
-    public function getRate()
+    public function getAuthenticationIdentifier()
     {
-        return $this->container['rate'];
+        return $this->container['authentication_identifier'];
     }
 
     /**
-     * Sets rate
+     * Sets authentication_identifier
      *
-     * @param float $rate The tax rate to be applied.
+     * @param string $authentication_identifier The authentication identifier as assigned by authentication system (e.g. XID or DSTransactionID).
      *
      * @return $this
      */
-    public function setRate($rate)
+    public function setAuthenticationIdentifier($authentication_identifier)
     {
-        $this->container['rate'] = $rate;
+        $this->container['authentication_identifier'] = $authentication_identifier;
 
         return $this;
     }
     
 
     /**
-     * Gets title
+     * Gets authentication_response
      *
-     * @return string
+     * @return \WeArePlanet\Sdk\Model\CardAuthenticationResponse
      */
-    public function getTitle()
+    public function getAuthenticationResponse()
     {
-        return $this->container['title'];
+        return $this->container['authentication_response'];
     }
 
     /**
-     * Sets title
+     * Sets authentication_response
      *
-     * @param string $title The name of the tax.
+     * @param \WeArePlanet\Sdk\Model\CardAuthenticationResponse $authentication_response 
      *
      * @return $this
      */
-    public function setTitle($title)
+    public function setAuthenticationResponse($authentication_response)
     {
-        if (!is_null($title) && (mb_strlen($title) > 40)) {
-            throw new \InvalidArgumentException('invalid length for $title when calling Tax., must be smaller than or equal to 40.');
-        }
-        if (!is_null($title) && (mb_strlen($title) < 2)) {
-            throw new \InvalidArgumentException('invalid length for $title when calling Tax., must be bigger than or equal to 2.');
-        }
+        $this->container['authentication_response'] = $authentication_response;
 
-        $this->container['title'] = $title;
+        return $this;
+    }
+    
+
+    /**
+     * Gets authentication_value
+     *
+     * @return string
+     */
+    public function getAuthenticationValue()
+    {
+        return $this->container['authentication_value'];
+    }
+
+    /**
+     * Sets authentication_value
+     *
+     * @param string $authentication_value The cardholder authentication value. Also known as Cardholder Authentication Verification Value (CAVV).
+     *
+     * @return $this
+     */
+    public function setAuthenticationValue($authentication_value)
+    {
+        $this->container['authentication_value'] = $authentication_value;
+
+        return $this;
+    }
+    
+
+    /**
+     * Gets electronic_commerce_indicator
+     *
+     * @return string
+     */
+    public function getElectronicCommerceIndicator()
+    {
+        return $this->container['electronic_commerce_indicator'];
+    }
+
+    /**
+     * Sets electronic_commerce_indicator
+     *
+     * @param string $electronic_commerce_indicator The Electronic Commerce Indicator (ECI) value. The ECI is returned by authentication system and indicates the outcome/status of authentication.
+     *
+     * @return $this
+     */
+    public function setElectronicCommerceIndicator($electronic_commerce_indicator)
+    {
+        $this->container['electronic_commerce_indicator'] = $electronic_commerce_indicator;
+
+        return $this;
+    }
+    
+
+    /**
+     * Gets version
+     *
+     * @return \WeArePlanet\Sdk\Model\CardAuthenticationVersion
+     */
+    public function getVersion()
+    {
+        return $this->container['version'];
+    }
+
+    /**
+     * Sets version
+     *
+     * @param \WeArePlanet\Sdk\Model\CardAuthenticationVersion $version 
+     *
+     * @return $this
+     */
+    public function setVersion($version)
+    {
+        $this->container['version'] = $version;
 
         return $this;
     }

@@ -24,15 +24,15 @@ use \ArrayAccess;
 use \WeArePlanet\Sdk\ObjectSerializer;
 
 /**
- * Tax model
+ * CardCryptogram model
  *
  * @category    Class
- * @description 
+ * @description This model holds the additional card authentication.
  * @package     WeArePlanet\Sdk
  * @author      Planet Merchant Services Ltd.
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache License v2
  */
-class Tax implements ModelInterface, ArrayAccess
+class CardCryptogram implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -41,7 +41,7 @@ class Tax implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $swaggerModelName = 'Tax';
+    protected static $swaggerModelName = 'CardCryptogram';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -49,8 +49,8 @@ class Tax implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'rate' => 'float',
-        'title' => 'string'
+        'type' => '\WeArePlanet\Sdk\Model\CardCryptogramType',
+        'value' => 'string'
     ];
 
     /**
@@ -59,8 +59,8 @@ class Tax implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerFormats = [
-        'rate' => null,
-        'title' => null
+        'type' => null,
+        'value' => null
     ];
 
     /**
@@ -70,8 +70,8 @@ class Tax implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'rate' => 'rate',
-        'title' => 'title'
+        'type' => 'type',
+        'value' => 'value'
     ];
 
     /**
@@ -80,8 +80,8 @@ class Tax implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'rate' => 'setRate',
-        'title' => 'setTitle'
+        'type' => 'setType',
+        'value' => 'setValue'
     ];
 
     /**
@@ -90,8 +90,8 @@ class Tax implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'rate' => 'getRate',
-        'title' => 'getTitle'
+        'type' => 'getType',
+        'value' => 'getValue'
     ];
 
     
@@ -112,9 +112,9 @@ class Tax implements ModelInterface, ArrayAccess
     public function __construct(array $data = null)
     {
         
-        $this->container['rate'] = isset($data['rate']) ? $data['rate'] : null;
+        $this->container['type'] = isset($data['type']) ? $data['type'] : null;
         
-        $this->container['title'] = isset($data['title']) ? $data['title'] : null;
+        $this->container['value'] = isset($data['value']) ? $data['value'] : null;
         
     }
 
@@ -126,14 +126,6 @@ class Tax implements ModelInterface, ArrayAccess
     public function listInvalidProperties()
     {
         $invalidProperties = [];
-
-        if (!is_null($this->container['title']) && (mb_strlen($this->container['title']) > 40)) {
-            $invalidProperties[] = "invalid value for 'title', the character length must be smaller than or equal to 40.";
-        }
-
-        if (!is_null($this->container['title']) && (mb_strlen($this->container['title']) < 2)) {
-            $invalidProperties[] = "invalid value for 'title', the character length must be bigger than or equal to 2.";
-        }
 
         return $invalidProperties;
     }
@@ -216,57 +208,50 @@ class Tax implements ModelInterface, ArrayAccess
     
 
     /**
-     * Gets rate
+     * Gets type
      *
-     * @return float
+     * @return \WeArePlanet\Sdk\Model\CardCryptogramType
      */
-    public function getRate()
+    public function getType()
     {
-        return $this->container['rate'];
+        return $this->container['type'];
     }
 
     /**
-     * Sets rate
+     * Sets type
      *
-     * @param float $rate The tax rate to be applied.
+     * @param \WeArePlanet\Sdk\Model\CardCryptogramType $type 
      *
      * @return $this
      */
-    public function setRate($rate)
+    public function setType($type)
     {
-        $this->container['rate'] = $rate;
+        $this->container['type'] = $type;
 
         return $this;
     }
     
 
     /**
-     * Gets title
+     * Gets value
      *
      * @return string
      */
-    public function getTitle()
+    public function getValue()
     {
-        return $this->container['title'];
+        return $this->container['value'];
     }
 
     /**
-     * Sets title
+     * Sets value
      *
-     * @param string $title The name of the tax.
+     * @param string $value 
      *
      * @return $this
      */
-    public function setTitle($title)
+    public function setValue($value)
     {
-        if (!is_null($title) && (mb_strlen($title) > 40)) {
-            throw new \InvalidArgumentException('invalid length for $title when calling Tax., must be smaller than or equal to 40.');
-        }
-        if (!is_null($title) && (mb_strlen($title) < 2)) {
-            throw new \InvalidArgumentException('invalid length for $title when calling Tax., must be bigger than or equal to 2.');
-        }
-
-        $this->container['title'] = $title;
+        $this->container['value'] = $value;
 
         return $this;
     }

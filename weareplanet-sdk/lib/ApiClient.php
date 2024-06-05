@@ -48,7 +48,7 @@ final class ApiClient {
 	 * @var array
 	 */
 	private $defaultHeaders = [
-        'x-meta-sdk-version' => "4.0.2",
+        'x-meta-sdk-version' => "4.2.0",
         'x-meta-sdk-language' => 'php',
         'x-meta-sdk-provider' => "WeArePlanet",
     ];
@@ -58,7 +58,7 @@ final class ApiClient {
 	 *
 	 * @var string
 	 */
-	private $userAgent = 'PHP-Client/4.0.2/php';
+	private $userAgent = 'PHP-Client/4.2.0/php';
 
 	/**
 	 * The path to the certificate authority file.
@@ -595,6 +595,18 @@ final class ApiClient {
             $this->applicationUserService = new \WeArePlanet\Sdk\Service\ApplicationUserService($this);
         }
         return $this->applicationUserService;
+    }
+    
+    protected $cardProcessingService;
+
+    /**
+     * @return \WeArePlanet\Sdk\Service\CardProcessingService
+     */
+    public function getCardProcessingService() {
+        if(is_null($this->cardProcessingService)){
+            $this->cardProcessingService = new \WeArePlanet\Sdk\Service\CardProcessingService($this);
+        }
+        return $this->cardProcessingService;
     }
     
     protected $chargeAttemptService;
