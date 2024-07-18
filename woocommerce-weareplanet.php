@@ -4,14 +4,14 @@
  *
  * Description: Process WooCommerce payments with WeArePlanet.
  * License: Apache2
- * Version: 3.0.7
+ * Version: 3.0.8
  * License URI: http://www.apache.org/licenses/LICENSE-2.0
  * Author: Planet Merchant Services Ltd
  * Author URI: https://www.weareplanet.com
  * Requires at least: 6.0
  * Requires PHP: 7.4
  * WC requires at least: 8.0.0
- * WC tested up to: 8.9.1
+ * WC tested up to: 9.0.2
  *
  * Text Domain: weareplanet
  * Domain Path: /languages/
@@ -39,14 +39,14 @@ if ( ! class_exists( 'WooCommerce_WeArePlanet' ) ) {
 		const CK_INTEGRATION = 'wc_weareplanet_integration';
 		const CK_ORDER_REFERENCE = 'wc_weareplanet_order_reference';
 		const CK_ENFORCE_CONSISTENCY = 'wc_weareplanet_enforce_consistency';
-		const WC_MAXIMUM_VERSION = '8.7.0';
+		const WC_MAXIMUM_VERSION = '9.1.2';
 
 		/**
 		 * WooCommerce WeArePlanet version.
 		 *
 		 * @var string
 		 */
-		private $version = '3.0.7';
+		private $version = '3.0.8';
 
 		/**
 		 * The single instance of the class.
