@@ -483,7 +483,7 @@ class TransactionLineItemVersion extends TransactionAwareEntity
     /**
      * Sets labels
      *
-     * @param \WeArePlanet\Sdk\Model\Label[] $labels 
+     * @param \WeArePlanet\Sdk\Model\Label[] $labels The labels providing additional information about the object.
      *
      * @return $this
      */
