@@ -455,7 +455,8 @@ class WC_WeArePlanet_Service_Transaction extends WC_WeArePlanet_Service_Abstract
 	            throw $e;
 	        } catch ( \WeArePlanet\Sdk\ApiException $e ) {
 	            self::$possible_payment_method_cache[ $id ] = array();
-	            throw $e;
+	            $last = new Exception( __FUNCTION__ );
+	            WooCommerce_WeArePlanet::instance()->log( __CLASS__ . ' : ' . __FUNCTION__ . ' : ' . __LINE__ . ' : ' . $last->getMessage(), WC_Log_Levels::ERROR );
 	        }
 	    }
 	    return self::$possible_payment_method_cache[ $id ];
