@@ -17,6 +17,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 /**
  * Abstract webhook processor for order related entities.
+ * @deprecated 3.0.12 No longer used by internal code and not recommended.
+ * @see WC_WeArePlanet_Webhook_Strategy_Base
  */
 abstract class WC_WeArePlanet_Webhook_Order_Related_Abstract extends WC_WeArePlanet_Webhook_Abstract {
 

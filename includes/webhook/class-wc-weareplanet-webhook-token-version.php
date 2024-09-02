@@ -17,6 +17,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 /**
  * Webhook processor to handle token version state transitions.
+ * @deprecated 3.0.12 No longer used by internal code and not recommended.
+ * @see WC_WeArePlanet_Webhook_Token_Version_Strategy
  */
 class WC_WeArePlanet_Webhook_Token_Version extends WC_WeArePlanet_Webhook_Abstract {
 

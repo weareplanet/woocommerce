@@ -17,6 +17,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 /**
  * Webhook processor to handle transaction state transitions.
+ * @deprecated 3.0.12 No longer used by internal code and not recommended.
+ * @see WC_WeArePlanet_Webhook_Transaction_Strategy
  */
 class WC_WeArePlanet_Webhook_Transaction extends WC_WeArePlanet_Webhook_Order_Related_Abstract {
 
