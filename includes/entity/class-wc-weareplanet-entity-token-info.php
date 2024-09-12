@@ -1,7 +1,9 @@
 <?php
 /**
- *
- * WC_WeArePlanet_Entity_Token_Info Class
+ * Plugin Name: WeArePlanet
+ * Author: Planet Merchant Services Ltd
+ * Text Domain: weareplanet
+ * Domain Path: /languages/
  *
  * WeArePlanet
  * This plugin will add support for all WeArePlanet payments methods and connect the WeArePlanet servers to your WooCommerce webshop (https://www.weareplanet.com/).
@@ -12,9 +14,8 @@
  * @license  http://www.apache.org/licenses/LICENSE-2.0 Apache Software License (ASL 2.0)
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit();
-}
+defined( 'ABSPATH' ) || exit;
+
 /**
  * This entity holds data about a token on the gateway.
  *
@@ -43,13 +44,13 @@ class WC_WeArePlanet_Entity_Token_Info extends WC_WeArePlanet_Entity_Abstract {
 	 */
 	protected static function get_field_definition() {
 		return array(
-			'token_id' => WC_WeArePlanet_Entity_Resource_Type::INTEGER,
-			'state' => WC_WeArePlanet_Entity_Resource_Type::STRING,
-			'space_id' => WC_WeArePlanet_Entity_Resource_Type::INTEGER,
-			'name' => WC_WeArePlanet_Entity_Resource_Type::STRING,
-			'customer_id' => WC_WeArePlanet_Entity_Resource_Type::INTEGER,
-			'payment_method_id' => WC_WeArePlanet_Entity_Resource_Type::INTEGER,
-			'connector_id' => WC_WeArePlanet_Entity_Resource_Type::INTEGER,
+			'token_id' => WC_WeArePlanet_Entity_Resource_Type::WEAREPLANET_INTEGER,
+			'state' => WC_WeArePlanet_Entity_Resource_Type::WEAREPLANET_STRING,
+			'space_id' => WC_WeArePlanet_Entity_Resource_Type::WEAREPLANET_INTEGER,
+			'name' => WC_WeArePlanet_Entity_Resource_Type::WEAREPLANET_STRING,
+			'customer_id' => WC_WeArePlanet_Entity_Resource_Type::WEAREPLANET_INTEGER,
+			'payment_method_id' => WC_WeArePlanet_Entity_Resource_Type::WEAREPLANET_INTEGER,
+			'connector_id' => WC_WeArePlanet_Entity_Resource_Type::WEAREPLANET_INTEGER,
 		);
 	}
 
@@ -59,7 +60,7 @@ class WC_WeArePlanet_Entity_Token_Info extends WC_WeArePlanet_Entity_Abstract {
 	 * @return string
 	 */
 	protected static function get_table_name() {
-		return 'wc_weareplanet_token_info';
+		return 'weareplanet_token_info';
 	}
 
 	/**
@@ -71,15 +72,17 @@ class WC_WeArePlanet_Entity_Token_Info extends WC_WeArePlanet_Entity_Abstract {
 	 */
 	public static function load_by_token( $space_id, $token_id ) {
 		global $wpdb;
+		$table = $wpdb->prefix . self::get_table_name();
+		// phpcs:disable WordPress.DB.DirectDatabaseQuery.SchemaChange, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.PreparedSQLPlaceholders.UnfinishedPrepare -- Values are escaped in $wpdb->prepare.
 		$result = $wpdb->get_row(
 			$wpdb->prepare(
-				'SELECT * FROM %1$s WHERE space_id = %2$d AND token_id = %3$d',
-				$wpdb->prefix . self::get_table_name(),
+				"SELECT * FROM $table WHERE space_id = %d AND token_id = %d",
 				$space_id,
 				$token_id
 			),
 			ARRAY_A
 		);
+		// phpcs:disable WordPress.DB.DirectDatabaseQuery.SchemaChange, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.PreparedSQLPlaceholders.UnfinishedPrepare -- Values are escaped in $wpdb->prepare.
 		if ( null !== $result ) {
 			return new self( $result );
 		}

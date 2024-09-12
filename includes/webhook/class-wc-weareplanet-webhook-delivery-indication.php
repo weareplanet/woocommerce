@@ -1,7 +1,9 @@
 <?php
 /**
- *
- * WC_WeArePlanet_Webhook_Delivery_Indication Class
+ * Plugin Name: WeArePlanet
+ * Author: Planet Merchant Services Ltd
+ * Text Domain: weareplanet
+ * Domain Path: /languages/
  *
  * WeArePlanet
  * This plugin will add support for all WeArePlanet payments methods and connect the WeArePlanet servers to your WooCommerce webshop (https://www.weareplanet.com/).
@@ -12,11 +14,11 @@
  * @license  http://www.apache.org/licenses/LICENSE-2.0 Apache Software License (ASL 2.0)
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit();
-}
+defined( 'ABSPATH' ) || exit;
+
 /**
  * Webhook processor to handle delivery indication state transitions.
+ *
  * @deprecated 3.0.12 No longer used by internal code and not recommended.
  * @see WC_WeArePlanet_Webhook_Delivery_Indication_Strategy
  */
@@ -44,7 +46,7 @@ class WC_WeArePlanet_Webhook_Delivery_Indication extends WC_WeArePlanet_Webhook_
 	 * @return int|string
 	 */
 	protected function get_order_id( $delivery_indication ) {
-		/* @var \WeArePlanet\Sdk\Model\DeliveryIndication $delivery_indication */
+		/* @var \WeArePlanet\Sdk\Model\DeliveryIndication $delivery_indication */ //phpcs:ignore
 		return WC_WeArePlanet_Entity_Transaction_Info::load_by_transaction( $delivery_indication->getTransaction()->getLinkedSpaceId(), $delivery_indication->getTransaction()->getId() )->get_order_id();
 	}
 
@@ -55,7 +57,7 @@ class WC_WeArePlanet_Webhook_Delivery_Indication extends WC_WeArePlanet_Webhook_
 	 * @return int
 	 */
 	protected function get_transaction_id( $delivery_indication ) {
-		/* @var \WeArePlanet\Sdk\Model\DeliveryIndication $delivery_indication */
+		/* @var \WeArePlanet\Sdk\Model\DeliveryIndication $delivery_indication */ //phpcs:ignore
 		return $delivery_indication->getLinkedTransaction();
 	}
 
@@ -63,11 +65,11 @@ class WC_WeArePlanet_Webhook_Delivery_Indication extends WC_WeArePlanet_Webhook_
 	 * Process order related inner.
 	 *
 	 * @param WC_Order $order order.
-	 * @param mixed    $delivery_indication delivery indication.
+	 * @param mixed $delivery_indication delivery indication.
 	 * @return void
 	 */
 	protected function process_order_related_inner( WC_Order $order, $delivery_indication ) {
-		/* @var \WeArePlanet\Sdk\Model\DeliveryIndication $delivery_indication */
+		/* @var \WeArePlanet\Sdk\Model\DeliveryIndication $delivery_indication */ //phpcs:ignore
 		switch ( $delivery_indication->getState() ) {
 			case \WeArePlanet\Sdk\Model\DeliveryIndicationState::MANUAL_CHECK_REQUIRED:
 				$this->review( $order );
@@ -87,6 +89,6 @@ class WC_WeArePlanet_Webhook_Delivery_Indication extends WC_WeArePlanet_Webhook_
 	protected function review( WC_Order $order ) {
 		$status = apply_filters( 'wc_weareplanet_manual_task_status', 'wearep-manual', $order );
 		$order->add_meta_data( '_weareplanet_manual_check', true );
-		$order->update_status( $status, __( 'A manual decision about whether to accept the payment is required.', 'woo-weareplanet' ) );
+		$order->update_status( $status, esc_html__( 'A manual decision about whether to accept the payment is required.', 'woo-weareplanet' ) );
 	}
 }

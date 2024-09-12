@@ -1,6 +1,9 @@
 <?php
 /**
- * WeArePlanet WooCommerce
+ * Plugin Name: WeArePlanet
+ * Author: Planet Merchant Services Ltd
+ * Text Domain: weareplanet
+ * Domain Path: /languages/
  *
  * WeArePlanet
  * This plugin will add support for all WeArePlanet payments methods and connect the WeArePlanet servers to your WooCommerce webshop (https://www.weareplanet.com/).
@@ -31,7 +34,7 @@ interface WC_WeArePlanet_Webhook_Strategy_Interface {
 	 * @return bool Returns true if the ID matches the system's criteria, false otherwise.
 	 */
 	public function match( string $webhook_entity_id );
-	
+
 	/**
 	 * Process the webhook request.
 	 *

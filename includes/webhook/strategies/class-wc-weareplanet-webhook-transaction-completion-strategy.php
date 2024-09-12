@@ -1,6 +1,9 @@
 <?php
 /**
- * WeArePlanet WooCommerce
+ * Plugin Name: WeArePlanet
+ * Author: Planet Merchant Services Ltd
+ * Text Domain: weareplanet
+ * Domain Path: /languages/
  *
  * WeArePlanet
  * This plugin will add support for all WeArePlanet payments methods and connect the WeArePlanet servers to your WooCommerce webshop (https://www.weareplanet.com/).
@@ -15,23 +18,29 @@ defined( 'ABSPATH' ) || exit;
 
 /**
  * Class WC_WeArePlanet_Webhook_Transaction_Completion_Strategy
- * 
+ *
  * Handles strategy for processing transaction completion-related webhook requests.
  * This class extends the base webhook strategy to manage webhook requests specifically
  * dealing with transaction completions. It focuses on updating order states based on the transaction completion details
  * retrieved from the webhook data.
  */
 class WC_WeArePlanet_Webhook_Transaction_Completion_Strategy extends WC_WeArePlanet_Webhook_Strategy_Base {
-	
+
 	/**
+	 * Match function.
+	 *
 	 * @inheritDoc
+	 * @param string $webhook_entity_id The webhook entity id.
 	 */
 	public function match( string $webhook_entity_id ) {
 		return WC_WeArePlanet_Service_Webhook::WEAREPLANET_TRANSACTION_COMPLETION == $webhook_entity_id;
 	}
 
 	/**
+	 * Load the entity
+	 *
 	 * @inheritDoc
+	 * @param WC_WeArePlanet_Webhook_Request $request The webhook request.
 	 */
 	protected function load_entity( WC_WeArePlanet_Webhook_Request $request ) {
 		$transaction_invoice_service = new \WeArePlanet\Sdk\Service\TransactionCompletionService( WC_WeArePlanet_Helper::instance()->get_api_client() );
@@ -39,10 +48,13 @@ class WC_WeArePlanet_Webhook_Transaction_Completion_Strategy extends WC_WeArePla
 	}
 
 	/**
+	 * Get the order ID.
+	 *
 	 * @inheritDoc
+	 * @param object $object The webhook request.
 	 */
 	protected function get_order_id( $object ) {
-		/* @var \Wallee\Sdk\Model\TransactionCompletion $object */
+		/* @var \WeArePlanet\Sdk\Model\TransactionCompletion $object */
 		return WC_WeArePlanet_Entity_Transaction_Info::load_by_transaction(
 			$object->getLineItemVersion()->getTransaction()->getLinkedSpaceId(),
 			$object->getLineItemVersion()->getTransaction()->getId()
@@ -66,7 +78,7 @@ class WC_WeArePlanet_Webhook_Transaction_Completion_Strategy extends WC_WeArePla
 			$this->process_order_related_inner( $order, $completion, $request );
 		}
 	}
-	
+
 	/**
 	 * Additional processing on the order based on the state of the transaction completion.
 	 *
@@ -111,7 +123,7 @@ class WC_WeArePlanet_Webhook_Transaction_Completion_Strategy extends WC_WeArePla
 			}
 			$completion_job->set_completion_id( $completion->getId() );
 		}
-		$completion_job->set_state( WC_WeArePlanet_Entity_Completion_Job::STATE_DONE );
+		$completion_job->set_state( WC_WeArePlanet_Entity_Completion_Job::WEAREPLANET_STATE_DONE );
 
 		if ( $completion_job->get_restock() ) {
 			$this->restock_non_completed_items( (array) $completion_job->get_items(), $order );
@@ -123,7 +135,7 @@ class WC_WeArePlanet_Webhook_Transaction_Completion_Strategy extends WC_WeArePla
 	/**
 	 * Restock non completed items.
 	 *
-	 * @param array    $completed_items completed items.
+	 * @param array $completed_items completed items.
 	 * @param WC_Order $order order.
 	 * @return void
 	 */
@@ -156,7 +168,7 @@ class WC_WeArePlanet_Webhook_Transaction_Completion_Strategy extends WC_WeArePla
 	/**
 	 * Adapt order items.
 	 *
-	 * @param array    $completed_items completed items.
+	 * @param array $completed_items completed items.
 	 * @param WC_Order $order order.
 	 * @return void
 	 */
@@ -266,7 +278,7 @@ class WC_WeArePlanet_Webhook_Transaction_Completion_Strategy extends WC_WeArePla
 		if ( $completion->getFailureReason() != null ) {
 			$completion_job->set_failure_reason( $completion->getFailureReason()->getDescription() );
 		}
-		$completion_job->set_state( WC_WeArePlanet_Entity_Completion_Job::STATE_DONE );
+		$completion_job->set_state( WC_WeArePlanet_Entity_Completion_Job::WEAREPLANET_STATE_DONE );
 		$completion_job->save();
 	}
 }

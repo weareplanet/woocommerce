@@ -16,7 +16,7 @@ This repository contains the WeArePlanet plugin that enables WooCommerce to proc
 
 ## Documentation
 
-* [Documentation](https://plugin-documentation.weareplanet.com/weareplanet/woocommerce/3.0.12/docs/en/documentation.html)
+* [Documentation](https://plugin-documentation.weareplanet.com/weareplanet/woocommerce/3.1.0/docs/en/documentation.html)
 
 ## Support
 
@@ -33,4 +33,12 @@ ____________________________________________________________________________
 
 ## License
 
-Please see the [license file](https://github.com/weareplanet/woocommerce/blob/3.0.12/LICENSE) for more information.
+Please see the [license file](https://github.com/weareplanet/woocommerce/blob/3.1.0/LICENSE) for more information.
+
+## Privacy Policy
+
+Please see the [WeArePlanet privacy policies site](https://www.weareplanet.com/privacy-policy) for more information.
+
+## Terms of Use
+
+Please see the [WeArePlanet terms of use site](https://www.datatrans.ch/en/terms-conditions) for more information.

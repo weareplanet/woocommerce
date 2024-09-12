@@ -1,6 +1,9 @@
 <?php
 /**
- * WeArePlanet WooCommerce
+ * Plugin Name: WeArePlanet
+ * Author: Planet Merchant Services Ltd
+ * Text Domain: weareplanet
+ * Domain Path: /languages/
  *
  * WeArePlanet
  * This plugin will add support for all WeArePlanet payments methods and connect the WeArePlanet servers to your WooCommerce webshop (https://www.weareplanet.com/).
@@ -15,7 +18,7 @@ defined( 'ABSPATH' ) || exit;
 
 /**
  * Class WC_WeArePlanet_Webhook_Transaction_Void_Strategy
- * 
+ *
  * Handles strategy for processing transaction void webhook requests.
  * This class extends the base webhook strategy to specifically manage webhook requests
  * that deal with transaction voids. Transaction voids are crucial for reverting transactions
@@ -24,14 +27,22 @@ defined( 'ABSPATH' ) || exit;
 class WC_WeArePlanet_Webhook_Transaction_Void_Strategy extends WC_WeArePlanet_Webhook_Strategy_Base {
 
 	/**
+	 * Match function
+	 *
 	 * @inheritDoc
+	 *
+	 * @param string $webhook_entity_id The webhook entity.
 	 */
 	public function match( string $webhook_entity_id ) {
 		return WC_WeArePlanet_Service_Webhook::WEAREPLANET_TRANSACTION_VOID == $webhook_entity_id;
 	}
 
 	/**
+	 * Loads the entity
+	 *
 	 * @inheritDoc
+	 *
+	 * @param WC_WeArePlanet_Webhook_Request $request The webhook request.
 	 */
 	protected function load_entity( WC_WeArePlanet_Webhook_Request $request ) {
 		$void_service = new \WeArePlanet\Sdk\Service\TransactionVoidService( WC_WeArePlanet_Helper::instance()->get_api_client() );
@@ -39,10 +50,14 @@ class WC_WeArePlanet_Webhook_Transaction_Void_Strategy extends WC_WeArePlanet_We
 	}
 
 	/**
+	 * Get order id
+	 *
 	 * @inheritDoc
+	 *
+	 * @param object $object The order object.
 	 */
 	protected function get_order_id( $object ) {
-		/* @var \Wallee\Sdk\Model\TransactionVoid $object */
+		/* @var \WeArePlanet\Sdk\Model\TransactionVoid $object */
 		return WC_WeArePlanet_Entity_Transaction_Info::load_by_transaction(
 			$object->getTransaction()->getLinkedSpaceId(),
 			$object->getTransaction()->getId()
@@ -66,7 +81,7 @@ class WC_WeArePlanet_Webhook_Transaction_Void_Strategy extends WC_WeArePlanet_We
 			$this->process_order_related_inner( $order, $void, $request );
 		}
 	}
-	
+
 	/**
 	 * Processes additional order-related operations based on the transaction void's state.
 	 *
@@ -76,7 +91,7 @@ class WC_WeArePlanet_Webhook_Transaction_Void_Strategy extends WC_WeArePlanet_We
 	 * @return void
 	 */
 	protected function process_order_related_inner( WC_Order $order, \WeArePlanet\Sdk\Model\TransactionVoid $void, WC_WeArePlanet_Webhook_Request $request ) {
-		
+
 		switch ( $request->get_state() ) {
 			case \WeArePlanet\Sdk\Model\TransactionVoidState::FAILED:
 				$this->failed( $order, $void );
@@ -93,8 +108,8 @@ class WC_WeArePlanet_Webhook_Transaction_Void_Strategy extends WC_WeArePlanet_We
 	/**
 	 * Successfully processes a transaction void.
 	 *
-	 * @param WC_Order 											$order The order to process.
-	 * @param \WeArePlanet\Sdk\Model\TransactionVoid	$void The transaction void.
+	 * @param WC_Order $order The order to process.
+	 * @param \WeArePlanet\Sdk\Model\TransactionVoid $void The transaction void.
 	 * @return void
 	 */
 	protected function success( WC_Order $order, \WeArePlanet\Sdk\Model\TransactionVoid $void ) {
@@ -120,8 +135,8 @@ class WC_WeArePlanet_Webhook_Transaction_Void_Strategy extends WC_WeArePlanet_We
 	/**
 	 * Handles a failed transaction void.
 	 *
-	 * @param WC_Order 											$order The order linked to the failed void.
-	 * @param \WeArePlanet\Sdk\Model\TransactionVoid	$void The transaction void.
+	 * @param WC_Order $order The order linked to the failed void.
+	 * @param \WeArePlanet\Sdk\Model\TransactionVoid $void The transaction void.
 	 * @return void
 	 */
 	protected function failed( WC_Order $order, \WeArePlanet\Sdk\Model\TransactionVoid $void ) {

@@ -1,6 +1,9 @@
 <?php
 /**
- * WeArePlanet WooCommerce
+ * Plugin Name: WeArePlanet
+ * Author: Planet Merchant Services Ltd
+ * Text Domain: weareplanet
+ * Domain Path: /languages/
  *
  * WeArePlanet
  * This plugin will add support for all WeArePlanet payments methods and connect the WeArePlanet servers to your WooCommerce webshop (https://www.weareplanet.com/).
@@ -15,16 +18,19 @@ defined( 'ABSPATH' ) || exit;
 
 /**
  * Class WC_WeArePlanet_Webhook_Token_Strategy
- * 
+ *
  * Handles the strategy for processing webhook requests related to tokens.
  * This class extends the base webhook strategy class and is specialized in handling
  * webhook requests that are associated with token updates. Tokens typically represent
  * authentication or authorization tokens used within the system.
  */
 class WC_WeArePlanet_Webhook_Token_Strategy extends WC_WeArePlanet_Webhook_Strategy_Base {
-	
+
 	/**
+	 * Match function.
+	 *
 	 * @inheritDoc
+	 * @param string $webhook_entity_id The webhook entity id.
 	 */
 	public function match( string $webhook_entity_id ) {
 		return WC_WeArePlanet_Service_Webhook::WEAREPLANET_TOKEN == $webhook_entity_id;

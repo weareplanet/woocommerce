@@ -1,7 +1,9 @@
 <?php
 /**
- *
- * WC_WeArePlanet_Provider_Abstract Class
+ * Plugin Name: WeArePlanet
+ * Author: Planet Merchant Services Ltd
+ * Text Domain: weareplanet
+ * Domain Path: /languages/
  *
  * WeArePlanet
  * This plugin will add support for all WeArePlanet payments methods and connect the WeArePlanet servers to your WooCommerce webshop (https://www.weareplanet.com/).
@@ -12,9 +14,8 @@
  * @license  http://www.apache.org/licenses/LICENSE-2.0 Apache Software License (ASL 2.0)
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit();
-}
+defined( 'ABSPATH' ) || exit;
+
 /**
  * Abstract implementation of a provider.
  */
@@ -76,7 +77,7 @@ abstract class WC_WeArePlanet_Provider_Abstract {
 	 * @param mixed $entry entry.
 	 * @return string
 	 */
-	abstract protected function get_id( $entry);
+	abstract protected function get_id( $entry );
 
 	/**
 	 * Returns a single entry by id.

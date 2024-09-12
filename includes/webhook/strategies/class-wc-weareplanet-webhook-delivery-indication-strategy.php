@@ -1,6 +1,9 @@
 <?php
 /**
- * WeArePlanet WooCommerce
+ * Plugin Name: WeArePlanet
+ * Author: Planet Merchant Services Ltd
+ * Text Domain: weareplanet
+ * Domain Path: /languages/
  *
  * WeArePlanet
  * This plugin will add support for all WeArePlanet payments methods and connect the WeArePlanet servers to your WooCommerce webshop (https://www.weareplanet.com/).
@@ -15,23 +18,29 @@ defined( 'ABSPATH' ) || exit;
 
 /**
  * Class WC_WeArePlanet_Webhook_Delivery_Indication_Strategy
- * 
+ *
  * Handles strategy for processing delivery indication-related webhook requests.
  * This class extends the base webhook strategy to manage webhook requests specifically
  * dealing with delivery indications. It focuses on updating order states based on the delivery indication details
  * retrieved from the webhook data.
  */
 class WC_WeArePlanet_Webhook_Delivery_Indication_Strategy extends WC_WeArePlanet_Webhook_Strategy_Base {
-   
+
 	/**
+	 * Match function.
+	 *
 	 * @inheritDoc
+	 * @param string $webhook_entity_id The webhook entity id.
 	 */
 	public function match( string $webhook_entity_id ) {
 		return WC_WeArePlanet_Service_Webhook::WEAREPLANET_DELIVERY_INDICATION == $webhook_entity_id;
 	}
-	
+
 	/**
+	 * Load the entity
+	 *
 	 * @inheritDoc
+	 * @param WC_WeArePlanet_Webhook_Request $request The webhook request.
 	 */
 	protected function load_entity( WC_WeArePlanet_Webhook_Request $request ) {
 		$transaction_invoice_service = new \WeArePlanet\Sdk\Service\DeliveryIndicationService( WC_WeArePlanet_Helper::instance()->get_api_client() );
@@ -39,10 +48,13 @@ class WC_WeArePlanet_Webhook_Delivery_Indication_Strategy extends WC_WeArePlanet
 	}
 
 	/**
+	 * Get the order ID.
+	 *
 	 * @inheritDoc
+	 * @param object $object The webhook request.
 	 */
 	protected function get_order_id( $object ) {
-		/* @var \Wallee\Sdk\Model\DeliveryIndication $object */
+		/* @var \WeArePlanet\Sdk\Model\DeliveryIndication $object */
 		return WC_WeArePlanet_Entity_Transaction_Info::load_by_transaction(
 			$object->getTransaction()->getLinkedSpaceId(),
 			$object->getTransaction()->getId()

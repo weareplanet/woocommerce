@@ -1,6 +1,9 @@
 <?php
 /**
- * WeArePlanet WooCommerce
+ * Plugin Name: WeArePlanet
+ * Author: Planet Merchant Services Ltd
+ * Text Domain: weareplanet
+ * Domain Path: /languages/
  *
  * WeArePlanet
  * This plugin will add support for all WeArePlanet payments methods and connect the WeArePlanet servers to your WooCommerce webshop (https://www.weareplanet.com/).
@@ -22,9 +25,12 @@ defined( 'ABSPATH' ) || exit;
  * statuses, recording transaction logs, or triggering further business logic.
  */
 class WC_WeArePlanet_Webhook_Transaction_Strategy extends WC_WeArePlanet_Webhook_Strategy_Base {
-	
+
 	/**
+	 * Match function.
+	 *
 	 * @inheritDoc
+	 * @param string $webhook_entity_id The webhook entity id.
 	 */
 	public function match( string $webhook_entity_id ) {
 		return WC_WeArePlanet_Service_Webhook::WEAREPLANET_TRANSACTION == $webhook_entity_id;
@@ -46,8 +52,8 @@ class WC_WeArePlanet_Webhook_Transaction_Strategy extends WC_WeArePlanet_Webhook
 	/**
 	 * Process order related inner.
 	 *
-	 * @param WC_Order                                   $order order.
-	 * @param WC_WeArePlanet_Webhook_Request   $request request.
+	 * @param WC_Order $order order.
+	 * @param WC_WeArePlanet_Webhook_Request $request request.
 	 * @return void
 	 * @throws Exception Exception.
 	 */
@@ -92,7 +98,7 @@ class WC_WeArePlanet_Webhook_Transaction_Strategy extends WC_WeArePlanet_Webhook
 	 * Confirm.
 	 *
 	 * @param WC_WeArePlanet_Webhook_Request $request request.
-	 * @param WC_Order                                 $order order.
+	 * @param WC_Order $order order.
 	 * @return void
 	 */
 	protected function confirm( WC_WeArePlanet_Webhook_Request $request, WC_Order $order ) {
@@ -109,7 +115,7 @@ class WC_WeArePlanet_Webhook_Transaction_Strategy extends WC_WeArePlanet_Webhook
 	 * Authorize.
 	 *
 	 * @param WC_WeArePlanet_Webhook_Request $request request.
-	 * @param \WC_Order                                $order order.
+	 * @param \WC_Order $order order.
 	 */
 	protected function authorize( WC_WeArePlanet_Webhook_Request $request, WC_Order $order ) {
 		if ( ! $order->get_meta( '_weareplanet_authorized', true ) ) {
@@ -128,13 +134,13 @@ class WC_WeArePlanet_Webhook_Transaction_Strategy extends WC_WeArePlanet_Webhook
 	 * Waiting.
 	 *
 	 * @param WC_WeArePlanet_Webhook_Request $request request.
-	 * @param WC_Order                                 $order order.
+	 * @param WC_Order $order order.
 	 * @return void
 	 */
 	protected function waiting( WC_WeArePlanet_Webhook_Request $request, WC_Order $order ) {
 		if ( ! $order->get_meta( '_weareplanet_manual_check', true ) ) {
 			do_action( 'wc_weareplanet_completed', $this->load_entity( $request ), $order );
-			$status = apply_filters( 'wc_weareplanet_completed_status', 'wearep-waiting', $order );
+			$status = apply_filters( 'wc_weareplanet_completed_status', 'processing', $order );
 			$order->update_status( $status );
 		}
 	}
@@ -143,7 +149,7 @@ class WC_WeArePlanet_Webhook_Transaction_Strategy extends WC_WeArePlanet_Webhook
 	 * Decline.
 	 *
 	 * @param WC_WeArePlanet_Webhook_Request $request request.
-	 * @param WC_Order                                 $order order.
+	 * @param WC_Order $order order.
 	 * @return void
 	 */
 	protected function decline( WC_WeArePlanet_Webhook_Request $request, WC_Order $order ) {
@@ -157,7 +163,7 @@ class WC_WeArePlanet_Webhook_Transaction_Strategy extends WC_WeArePlanet_Webhook
 	 * Failed.
 	 *
 	 * @param WC_WeArePlanet_Webhook_Request $request request.
-	 * @param WC_Order                                 $order order.
+	 * @param WC_Order $order order.
 	 * @return void
 	 */
 	protected function failed( WC_WeArePlanet_Webhook_Request $request, WC_Order $order ) {
@@ -173,7 +179,7 @@ class WC_WeArePlanet_Webhook_Transaction_Strategy extends WC_WeArePlanet_Webhook
 	 * Fulfill.
 	 *
 	 * @param WC_WeArePlanet_Webhook_Request $request request.
-	 * @param WC_Order                                 $order order.
+	 * @param WC_Order $order order.
 	 * @return void
 	 */
 	protected function fulfill( WC_WeArePlanet_Webhook_Request $request, WC_Order $order ) {
@@ -186,7 +192,7 @@ class WC_WeArePlanet_Webhook_Transaction_Strategy extends WC_WeArePlanet_Webhook
 	 * Voided.
 	 *
 	 * @param WC_WeArePlanet_Webhook_Request $request request.
-	 * @param WC_Order                                 $order order.
+	 * @param WC_Order $order order.
 	 * @return void
 	 */
 	protected function voided( WC_WeArePlanet_Webhook_Request $request, WC_Order $order ) {

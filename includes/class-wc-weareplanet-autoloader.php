@@ -1,7 +1,9 @@
 <?php
 /**
- *
- * WC_WeArePlanet_Autoloader Class
+ * Plugin Name: WeArePlanet
+ * Author: Planet Merchant Services Ltd
+ * Text Domain: weareplanet
+ * Domain Path: /languages/
  *
  * WeArePlanet
  * This plugin will add support for all WeArePlanet payments methods and connect the WeArePlanet servers to your WooCommerce webshop (https://www.weareplanet.com/).
@@ -12,16 +14,13 @@
  * @license  http://www.apache.org/licenses/LICENSE-2.0 Apache Software License (ASL 2.0)
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit();
-}
+defined( 'ABSPATH' ) || exit;
+
 /**
  * Class WC_WeArePlanet_Autoloader.
+ * This is the autoloader for WeArePlanet classes.
  *
  * @class WC_WeArePlanet_Autoloader
- */
-/**
- * This is the autoloader for WeArePlanet classes.
  */
 class WC_WeArePlanet_Autoloader {
 
@@ -48,11 +47,11 @@ class WC_WeArePlanet_Autoloader {
 	/**
 	 * Take a class name and turn it into a file name.
 	 *
-	 * @param  string $class class.
+	 * @param  string $class_file class.
 	 * @return string
 	 */
-	private function get_file_name_from_class( $class ) {
-		$class = preg_replace( '/(?<!^)[A-Z]/', '-$0', $class );
+	private function get_file_name_from_class( $class_file ) {
+		$class = preg_replace( '/(?<!^)[A-Z]/', '-$0', $class_file );
 		return 'class-' . str_replace( '_', '-', strtolower( $class ) ) . '.php';
 	}
 
@@ -73,10 +72,10 @@ class WC_WeArePlanet_Autoloader {
 	/**
 	 * Auto-load WC WeArePlanet classes on demand to reduce memory consumption.
 	 *
-	 * @param string $class class.
+	 * @param string $class_file class.
 	 */
-	public function autoload( $class ) {
-		$class = strtolower( $class );
+	public function autoload( $class_file ) {
+		$class = strtolower( $class_file );
 
 		if ( 0 !== strpos( $class, 'wc_weareplanet' ) ) {
 			return;
@@ -92,7 +91,7 @@ class WC_WeArePlanet_Autoloader {
 		} elseif ( strpos( $class, 'wc_weareplanet_provider' ) === 0 ) {
 			$path = $this->include_path . 'provider/';
 		} elseif ( strpos( $class, 'wc_weareplanet_webhook' ) === 0 ) {
-			if (strpos($class, 'strategy') !== false) {
+			if ( strpos( $class, 'strategy' ) !== false ) {
 				$path = $this->include_path . 'webhook/strategies/';
 			} else {
 				$path = $this->include_path . 'webhook/';

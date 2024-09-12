@@ -1,5 +1,8 @@
 /**
- * WeArePlanet WooCommerce
+ * Plugin Name: WeArePlanet
+ * Author: Planet Merchant Services Ltd
+ * Text Domain: weareplanet
+ * Domain Path: /languages/
  *
  * WeArePlanet
  * This plugin will add support for all WeArePlanet payments methods and connect the WeArePlanet servers to your WooCommerce webshop (https://www.weareplanet.com/).
@@ -11,15 +14,15 @@
  */
 /* Icons for status */
 @font-face {
-  font-family: 'woocommerce-weareplanet';
-  src: url('../font/woocommerce-weareplanet.eot?8310684');
-  src: url('../font/woocommerce-weareplanet.eot?8310684#iefix') format('embedded-opentype'),
-	   url('../font/woocommerce-weareplanet.woff2?8310684') format('woff2'),
-	   url('../font/woocommerce-weareplanet.woff?8310684') format('woff'),
-	   url('../font/woocommerce-weareplanet.ttf?8310684') format('truetype'),
-	   url('../font/woocommerce-weareplanet.svg?8310684#woocommerce-weareplanet') format('svg');
-  font-weight: normal;
-  font-style: normal;
+	font-family: 'woocommerce-weareplanet';
+	src: url('../font/woocommerce-weareplanet.eot?8310684');
+	src: url('../font/woocommerce-weareplanet.eot?8310684#iefix') format('embedded-opentype'),
+		url('../font/woocommerce-weareplanet.woff2?8310684') format('woff2'),
+		url('../font/woocommerce-weareplanet.woff?8310684') format('woff'),
+		url('../font/woocommerce-weareplanet.ttf?8310684') format('truetype'),
+		url('../font/woocommerce-weareplanet.svg?8310684#woocommerce-weareplanet') format('svg');
+	font-weight: normal;
+	font-style: normal;
 }
 
 /* Status Icons */
