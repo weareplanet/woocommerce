@@ -190,7 +190,7 @@ final class WC_WeArePlanet_Blocks_Support extends AbstractPaymentMethodType {
 				true
 			);
 		} catch ( Exception $e ) {
-			WeArePlanet_WooCommerce::instance()->log( $e->getMessage(), WC_Log_Levels::DEBUG );
+			WooCommerce_WeArePlanet::instance()->log( $e->getMessage(), WC_Log_Levels::DEBUG );
 		}
 	}
 
