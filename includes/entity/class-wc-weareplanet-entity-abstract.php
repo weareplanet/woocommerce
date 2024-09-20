@@ -1,7 +1,9 @@
 <?php
 /**
- *
- * WC_WeArePlanet_Entity_Abstract Class
+ * Plugin Name: WeArePlanet
+ * Author: Planet Merchant Services Ltd
+ * Text Domain: weareplanet
+ * Domain Path: /languages/
  *
  * WeArePlanet
  * This plugin will add support for all WeArePlanet payments methods and connect the WeArePlanet servers to your WooCommerce webshop (https://www.weareplanet.com/).
@@ -12,16 +14,13 @@
  * @license  http://www.apache.org/licenses/LICENSE-2.0 Apache Software License (ASL 2.0)
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit();
-}
+defined( 'ABSPATH' ) || exit;
+
 /**
  * Class WC_WeArePlanet_Entity_Abstract.
+ * Abstract implementation of a entity
  *
  * @class WC_WeArePlanet_Entity_Abstract
- */
-/**
- * Abstract implementation of a entity
  */
 abstract class WC_WeArePlanet_Entity_Abstract {
 	/**
@@ -36,9 +35,9 @@ abstract class WC_WeArePlanet_Entity_Abstract {
 	 */
 	protected static function get_base_fields() {
 		return array(
-			'id' => WC_WeArePlanet_Entity_Resource_Type::INTEGER,
-			'created_at' => WC_WeArePlanet_Entity_Resource_Type::DATETIME,
-			'updated_at' => WC_WeArePlanet_Entity_Resource_Type::DATETIME,
+			'id' => WC_WeArePlanet_Entity_Resource_Type::WEAREPLANET_INTEGER,
+			'created_at' => WC_WeArePlanet_Entity_Resource_Type::WEAREPLANET_DATETIME,
+			'updated_at' => WC_WeArePlanet_Entity_Resource_Type::WEAREPLANET_DATETIME,
 		);
 	}
 
@@ -123,26 +122,26 @@ abstract class WC_WeArePlanet_Entity_Abstract {
 			if ( isset( $db_values[ $key ] ) ) {
 				$value = $db_values[ $key ];
 				switch ( $type ) {
-					case WC_WeArePlanet_Entity_Resource_Type::STRING:
+					case WC_WeArePlanet_Entity_Resource_Type::WEAREPLANET_STRING:
 						// Do nothing.
 						break;
-					case WC_WeArePlanet_Entity_Resource_Type::BOOLEAN:
+					case WC_WeArePlanet_Entity_Resource_Type::WEAREPLANET_BOOLEAN:
 						$value = 'Y' === $value;
 						break;
-					case WC_WeArePlanet_Entity_Resource_Type::INTEGER:
+					case WC_WeArePlanet_Entity_Resource_Type::WEAREPLANET_INTEGER:
 						$value = intval( $value );
 						break;
 
-					case WC_WeArePlanet_Entity_Resource_Type::DECIMAL:
+					case WC_WeArePlanet_Entity_Resource_Type::WEAREPLANET_DECIMAL:
 						$value = (float) $value;
 						break;
 
-					case WC_WeArePlanet_Entity_Resource_Type::DATETIME:
+					case WC_WeArePlanet_Entity_Resource_Type::WEAREPLANET_DATETIME:
 						$value = new DateTime( $value );
 						break;
 
-					case WC_WeArePlanet_Entity_Resource_Type::OBJECT:
-						$value = unserialize( $value );
+					case WC_WeArePlanet_Entity_Resource_Type::WEAREPLANET_OBJECT:
+						$value = unserialize( $value ); //phpcs:ignore
 						break;
 					default:
 						throw new Exception( 'Unsupported variable type' );
@@ -165,31 +164,31 @@ abstract class WC_WeArePlanet_Entity_Abstract {
 		foreach ( $this->get_field_definition() as $key => $type ) {
 			$value = $this->get_value( $key );
 			switch ( $type ) {
-				case WC_WeArePlanet_Entity_Resource_Type::STRING:
+				case WC_WeArePlanet_Entity_Resource_Type::WEAREPLANET_STRING:
 					$type_array[] = '%s';
 					break;
 
-				case WC_WeArePlanet_Entity_Resource_Type::BOOLEAN:
+				case WC_WeArePlanet_Entity_Resource_Type::WEAREPLANET_BOOLEAN:
 					$value = $value ? 'Y' : 'N';
 					$type_array[] = '%s';
 					break;
 
-				case WC_WeArePlanet_Entity_Resource_Type::INTEGER:
+				case WC_WeArePlanet_Entity_Resource_Type::WEAREPLANET_INTEGER:
 					$type_array[] = '%d';
 					break;
 
-				case WC_WeArePlanet_Entity_Resource_Type::DATETIME:
+				case WC_WeArePlanet_Entity_Resource_Type::WEAREPLANET_DATETIME:
 					if ( $value instanceof DateTime ) {
 						$value = $value->format( 'Y-m-d H:i:s' );
 					}
 					$type_array[] = '%s';
 					break;
-				case WC_WeArePlanet_Entity_Resource_Type::OBJECT:
-					$value = serialize( $value );
+				case WC_WeArePlanet_Entity_Resource_Type::WEAREPLANET_OBJECT:
+					$value = serialize( $value ); //phpcs:ignore
 					$type_array[] = '%s';
 					break;
 
-				case WC_WeArePlanet_Entity_Resource_Type::DECIMAL:
+				case WC_WeArePlanet_Entity_Resource_Type::WEAREPLANET_DECIMAL:
 					$value = number_format( $value, 8, '.', '' );
 					$type_array[] = '%s';
 					break;
@@ -202,10 +201,10 @@ abstract class WC_WeArePlanet_Entity_Abstract {
 		$this->prepare_base_fields_for_storage( $data_array, $type_array );
 
 		if ( $this->get_id() === null ) {
-			$wpdb->insert( $wpdb->prefix . $this->get_table_name(), $data_array, $type_array );
+			$wpdb->insert( $wpdb->prefix . $this->get_table_name(), $data_array, $type_array ); //phpcs:ignore
 			$this->set_id( $wpdb->insert_id );
 		} else {
-			$wpdb->update(
+			$wpdb->update( //phpcs:ignore
 				$wpdb->prefix . $this->get_table_name(),
 				$data_array,
 				array(
@@ -245,7 +244,7 @@ abstract class WC_WeArePlanet_Entity_Abstract {
 	public static function load_by_id( $id ) {
 		global $wpdb;
 		// phpcs:ignore
-		$result = $wpdb->get_row( $wpdb->prepare( 'SELECT * FROM ' . $wpdb->prefix . static::get_table_name() . ' WHERE id = %d', $id ), ARRAY_A );
+		$result = $wpdb->get_row( $wpdb->prepare( 'SELECT * FROM ' . $wpdb->prefix . static::get_table_name() . ' WHERE id = %d', $id ), ARRAY_A ); //phpcs:ignore
 		if ( null !== $result ) {
 			return new static( $result );
 		}
@@ -261,7 +260,7 @@ abstract class WC_WeArePlanet_Entity_Abstract {
 		global $wpdb;
 		// Returns empty array.
 		// phpcs:ignore
-		$db_results = $wpdb->get_results( 'SELECT * FROM ' . $wpdb->prefix . static::get_table_name(), ARRAY_A );
+		$db_results = $wpdb->get_results( "SELECT * FROM ". $wpdb->prefix . static::get_table_name() , ARRAY_A );//phpcs:ignore
 		$result = array();
 		foreach ( $db_results as $object_values ) {
 			$result[] = new static( $object_values );
@@ -274,7 +273,7 @@ abstract class WC_WeArePlanet_Entity_Abstract {
 	 */
 	public function delete() {
 		global $wpdb;
-		$wpdb->delete(
+		$wpdb->delete( //phpcs:ignore
 			$wpdb->prefix . $this->get_table_name(),
 			array(
 				'id' => $this->get_id(),

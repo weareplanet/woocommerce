@@ -34,3 +34,11 @@ ____________________________________________________________________________
 ## License
 
 Please see the [license file](https://github.com/weareplanet/woocommerce/blob/3.1.3/LICENSE) for more information.
+
+## Privacy Policy
+
+Please see the [WeArePlanet privacy policies site](https://www.weareplanet.com/privacy-policy) for more information.
+
+## Terms of Use
+
+Please see the [WeArePlanet terms of use site](https://www.datatrans.ch/en/terms-conditions) for more information.

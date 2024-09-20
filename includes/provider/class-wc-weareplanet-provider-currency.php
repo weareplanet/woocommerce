@@ -1,7 +1,9 @@
 <?php
 /**
- *
- * WC_WeArePlanet_Provider_Currency Class
+ * Plugin Name: WeArePlanet
+ * Author: Planet Merchant Services Ltd
+ * Text Domain: weareplanet
+ * Domain Path: /languages/
  *
  * WeArePlanet
  * This plugin will add support for all WeArePlanet payments methods and connect the WeArePlanet servers to your WooCommerce webshop (https://www.weareplanet.com/).
@@ -12,9 +14,8 @@
  * @license  http://www.apache.org/licenses/LICENSE-2.0 Apache Software License (ASL 2.0)
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit();
-}
+defined( 'ABSPATH' ) || exit;
+
 /**
  * Provider of currency information from the gateway.
  */
@@ -33,7 +34,7 @@ class WC_WeArePlanet_Provider_Currency extends WC_WeArePlanet_Provider_Abstract 
 	 * @param string $code code.
 	 * @return \WeArePlanet\Sdk\Model\RestCurrency
 	 */
-	public function find( $code ) {
+	public function find( $code ) { //phpcs:ignore Generic.CodeAnalysis.UselessOverridingMethod.Found
 		return parent::find( $code );
 	}
 
@@ -42,7 +43,7 @@ class WC_WeArePlanet_Provider_Currency extends WC_WeArePlanet_Provider_Abstract 
 	 *
 	 * @return \WeArePlanet\Sdk\Model\RestCurrency[]
 	 */
-	public function get_all() {
+	public function get_all() { //phpcs:ignore Generic.CodeAnalysis.UselessOverridingMethod.Found
 		return parent::get_all();
 	}
 
@@ -67,7 +68,7 @@ class WC_WeArePlanet_Provider_Currency extends WC_WeArePlanet_Provider_Abstract 
 	 * @return string
 	 */
 	protected function get_id( $entry ) {
-		/* @var \WeArePlanet\Sdk\Model\RestCurrency $entry */
+		/* @var \WeArePlanet\Sdk\Model\RestCurrency $entry */ //phpcs:ignore
 		return $entry->getCurrencyCode();
 	}
 }

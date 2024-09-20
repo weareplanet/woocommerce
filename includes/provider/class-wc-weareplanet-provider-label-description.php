@@ -1,7 +1,9 @@
 <?php
 /**
- *
- * WC_WeArePlanet_Provider_Label_Description Class
+ * Plugin Name: WeArePlanet
+ * Author: Planet Merchant Services Ltd
+ * Text Domain: weareplanet
+ * Domain Path: /languages/
  *
  * WeArePlanet
  * This plugin will add support for all WeArePlanet payments methods and connect the WeArePlanet servers to your WooCommerce webshop (https://www.weareplanet.com/).
@@ -12,9 +14,8 @@
  * @license  http://www.apache.org/licenses/LICENSE-2.0 Apache Software License (ASL 2.0)
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit();
-}
+defined( 'ABSPATH' ) || exit;
+
 /**
  * Provider of label descriptor information from the gateway.
  */
@@ -33,7 +34,7 @@ class WC_WeArePlanet_Provider_Label_Description extends WC_WeArePlanet_Provider_
 	 * @param int $id id.
 	 * @return \WeArePlanet\Sdk\Model\LabelDescriptor
 	 */
-	public function find( $id ) {
+	public function find( $id ) { //phpcs:ignore Generic.CodeAnalysis.UselessOverridingMethod.Found
 		return parent::find( $id );
 	}
 
@@ -42,7 +43,7 @@ class WC_WeArePlanet_Provider_Label_Description extends WC_WeArePlanet_Provider_
 	 *
 	 * @return \WeArePlanet\Sdk\Model\LabelDescriptor[]
 	 */
-	public function get_all() {
+	public function get_all() { //phpcs:ignore Generic.CodeAnalysis.UselessOverridingMethod.Found
 		return parent::get_all();
 	}
 
@@ -66,7 +67,7 @@ class WC_WeArePlanet_Provider_Label_Description extends WC_WeArePlanet_Provider_
 	 * @return int|string
 	 */
 	protected function get_id( $entry ) {
-		/* @var \WeArePlanet\Sdk\Model\LabelDescriptor $entry */
+		/* @var \WeArePlanet\Sdk\Model\LabelDescriptor $entry */ //phpcs:ignore
 		return $entry->getId();
 	}
 }

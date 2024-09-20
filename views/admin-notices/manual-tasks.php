@@ -1,5 +1,9 @@
 <?php
 /**
+ * Plugin Name: WeArePlanet
+ * Author: Planet Merchant Services Ltd
+ * Text Domain: weareplanet
+ * Domain Path: /languages/
  *
  * WeArePlanet
  * This plugin will add support for all WeArePlanet payments methods and connect the WeArePlanet servers to your WooCommerce webshop (https://www.weareplanet.com/).
@@ -10,15 +14,14 @@
  * @license  http://www.apache.org/licenses/LICENSE-2.0 Apache Software License (ASL 2.0)
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit();
-}
+defined( 'ABSPATH' ) || exit;
+
 ?>
 
 <div class="error notice notice-error">
 	<p>
 	<?php
-	if ( 1 == $number_of_manual_tasks ) {
+	if ( 1 === $number_of_manual_tasks ) {
 		esc_html_e( 'There is a manual task that needs your attention.', 'woo-weareplanet' );
 	} else {
 		/* translators: %s are replaced with int */

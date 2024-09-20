@@ -1,7 +1,9 @@
 <?php
 /**
- *
- * WC_WeArePlanet_Webhook_Entity Class
+ * Plugin Name: WeArePlanet
+ * Author: Planet Merchant Services Ltd
+ * Text Domain: weareplanet
+ * Domain Path: /languages/
  *
  * WeArePlanet
  * This plugin will add support for all WeArePlanet payments methods and connect the WeArePlanet servers to your WooCommerce webshop (https://www.weareplanet.com/).
@@ -12,9 +14,8 @@
  * @license  http://www.apache.org/licenses/LICENSE-2.0 Apache Software License (ASL 2.0)
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit();
-}
+defined( 'ABSPATH' ) || exit;
+
 /**
  * WC_WeArePlanet_Webhook_Entity
  */
@@ -111,6 +112,7 @@ class WC_WeArePlanet_Webhook_Entity {
 	 * Get Handler class name.
 	 *
 	 * @return mixed
+	 * @deprecated This method will be deprecated in a future version as it is no longer necessary for webhook strategies.
 	 */
 	public function get_handler_class_name() {
 		return $this->handler_class_name;
