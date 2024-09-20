@@ -1,9 +1,7 @@
 <?php
 /**
- * Plugin Name: WeArePlanet
- * Author: Planet Merchant Services Ltd
- * Text Domain: weareplanet
- * Domain Path: /languages/
+ *
+ * WC_WeArePlanet_Provider_Payment_Method Class
  *
  * WeArePlanet
  * This plugin will add support for all WeArePlanet payments methods and connect the WeArePlanet servers to your WooCommerce webshop (https://www.weareplanet.com/).
@@ -14,8 +12,9 @@
  * @license  http://www.apache.org/licenses/LICENSE-2.0 Apache Software License (ASL 2.0)
  */
 
-defined( 'ABSPATH' ) || exit;
-
+if ( ! defined( 'ABSPATH' ) ) {
+	exit();
+}
 /**
  * Provider of payment method information from the gateway.
  */
@@ -34,7 +33,7 @@ class WC_WeArePlanet_Provider_Payment_Method extends WC_WeArePlanet_Provider_Abs
 	 * @param int $id id.
 	 * @return \WeArePlanet\Sdk\Model\PaymentMethod
 	 */
-	public function find( $id ) { //phpcs:ignore Generic.CodeAnalysis.UselessOverridingMethod.Found
+	public function find( $id ) {
 		return parent::find( $id );
 	}
 
@@ -43,7 +42,7 @@ class WC_WeArePlanet_Provider_Payment_Method extends WC_WeArePlanet_Provider_Abs
 	 *
 	 * @return \WeArePlanet\Sdk\Model\PaymentMethod[]
 	 */
-	public function get_all() { //phpcs:ignore Generic.CodeAnalysis.UselessOverridingMethod.Found
+	public function get_all() {
 		return parent::get_all();
 	}
 
@@ -67,7 +66,7 @@ class WC_WeArePlanet_Provider_Payment_Method extends WC_WeArePlanet_Provider_Abs
 	 * @return int|string
 	 */
 	protected function get_id( $entry ) {
-		/* @var \WeArePlanet\Sdk\Model\PaymentMethod $entry */ //phpcs:ignore
+		/* @var \WeArePlanet\Sdk\Model\PaymentMethod $entry */
 		return $entry->getId();
 	}
 }

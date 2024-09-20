@@ -1,9 +1,7 @@
 <?php
 /**
- * Plugin Name: WeArePlanet
- * Author: Planet Merchant Services Ltd
- * Text Domain: weareplanet
- * Domain Path: /languages/
+ *
+ * WC_WeArePlanet_Service_Token Class
  *
  * WeArePlanet
  * This plugin will add support for all WeArePlanet payments methods and connect the WeArePlanet servers to your WooCommerce webshop (https://www.weareplanet.com/).
@@ -16,8 +14,9 @@
 
 use WeArePlanet\Sdk\Model\TokenVersion;
 
-defined( 'ABSPATH' ) || exit;
-
+if ( ! defined( 'ABSPATH' ) ) {
+	exit(); // Exit if accessed directly.
+}
 /**
  * This service provides functions to deal with WeArePlanet tokens.
  *

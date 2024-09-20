@@ -2,7 +2,7 @@
 Contributors: Planet Merchant Services Ltd
 Tags: woocommerce WeArePlanet, woocommerce, WeArePlanet, payment, e-commerce, webshop, psp, invoice, packing slips, pdf, customer invoice, processing
 Requires at least: 4.7
-Tested up to: 6.6
+Tested up to: 6.5
 Stable tag: 3.1.3
 License: Apache 2
 License URI: http://www.apache.org/licenses/LICENSE-2.0
@@ -14,9 +14,9 @@ Accept payments in WooCommerce with WeArePlanet.
 Website: [https://www.weareplanet.com/](https://www.weareplanet.com/)
 
 The plugin offers an easy and convenient way to accept credit cards and all
-other payment methods listed below fast and securely. The payment forms will be fully integrated in your checkout
-and for credit cards there is no redirection to a payment page needed anymore. The pages are by default mobile optimized but
-the look and feel can be changed according the merchants needs.
+other payment methods listed below fast and securely. The payment forms will be fully integrated in your checkout 
+and for credit cards there is no redirection to a payment page needed anymore. The pages are by default mobile optimized but 
+the look and feel can be changed according the merchants needs. 
 
 This plugin will add support for all WeArePlanet payments methods and connect the WeArePlanet servers to your WooCommerce webshop.
 To use this extension, a WeArePlanet account is required. Sign up on [WeArePlanet](https://www.weareplanet.com/contact/sales).
@@ -29,20 +29,14 @@ Additional documentation for this plugin is available [here](https://plugin-docu
 
 Support queries can be issued on the [WeArePlanet support site](https://paymentshub.weareplanet.com/space/select?target=/support).
 
-== Privacy Policy ==
-
-Enquiries about our privacy policy can be made on the [WeArePlanet privacy policies site](https://www.weareplanet.com/privacy-policy).
-
-== Terms of use ==
-
-Enquiries about our terms of use can be made on the [WeArePlanet terms of use site](https://www.datatrans.ch/en/terms-conditions).
-
 == Installation ==
 
 = Minimum Requirements =
 
 * PHP version 5.6 or greater
-* WordPress 4.7 up to 6.6
+* WordPress 4.7 up to 6.5.3
+* WooCommerce 3.0.0 up to 8.9.1
+* WordPress 4.7 up to 6.5.3
 * WooCommerce 3.0.0 up to 8.9.1
 
 = Automatic installation =
@@ -63,6 +57,6 @@ Enquiries about our terms of use can be made on the [WeArePlanet terms of use si
 
 == Changelog ==
 
-
+ 
 = 3.1.3 - Sep 20 2024 =
-- [Hotfix] Rolledback to version 3.0.12
+- [Hotfix] Rolledback to version 3.0.11

@@ -1,9 +1,7 @@
 <?php
 /**
- * Plugin Name: WeArePlanet
- * Author: Planet Merchant Services Ltd
- * Text Domain: weareplanet
- * Domain Path: /languages/
+ *
+ * WC_WeArePlanet_Service_Method_Configuration Class
  *
  * WeArePlanet
  * This plugin will add support for all WeArePlanet payments methods and connect the WeArePlanet servers to your WooCommerce webshop (https://www.weareplanet.com/).
@@ -14,8 +12,9 @@
  * @license  http://www.apache.org/licenses/LICENSE-2.0 Apache Software License (ASL 2.0)
  */
 
-defined( 'ABSPATH' ) || exit;
-
+if ( ! defined( 'ABSPATH' ) ) {
+	exit();
+}
 /**
  * WC_WeArePlanet_Service_Method_Configuration Class.
  */
@@ -28,7 +27,7 @@ class WC_WeArePlanet_Service_Method_Configuration extends WC_WeArePlanet_Service
 	 * @throws Exception Exception.
 	 */
 	public function update_data( \WeArePlanet\Sdk\Model\PaymentMethodConfiguration $configuration ) {
-		/* @var WC_WeArePlanet_Entity_Method_Configuration $entity */ //phpcs:ignore
+		/* @var WC_WeArePlanet_Entity_Method_Configuration $entity */
 		$entity = WC_WeArePlanet_Entity_Method_Configuration::load_by_configuration( $configuration->getLinkedSpaceId(), $configuration->getId() );
 		if ( $entity->get_id() !== null && $this->has_changed( $configuration, $entity ) ) {
 			$entity->set_configuration_name( $configuration->getName() );
@@ -76,7 +75,7 @@ class WC_WeArePlanet_Service_Method_Configuration extends WC_WeArePlanet_Service
 	 */
 	public function synchronize() {
 		$existing_found = array();
-		$space_id = get_option( WooCommerce_WeArePlanet::WEAREPLANET_CK_SPACE_ID );
+		$space_id = get_option( WooCommerce_WeArePlanet::CK_SPACE_ID );
 
 		$existing_configurations = WC_WeArePlanet_Entity_Method_Configuration::load_all();
 
@@ -90,7 +89,7 @@ class WC_WeArePlanet_Service_Method_Configuration extends WC_WeArePlanet_Service
 			);
 
 			foreach ( $configurations as $configuration ) {
-				/* @var WC_WeArePlanet_Entity_Method_Configuration $method */ //phpcs:ignore
+				/* @var WC_WeArePlanet_Entity_Method_Configuration $method */
 				$method = WC_WeArePlanet_Entity_Method_Configuration::load_by_configuration( $space_id, $configuration->getId() );
 				if ( $method->get_id() !== null ) {
 					$existing_found[] = $method->get_id();
@@ -109,8 +108,8 @@ class WC_WeArePlanet_Service_Method_Configuration extends WC_WeArePlanet_Service
 			}
 		}
 		foreach ( $existing_configurations as $existing_configuration ) {
-			if ( ! in_array( $existing_configuration->get_id(), $existing_found, true ) ) {
-				$existing_configuration->set_state( WC_WeArePlanet_Entity_Method_Configuration::WEAREPLANET_STATE_HIDDEN );
+			if ( ! in_array( $existing_configuration->get_id(), $existing_found ) ) {
+				$existing_configuration->set_state( WC_WeArePlanet_Entity_Method_Configuration::STATE_HIDDEN );
 				$existing_configuration->save();
 			}
 		}
@@ -125,7 +124,7 @@ class WC_WeArePlanet_Service_Method_Configuration extends WC_WeArePlanet_Service
 	 * @return \WeArePlanet\Sdk\Model\PaymentMethod
 	 */
 	protected function get_payment_method( $id ) {
-		/* @var WC_WeArePlanet_Provider_Payment_Method */ //phpcs:ignore
+		/* @var WC_WeArePlanet_Provider_Payment_Method */
 		$method_provider = WC_WeArePlanet_Provider_Payment_Method::instance();
 		return $method_provider->find( $id );
 	}
@@ -139,11 +138,11 @@ class WC_WeArePlanet_Service_Method_Configuration extends WC_WeArePlanet_Service
 	protected function get_configuration_state( \WeArePlanet\Sdk\Model\PaymentMethodConfiguration $configuration ) {
 		switch ( $configuration->getState() ) {
 			case \WeArePlanet\Sdk\Model\CreationEntityState::ACTIVE:
-				return WC_WeArePlanet_Entity_Method_Configuration::WEAREPLANET_STATE_ACTIVE;
+				return WC_WeArePlanet_Entity_Method_Configuration::STATE_ACTIVE;
 			case \WeArePlanet\Sdk\Model\CreationEntityState::INACTIVE:
-				return WC_WeArePlanet_Entity_Method_Configuration::WEAREPLANET_STATE_INACTIVE;
+				return WC_WeArePlanet_Entity_Method_Configuration::STATE_INACTIVE;
 			default:
-				return WC_WeArePlanet_Entity_Method_Configuration::WEAREPLANET_STATE_HIDDEN;
+				return WC_WeArePlanet_Entity_Method_Configuration::STATE_HIDDEN;
 		}
 	}
 }

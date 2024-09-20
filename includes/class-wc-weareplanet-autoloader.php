@@ -1,9 +1,7 @@
 <?php
 /**
- * Plugin Name: WeArePlanet
- * Author: Planet Merchant Services Ltd
- * Text Domain: weareplanet
- * Domain Path: /languages/
+ *
+ * WC_WeArePlanet_Autoloader Class
  *
  * WeArePlanet
  * This plugin will add support for all WeArePlanet payments methods and connect the WeArePlanet servers to your WooCommerce webshop (https://www.weareplanet.com/).
@@ -14,13 +12,16 @@
  * @license  http://www.apache.org/licenses/LICENSE-2.0 Apache Software License (ASL 2.0)
  */
 
-defined( 'ABSPATH' ) || exit;
-
+if ( ! defined( 'ABSPATH' ) ) {
+	exit();
+}
 /**
  * Class WC_WeArePlanet_Autoloader.
- * This is the autoloader for WeArePlanet classes.
  *
  * @class WC_WeArePlanet_Autoloader
+ */
+/**
+ * This is the autoloader for WeArePlanet classes.
  */
 class WC_WeArePlanet_Autoloader {
 
@@ -47,12 +48,11 @@ class WC_WeArePlanet_Autoloader {
 	/**
 	 * Take a class name and turn it into a file name.
 	 *
-	 * @param  string $class_file class.
+	 * @param  string $class class.
 	 * @return string
 	 */
-	private function get_file_name_from_class( $class_file ) {
-		$class = preg_replace( '/(?<!^)[A-Z]/', '-$0', $class_file );
-		return 'class-' . str_replace( '_', '-', strtolower( $class ) ) . '.php';
+	private function get_file_name_from_class( $class ) {
+		return 'class-' . str_replace( '_', '-', $class ) . '.php';
 	}
 
 	/**
@@ -72,10 +72,10 @@ class WC_WeArePlanet_Autoloader {
 	/**
 	 * Auto-load WC WeArePlanet classes on demand to reduce memory consumption.
 	 *
-	 * @param string $class_file class.
+	 * @param string $class class.
 	 */
-	public function autoload( $class_file ) {
-		$class = strtolower( $class_file );
+	public function autoload( $class ) {
+		$class = strtolower( $class );
 
 		if ( 0 !== strpos( $class, 'wc_weareplanet' ) ) {
 			return;
@@ -91,11 +91,7 @@ class WC_WeArePlanet_Autoloader {
 		} elseif ( strpos( $class, 'wc_weareplanet_provider' ) === 0 ) {
 			$path = $this->include_path . 'provider/';
 		} elseif ( strpos( $class, 'wc_weareplanet_webhook' ) === 0 ) {
-			if ( strpos( $class, 'strategy' ) !== false ) {
-				$path = $this->include_path . 'webhook/strategies/';
-			} else {
-				$path = $this->include_path . 'webhook/';
-			}
+			$path = $this->include_path . 'webhook/';
 		} elseif ( strpos( $class, 'wc_weareplanet_exception' ) === 0 ) {
 			$path = $this->include_path . 'exception/';
 		} elseif ( strpos( $class, 'wc_weareplanet_admin' ) === 0 ) {
@@ -105,6 +101,8 @@ class WC_WeArePlanet_Autoloader {
 		if ( empty( $path ) || ! $this->load_file( $path . $file ) ) {
 			$this->load_file( $this->include_path . $file );
 		}
+
+		$this->load_file( $this->include_path . $file );
 	}
 }
 
