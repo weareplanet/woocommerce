@@ -140,7 +140,7 @@ class WC_WeArePlanet_Webhook_Transaction_Strategy extends WC_WeArePlanet_Webhook
 	protected function waiting( WC_WeArePlanet_Webhook_Request $request, WC_Order $order ) {
 		if ( ! $order->get_meta( '_weareplanet_manual_check', true ) ) {
 			do_action( 'wc_weareplanet_completed', $this->load_entity( $request ), $order );
-			$status = apply_filters( 'wc_weareplanet_completed_status', 'processing', $order );
+			$status = apply_filters( 'wc_weareplanet_completed_status', 'on-hold', $order );
 			$order->update_status( $status );
 		}
 	}

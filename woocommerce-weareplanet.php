@@ -3,7 +3,7 @@
  * Plugin Name: WeArePlanet
  * Plugin URI: https://wordpress.org/plugins/woo-weareplanet
  * Description: Process WooCommerce payments with WeArePlanet.
- * Version: 3.1.2
+ * Version: 3.1.3
  * Author: Planet Merchant Services Ltd
  * Author URI: https://www.weareplanet.com
  * Text Domain: weareplanet
@@ -11,9 +11,10 @@
  * Requires at least: 6.0
  * Requires PHP: 7.4
  * WC requires at least: 8.0.0
- * WC tested up to: 9.2.3
- * License: Apache 2
- * License URI: http://www.apache.org/licenses/LICENSE-2.0
+ * WC tested up to: 9.3.1
+ *
+ * Text Domain: weareplanet
+ * Domain Path: /languages/
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	exit(); // Exit if accessed directly.
@@ -28,25 +29,24 @@ if ( ! class_exists( 'WooCommerce_WeArePlanet' ) ) {
 	 */
 	final class WooCommerce_WeArePlanet {
 
-		const WEAREPLANET_CK_SPACE_ID = 'wc_weareplanet_space_id';
-		const WEAREPLANET_CK_SPACE_VIEW_ID = 'wc_weareplanet_space_view_id';
-		const WEAREPLANET_CK_APP_USER_ID = 'wc_weareplanet_application_user_id';
-		const WEAREPLANET_CK_APP_USER_KEY = 'wc_weareplanet_application_user_key';
-		const WEAREPLANET_CK_CUSTOMER_INVOICE = 'wc_weareplanet_customer_invoice';
-		const WEAREPLANET_CK_CUSTOMER_PACKING = 'wc_weareplanet_customer_packing';
-		const WEAREPLANET_CK_SHOP_EMAIL = 'wc_weareplanet_shop_email';
-		const WEAREPLANET_CK_INTEGRATION = 'wc_weareplanet_integration';
-		const WEAREPLANET_CK_ORDER_REFERENCE = 'wc_weareplanet_order_reference';
-		const WEAREPLANET_CK_ENFORCE_CONSISTENCY = 'wc_weareplanet_enforce_consistency';
-		const WEAREPLANET_UPGRADE_VERSION = '3.1.2';
-		const WC_MAXIMUM_VERSION = '9.2.3';
+		const CK_SPACE_ID = 'wc_weareplanet_space_id';
+		const CK_SPACE_VIEW_ID = 'wc_weareplanet_space_view_id';
+		const CK_APP_USER_ID = 'wc_weareplanet_application_user_id';
+		const CK_APP_USER_KEY = 'wc_weareplanet_application_user_key';
+		const CK_CUSTOMER_INVOICE = 'wc_weareplanet_customer_invoice';
+		const CK_CUSTOMER_PACKING = 'wc_weareplanet_customer_packing';
+		const CK_SHOP_EMAIL = 'wc_weareplanet_shop_email';
+		const CK_INTEGRATION = 'wc_weareplanet_integration';
+		const CK_ORDER_REFERENCE = 'wc_weareplanet_order_reference';
+		const CK_ENFORCE_CONSISTENCY = 'wc_weareplanet_enforce_consistency';
+		const WC_MAXIMUM_VERSION = '9.3.1';
 
 		/**
 		 * WooCommerce WeArePlanet version.
 		 *
 		 * @var string
 		 */
-		private $version = '3.1.2';
+		private $version = '3.1.3';
 
 		/**
 		 * The single instance of the class.

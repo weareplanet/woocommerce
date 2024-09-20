@@ -54,6 +54,7 @@ class WC_WeArePlanet_Webhook_Refund_Strategy extends WC_WeArePlanet_Webhook_Stra
 	 * @param \WeArePlanet\Sdk\Model\Refund $object The refund object.
 	 */
 	protected function get_order_id( $object ) {
+		/* @var \WeArePlanet\Sdk\Model\Refund $object */
 		return WC_WeArePlanet_Entity_Transaction_Info::load_by_transaction(
 			$object->getTransaction()->getLinkedSpaceId(),
 			$object->getTransaction()->getId()
