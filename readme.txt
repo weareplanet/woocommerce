@@ -3,7 +3,7 @@ Contributors: Planet Merchant Services Ltd
 Tags: woocommerce WeArePlanet, woocommerce, WeArePlanet, payment, e-commerce, webshop, psp, invoice, packing slips, pdf, customer invoice, processing
 Requires at least: 4.7
 Tested up to: 6.6
-Stable tag: 3.1.3
+Stable tag: 3.2.0
 License: Apache 2
 License URI: http://www.apache.org/licenses/LICENSE-2.0
 
@@ -23,7 +23,7 @@ To use this extension, a WeArePlanet account is required. Sign up on [WeArePlane
 
 == Documentation ==
 
-Additional documentation for this plugin is available [here](https://plugin-documentation.weareplanet.com/weareplanet/woocommerce/3.1.3/docs/en/documentation.html).
+Additional documentation for this plugin is available [here](https://plugin-documentation.weareplanet.com/weareplanet/woocommerce/3.2.0/docs/en/documentation.html).
 
 == Support ==
 
@@ -64,8 +64,13 @@ Enquiries about our terms of use can be made on the [WeArePlanet terms of use si
 == Changelog ==
 
 
-= 3.1.3 - Sept 20 2024 =
-- [Bugfix] Enchanced plugin performance on Checkout page.
+= 3.2.0 - Sept 23 2024 =
+- [Feature] Add privacy policy URL
+- [Feature] Adhere to WP code standards
+- [Feature] Add Support for WC 9.3.x
+- [Bugfix] Fix for error when renewing subscriptions
+- [Bugfix] Fix for deferred payments status being incorrect
+- [Bugfix] Added migrations for 3.2.0 changes
 - [Tested Against] PHP 8.2
 - [Tested Against] Wordpress 6.6
 - [Tested Against] Woocommerce 9.3.1

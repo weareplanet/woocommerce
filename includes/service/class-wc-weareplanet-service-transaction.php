@@ -428,9 +428,7 @@ class WC_WeArePlanet_Service_Transaction extends WC_WeArePlanet_Service_Abstract
 	 */
 	private function get_possible_payment_methods( $transaction_source ) {
 		$id = ( $transaction_source instanceof WC_Order ) ? $transaction_source->get_id() : WC_WeArePlanet_Helper::instance()->get_current_cart_id();
-  
-		$cacheKey = 'weareplanet_payment_methods-' . $id;
-		self::$possible_payment_method_cache[ $id ] = WC()->session->get( $cacheKey );
+
 		if ( ! isset( self::$possible_payment_method_cache[ $id ] ) || is_null( self::$possible_payment_method_cache[ $id ] ) ) {
 			try {
 				$transaction = ( $transaction_source instanceof WC_Order )
@@ -468,7 +466,6 @@ class WC_WeArePlanet_Service_Transaction extends WC_WeArePlanet_Service_Abstract
 				self::$possible_payment_method_cache[ $id ] = array();
 				throw $e;
 			}
-			WC()->session->set( $cacheKey, self::$possible_payment_method_cache[ $id ] );
 		}
 		return self::$possible_payment_method_cache[ $id ];
 	}
