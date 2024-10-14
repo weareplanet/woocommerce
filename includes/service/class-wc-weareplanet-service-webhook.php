@@ -304,7 +304,7 @@ class WC_WeArePlanet_Service_Webhook extends WC_WeArePlanet_Service_Abstract {
 				return null;
 			}
 		} catch ( \Exception $e ) {
-			WeArePlanet_WooCommerce::instance()->log( $e->getMessage(), WC_Log_Levels::ERROR );
+			WooCommerce_WeArePlanet::instance()->log( $e->getMessage(), WC_Log_Levels::ERROR );
 		}
 	}
 
