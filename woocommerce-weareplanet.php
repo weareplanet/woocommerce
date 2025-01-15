@@ -3,7 +3,7 @@
  * Plugin Name: WeArePlanet
  * Plugin URI: https://wordpress.org/plugins/woo-weareplanet
  * Description: Process WooCommerce payments with WeArePlanet.
- * Version: 3.3.2
+ * Version: 3.3.3
  * Author: Planet Merchant Services Ltd
  * Author URI: https://www.weareplanet.com
  * Text Domain: weareplanet
@@ -11,8 +11,8 @@
  * Requires at least: 6.0
  * Requires PHP: 7.4
  * WC requires at least: 8.0.0
- * WC tested up to 9.3.1
- * License: Apache 2
+ * WC tested up to 9.4.2
+ * License: Apache-2.0
  * License URI: http://www.apache.org/licenses/LICENSE-2.0
  */
 if ( ! defined( 'ABSPATH' ) ) {
@@ -46,7 +46,7 @@ if ( ! class_exists( 'WooCommerce_WeArePlanet' ) ) {
 		 *
 		 * @var string
 		 */
-		private $version = '3.3.2';
+		private $version = '3.3.3';
 
 		/**
 		 * The single instance of the class.
@@ -693,7 +693,7 @@ if ( ! class_exists( 'WooCommerce_WeArePlanet' ) ) {
 					// The goal here is to speed up the process of registering the payment methods.
 					$payment_methods = WC_WeArePlanet_Blocks_Support::get_payment_methods();
 					$json_data = json_encode( $payment_methods );
-					$content .= '<div id="whitelabel-payment-methods" data-json="' . esc_attr($json_data) . '"></div>';
+					$content .= '<div id="weareplanet-payment-methods" data-json="' . esc_attr( $json_data ) . '"></div>';
 				}
 
 				return $content;
