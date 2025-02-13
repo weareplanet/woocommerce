@@ -184,7 +184,7 @@ class WC_WeArePlanet_Admin_Settings_Page extends WC_Settings_Page {
 		$settings = array(
 			array(
 				'links' => array(
-					'https://plugin-documentation.weareplanet.com/weareplanet/woocommerce/3.3.3/docs/en/documentation.html' => esc_html__( 'Documentation', 'woo-weareplanet' ),
+					'https://plugin-documentation.weareplanet.com/weareplanet/woocommerce/3.3.4/docs/en/documentation.html' => esc_html__( 'Documentation', 'woo-weareplanet' ),
 					'https://www.weareplanet.com/contact/sales' => esc_html__( 'Sign Up', 'woo-weareplanet' ),
 				),
 				'type'  => 'weareplanet_links',
@@ -310,10 +310,11 @@ class WC_WeArePlanet_Admin_Settings_Page extends WC_Settings_Page {
 				'id'  => WooCommerce_WeArePlanet::WEAREPLANET_CK_INTEGRATION,
 				'type' => 'select',
 				'css' => 'min-width:300px;',
-				'default' => WC_WeArePlanet_Integration::WEAREPLANET_IFRAME,
+				'default' => WC_WeArePlanet_Integration::WEAREPLANET_PAYMENTPAGE,
 				'options' => array(
 					WC_WeArePlanet_Integration::WEAREPLANET_IFRAME => $this->format_display_string( esc_html__( 'iframe', 'woo-weareplanet' ) ),
 					WC_WeArePlanet_Integration::WEAREPLANET_LIGHTBOX  => $this->format_display_string( esc_html__( 'lightbox', 'woo-weareplanet' ) ),
+			  		WC_WeArePlanet_Integration::WEAREPLANET_PAYMENTPAGE => $this->format_display_string( esc_html__( 'payment page', 'woo-weareplanet' ) ),
 				),
 			),
 

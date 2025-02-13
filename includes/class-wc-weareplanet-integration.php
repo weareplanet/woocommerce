@@ -25,4 +25,5 @@ defined( 'ABSPATH' ) || exit;
 class WC_WeArePlanet_Integration {
 	const WEAREPLANET_LIGHTBOX = 'lightbox';
 	const WEAREPLANET_IFRAME = 'iframe';
+	const WEAREPLANET_PAYMENTPAGE = 'payment_page';
 }

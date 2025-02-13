@@ -24,6 +24,9 @@ class WC_WeArePlanet_Helper {
 	const WEAREPLANET_SHOP_SYSTEM = 'x-meta-shop-system';
 	const WEAREPLANET_SHOP_SYSTEM_VERSION = 'x-meta-shop-system-version';
 	const WEAREPLANET_SHOP_SYSTEM_AND_VERSION = 'x-meta-shop-system-and-version';
+	const WEAREPLANET_CHECKOUT_VERSION = 'x-checkout-type';
+	const WEAREPLANET_CHECKOUT_TYPE_BLOCKS = 'blocks';
+	const WEAREPLANET_CHECKOUT_TYPE_LEGACY = 'legacy';
 
 	/**
 	 * Instance.
