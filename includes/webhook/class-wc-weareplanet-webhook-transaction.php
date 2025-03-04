@@ -118,8 +118,8 @@ class WC_WeArePlanet_Webhook_Transaction extends WC_WeArePlanet_Webhook_Order_Re
 		if ( ! $order->get_meta( '_weareplanet_confirmed', true ) && ! $order->get_meta( '_weareplanet_authorized', true ) ) {
 			do_action( 'wc_weareplanet_confirmed', $transaction, $order );
 			$order->add_meta_data( '_weareplanet_confirmed', 'true', true );
-			$status = apply_filters( 'wc_weareplanet_confirmed_status', 'wearep-redirected', $order );
-			$order->update_status( $status );
+			$default_status = apply_filters( 'wc_weareplanet_confirmed_status', 'wearep-redirected', $order );
+			apply_filters( 'weareplanet_order_update_status', $order, $transaction->getState(), $default_status );
 			wc_maybe_reduce_stock_levels( $order->get_id() );
 		}
 	}
@@ -133,9 +133,9 @@ class WC_WeArePlanet_Webhook_Transaction extends WC_WeArePlanet_Webhook_Order_Re
 	protected function authorize( \WeArePlanet\Sdk\Model\Transaction $transaction, WC_Order $order ) {
 		if ( ! $order->get_meta( '_weareplanet_authorized', true ) ) {
 			do_action( 'wc_weareplanet_authorized', $transaction, $order );
-			$status = apply_filters( 'wc_weareplanet_authorized_status', 'on-hold', $order );
 			$order->add_meta_data( '_weareplanet_authorized', 'true', true );
-			$order->update_status( $status );
+			$default_status = apply_filters( 'wc_weareplanet_authorized_status', 'on-hold', $order );
+			apply_filters( 'weareplanet_order_update_status', $order, $transaction->getState(), $default_status );
 			wc_maybe_reduce_stock_levels( $order->get_id() );
 			if ( isset( WC()->cart ) ) {
 				WC()->cart->empty_cart();
@@ -153,8 +153,8 @@ class WC_WeArePlanet_Webhook_Transaction extends WC_WeArePlanet_Webhook_Order_Re
 	protected function waiting( \WeArePlanet\Sdk\Model\Transaction $transaction, WC_Order $order ) {
 		if ( ! $order->get_meta( '_weareplanet_manual_check', true ) ) {
 			do_action( 'wc_weareplanet_completed', $transaction, $order );
-			$status = apply_filters( 'wc_weareplanet_completed_status', 'wearep-waiting', $order );
-			$order->update_status( $status );
+			$default_status = apply_filters( 'wc_weareplanet_completed_status', 'wearep-waiting', $order );
+			apply_filters( 'weareplanet_order_update_status', $order, $transaction->getState(), $default_status );
 		}
 	}
 
@@ -167,8 +167,8 @@ class WC_WeArePlanet_Webhook_Transaction extends WC_WeArePlanet_Webhook_Order_Re
 	 */
 	protected function decline( \WeArePlanet\Sdk\Model\Transaction $transaction, WC_Order $order ) {
 		do_action( 'wc_weareplanet_declined', $transaction, $order );
-		$status = apply_filters( 'wc_weareplanet_decline_status', 'cancelled', $order );
-		$order->update_status( $status );
+		$default_status = apply_filters( 'wc_weareplanet_decline_status', 'cancelled', $order );
+		apply_filters( 'weareplanet_order_update_status', $order, $transaction->getState(), $default_status );
 		WC_WeArePlanet_Helper::instance()->maybe_restock_items_for_order( $order );
 	}
 
@@ -181,9 +181,16 @@ class WC_WeArePlanet_Webhook_Transaction extends WC_WeArePlanet_Webhook_Order_Re
 	 */
 	protected function failed( \WeArePlanet\Sdk\Model\Transaction $transaction, WC_Order $order ) {
 		do_action( 'wc_weareplanet_failed', $transaction, $order );
-		if ( $order->get_status( 'edit' ) == 'pending' || $order->get_status( 'edit' ) == 'wearep-redirected' ) {
-			$status = apply_filters( 'wc_weareplanet_failed_status', 'failed', $order );
-			$order->update_status( $status );
+		$valid_order_statuses = array(
+			// Default pending status.
+			'pending',
+			// Custom order statuses mapped.
+			apply_filters( 'weareplanet_wc_status_for_transaction', 'confirmed' ),
+			apply_filters( 'weareplanet_wc_status_for_transaction', 'failed' )
+		);
+		if ( in_array( $order->get_status( 'edit' ), $valid_order_statuses ) ) {
+			$default_status = apply_filters( 'wc_weareplanet_failed_status', 'failed', $order );
+			apply_filters( 'weareplanet_order_update_status', $order, $transaction->getState(), $default_status );
 			WC_WeArePlanet_Helper::instance()->maybe_restock_items_for_order( $order );
 		}
 	}
@@ -209,8 +216,8 @@ class WC_WeArePlanet_Webhook_Transaction extends WC_WeArePlanet_Webhook_Order_Re
 	 * @return void
 	 */
 	protected function voided( \WeArePlanet\Sdk\Model\Transaction $transaction, WC_Order $order ) {
-		$status = apply_filters( 'wc_weareplanet_voided_status', 'cancelled', $order );
-		$order->update_status( $status );
+		$default_status = apply_filters( 'wc_weareplanet_voided_status', 'cancelled', $order );
+		apply_filters( 'weareplanet_order_update_status', $order, $transaction->getState(), $default_status );
 		do_action( 'wc_weareplanet_voided', $transaction, $order );
 	}
 }

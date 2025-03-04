@@ -100,9 +100,9 @@ final class WC_WeArePlanet_Blocks_Support extends AbstractPaymentMethodType {
 	 */
 	public static function get_payment_methods(): array {
 		try {
-			$updateTransaction = (bool) ($_POST['updateTransaction'] ?? false);
+			$update_transaction = isset( $_POST['updateTransaction'] ) ? (bool) sanitize_key( wp_unslash( $_POST['updateTransaction'] ) ) : false; // phpcs:ignore WordPress.Security.NonceVerification.Missing
 
-			if (true === $updateTransaction) {
+			if ( true === $update_transaction ) {
 				$transaction_service = WC_WeArePlanet_Service_Transaction::instance();
 				$transaction_service->load_and_update_transaction_from_session();
 			}
@@ -128,7 +128,7 @@ final class WC_WeArePlanet_Blocks_Support extends AbstractPaymentMethodType {
 					  'integration_mode' => get_option( WooCommerce_WeArePlanet::WEAREPLANET_CK_INTEGRATION ),
 					  'supports' => $payment_gateway->supports,
 					  'icon' => $payment_gateway->get_icon(),
-					  'isActive' => in_array($payment_gateway->get_payment_configuration_id(), $available_payment_methods, true)
+					  'isActive' => in_array( $payment_gateway->get_payment_configuration_id(), $available_payment_methods, true )
 					);
 				},
 				$payment_plugin
@@ -146,10 +146,10 @@ final class WC_WeArePlanet_Blocks_Support extends AbstractPaymentMethodType {
 	 * @return void
 	 */
 	public static function get_payment_methods_json() {
-		if ( ! isset( $_POST['weareplanet_nonce'] ) || ! wp_verify_nonce( $_POST['weareplanet_nonce'], 'weareplanet_nonce_block' ) ) {  //phpcs:ignore
+		if ( ! isset( $_POST['weareplanet_nonce'] ) || ! wp_verify_nonce( sanitize_key( wp_unslash( $_POST['weareplanet_nonce'] ) ), 'weareplanet_nonce_block' ) ) {  //phpcs:ignore
 			wp_send_json_error( 'Invalid request: missing nonce value', 403 );
 		}
-		$payment_methods = WC_WeArePlanet_Blocks_Support::get_payment_methods();
+		$payment_methods = self::get_payment_methods();
 		wp_send_json( $payment_methods );
 	}
 
@@ -164,7 +164,7 @@ final class WC_WeArePlanet_Blocks_Support extends AbstractPaymentMethodType {
 	 */
 	public static function is_payment_method_available() {
 
-		if ( ! isset( $_POST['weareplanet_nonce'] ) || ! wp_verify_nonce( $_POST['weareplanet_nonce'], 'weareplanet_nonce_block' ) ) {  //phpcs:ignore
+		if ( ! isset( $_POST['weareplanet_nonce'] ) || ! wp_verify_nonce( sanitize_key( wp_unslash( $_POST['weareplanet_nonce'] ) ), 'weareplanet_nonce_block' ) ) {  //phpcs:ignore
 			wp_send_json_error( 'Invalid nonce', 403 );
 		}
 
@@ -212,13 +212,13 @@ final class WC_WeArePlanet_Blocks_Support extends AbstractPaymentMethodType {
 			if ( $js_url ) {
 				// Add the JS URL to the response.
 				wp_enqueue_script(
-				  'weareplanet-remote-checkout-js',
-				  $js_url,
-				  array(
-					'jquery',
-				  ),
-				  1,
-				  true
+					'weareplanet-remote-checkout-js',
+					$js_url,
+					array(
+						'jquery',
+					),
+					1,
+					true
 				);
 			}
 		} catch ( Exception $e ) {
@@ -257,8 +257,8 @@ final class WC_WeArePlanet_Blocks_Support extends AbstractPaymentMethodType {
 		$transaction_service = WC_WeArePlanet_Service_Transaction::instance();
 
 		$transaction_service->api_client->addDefaultHeader(
-		  WC_WeArePlanet_Helper::WEAREPLANET_CHECKOUT_VERSION,
-		  WC_WeArePlanet_Helper::WEAREPLANET_CHECKOUT_TYPE_BLOCKS
+			WC_WeArePlanet_Helper::WEAREPLANET_CHECKOUT_VERSION,
+			WC_WeArePlanet_Helper::WEAREPLANET_CHECKOUT_TYPE_BLOCKS
 		);
 
 		$transaction = $transaction_service->get_transaction_from_session();

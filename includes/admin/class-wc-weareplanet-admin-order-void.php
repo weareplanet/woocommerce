@@ -104,7 +104,7 @@ class WC_WeArePlanet_Admin_Order_Void {
 			WC_WeArePlanet_Helper::instance()->start_database_transaction();
 			$transaction_info = WC_WeArePlanet_Entity_Transaction_Info::load_by_order_id( $order_id );
 			if ( ! $transaction_info->get_id() ) {
-				throw new Exception( __( 'Could not load corresponding transaction' ) );
+				throw new Exception( __( 'Could not load corresponding transaction', 'woo-weareplanet' ) );
 			}
 
 			WC_WeArePlanet_Helper::instance()->lock_by_transaction_id( $transaction_info->get_space_id(), $transaction_info->get_transaction_id() );

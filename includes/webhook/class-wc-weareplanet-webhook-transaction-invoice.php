@@ -87,11 +87,11 @@ class WC_WeArePlanet_Webhook_Transaction_Invoice extends WC_WeArePlanet_Webhook_
 		/* @var \WeArePlanet\Sdk\Model\TransactionInvoice $transaction_invoice */ //phpcs:ignore
 		switch ( $transaction_invoice->getState() ) {
 			case \WeArePlanet\Sdk\Model\TransactionInvoiceState::DERECOGNIZED:
-				$order->add_order_note( esc_html__( 'Invoice Not Settled' ) );
+				$order->add_order_note( esc_html__( 'Invoice Not Settled', 'woo-weareplanet' ) );
 				break;
 			case \WeArePlanet\Sdk\Model\TransactionInvoiceState::NOT_APPLICABLE:
 			case \WeArePlanet\Sdk\Model\TransactionInvoiceState::PAID:
-				$order->add_order_note( esc_html__( 'Invoice Settled' ) );
+				$order->add_order_note( esc_html__( 'Invoice Settled', 'woo-weareplanet' ) );
 				break;
 			default:
 				// Nothing to do.

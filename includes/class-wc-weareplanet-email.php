@@ -154,7 +154,7 @@ class WC_WeArePlanet_Email {
 		if ( ! ( $order instanceof WC_Order ) ) {
 			return $enabled;
 		}
-		if ( isset( $GLOBALS['_weareplanet_resend_email'] ) && $GLOBALS['_weareplanet_resend_email'] ) {
+		if ( isset( $GLOBALS['weareplanet_resend_email'] ) && $GLOBALS['weareplanet_resend_email'] ) {
 			return $enabled;
 		}
 		$gateway = wc_get_payment_gateway_by_order( $order );
@@ -174,7 +174,7 @@ class WC_WeArePlanet_Email {
 	 * @return void
 	 */
 	public static function before_resend_email( $order ) { //phpcs:ignore
-		$GLOBALS['_weareplanet_resend_email'] = true;
+		$GLOBALS['weareplanet_resend_email'] = true;
 	}
 
 	/**
@@ -185,7 +185,7 @@ class WC_WeArePlanet_Email {
 	 * @return void
 	 */
 	public static function after_resend_email( $order, $email ) { //phpcs:ignore
-		unset( $GLOBALS['_weareplanet_resend_email'] );
+		unset( $GLOBALS['weareplanet_resend_email'] );
 	}
 
 	/**

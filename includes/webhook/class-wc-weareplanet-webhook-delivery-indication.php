@@ -87,8 +87,9 @@ class WC_WeArePlanet_Webhook_Delivery_Indication extends WC_WeArePlanet_Webhook_
 	 * @return void
 	 */
 	protected function review( WC_Order $order ) {
-		$status = apply_filters( 'wc_weareplanet_manual_task_status', 'wearep-manual', $order );
 		$order->add_meta_data( '_weareplanet_manual_check', true );
+		$status = apply_filters( 'wc_weareplanet_manual_task_status', 'wearep-manual', $order );
+		$status = apply_filters( 'weareplanet_order_update_status', $order, $status, esc_html__( 'A manual decision about whether to accept the payment is required.', 'woo-weareplanet' ) );
 		$order->update_status( $status, esc_html__( 'A manual decision about whether to accept the payment is required.', 'woo-weareplanet' ) );
 	}
 }

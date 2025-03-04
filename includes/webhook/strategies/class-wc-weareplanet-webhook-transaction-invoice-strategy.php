@@ -90,11 +90,11 @@ class WC_WeArePlanet_Webhook_Transaction_Invoice_Strategy extends WC_WeArePlanet
 	protected function process_order_related_inner( WC_Order $order, \WeArePlanet\Sdk\Model\TransactionInvoice $transaction_invoice, WC_WeArePlanet_Webhook_Request $request ) {
 		switch ( $request->get_state() ) {
 			case \WeArePlanet\Sdk\Model\TransactionInvoiceState::DERECOGNIZED:
-				$order->add_order_note( __( 'Invoice Not Settled' ) );
+				$order->add_order_note( __( 'Invoice Not Settled', 'woo-weareplanet' ) );
 				break;
 			case \WeArePlanet\Sdk\Model\TransactionInvoiceState::NOT_APPLICABLE:
 			case \WeArePlanet\Sdk\Model\TransactionInvoiceState::PAID:
-				$order->add_order_note( __( 'Invoice Settled' ) );
+				$order->add_order_note( __( 'Invoice Settled', 'woo-weareplanet' ) );
 				break;
 			default:
 				// Nothing to do.
