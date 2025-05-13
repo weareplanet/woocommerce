@@ -3,7 +3,7 @@
  * Plugin Name: WeArePlanet
  * Plugin URI: https://wordpress.org/plugins/woo-weareplanet
  * Description: Process WooCommerce payments with WeArePlanet.
- * Version: 3.3.9
+ * Version: 3.3.10
  * Author: Planet Merchant Services Ltd
  * Author URI: https://www.weareplanet.com
  * Text Domain: weareplanet
@@ -11,7 +11,7 @@
  * Requires at least: 6.0
  * Requires PHP: 7.4
  * WC requires at least: 8.0.0
- * WC tested up to 9.8.2
+ * WC tested up to 9.8.5
  * License: Apache-2.0
  * License URI: http://www.apache.org/licenses/LICENSE-2.0
  */
@@ -46,7 +46,7 @@ if ( ! class_exists( 'WooCommerce_WeArePlanet' ) ) {
 		 *
 		 * @var string
 		 */
-		private $version = '3.3.9';
+		private $version = '3.3.10';
 
 		/**
 		 * The single instance of the class.
@@ -511,14 +511,19 @@ if ( ! class_exists( 'WooCommerce_WeArePlanet' ) ) {
 
 			// Set up localisation.
 			$this->load_plugin_textdomain();
+			add_action('plugins_loaded', function () {
+				if (class_exists('WC_Payment_Gateway')) {
+					require_once WC_WEAREPLANET_ABSPATH . 'includes/class-wc-weareplanet-zero-gateway.php';
 
-			add_filter(
-				'woocommerce_payment_gateways',
-				array(
-					$this,
-					'add_gateways',
-				)
-			);
+					add_filter(
+					  'woocommerce_payment_gateways',
+					  array(
+						WooCommerce_WeArePlanet::instance(),
+						'add_gateways',
+					  )
+					);
+				}
+			}, 20);
 			add_filter(
 				'wc_order_statuses',
 				array(
@@ -869,7 +874,7 @@ if ( ! class_exists( 'WooCommerce_WeArePlanet' ) ) {
 
 			if ( isset( $data['key'] ) ) {
 				$label = str_replace( ['-', '_'], ' ', sanitize_text_field( $data['key'] ) );
-				
+
 				// Normalize the key by replacing spaces and dashes with underscores.
 				$sanitized_key_underscore = str_replace( [' ', '-'], '_', WC_WeArePlanet_Order_Status_Adapter::WEAREPLANET_CUSTOM_ORDER_STATUS_PREFIX . $first_key );
 				$sanitized_key_hyphen = str_replace( [' ', '_'], '-', $first_key );
@@ -1068,6 +1073,10 @@ if ( ! class_exists( 'WooCommerce_WeArePlanet' ) ) {
 		 */
 		public function add_gateways( $methods ) {
 			$space_id = get_option( self::WEAREPLANET_CK_SPACE_ID );
+
+			require_once __DIR__ . '/includes/class-wc-weareplanet-zero-gateway.php';
+			$methods[] = 'WC_WeArePlanet_Zero_Gateway';
+
 			$method_configurations = WC_WeArePlanet_Entity_Method_Configuration::load_by_states_and_space_id(
 				$space_id,
 				array(
@@ -1078,7 +1087,7 @@ if ( ! class_exists( 'WooCommerce_WeArePlanet' ) ) {
 			try {
 				foreach ( $method_configurations as $configuration ) {
 					$gateway = new WC_WeArePlanet_Gateway( $configuration );
-					$methods[] = apply_filters( 'wc_weareplanet_enhance_gateway', $gateway );
+					$methods[] = apply_filters('wc_weareplanet_enhance_gateway', $gateway);
 				}
 			} catch ( \WeArePlanet\Sdk\ApiException $e ) {
 				if ( $e->getCode() === 401 ) {

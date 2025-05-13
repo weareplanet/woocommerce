@@ -47,6 +47,12 @@ jQuery(
 			},
 
 			init : function () {
+				const selected = this.get_selected_payment_method();
+
+				if (selected === 'weareplanet_zero') {
+					return;
+				}
+
 				// Payment methods.
 				this.$checkout_form.off( 'click.woo-weareplanet' ).on(
 					'click.woo-weareplanet',
