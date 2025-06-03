@@ -450,7 +450,7 @@ class WC_WeArePlanet_Service_Transaction extends WC_WeArePlanet_Service_Abstract
 			try {
 				$transaction = ( $transaction_source instanceof WC_Order )
 					? $this->get_transaction_from_order( $transaction_source )
-					: $this->get_transaction_from_session();
+					: $this->get_transaction_from_session( $id );
 
 				if ( $transaction->getState() != \WeArePlanet\Sdk\Model\TransactionState::PENDING ) {
 					self::$possible_payment_method_cache[ $id ] = $transaction->getAllowedPaymentMethodConfigurations();
@@ -774,9 +774,11 @@ class WC_WeArePlanet_Service_Transaction extends WC_WeArePlanet_Service_Abstract
 	 * @return \WeArePlanet\Sdk\Model\Transaction
 	 * @throws Exception Exception.
 	 */
-	public function get_transaction_from_session() {
+	public function get_transaction_from_session( $current_cart_id = null) {
 
-		$current_cart_id = WC_WeArePlanet_Helper::instance()->get_current_cart_id();
+		if ( null === $current_cart_id ) {
+			$current_cart_id = WC_WeArePlanet_Helper::instance()->get_current_cart_id();
+		}
 		if ( ! isset( self::$transaction_cache[ $current_cart_id ] ) || null == self::$transaction_cache[ $current_cart_id ] ) {
 			$transaction_id = WC()->session->get( 'weareplanet_transaction_id', null );
 			$space_id = WC()->session->get( 'weareplanet_space_id', null );
