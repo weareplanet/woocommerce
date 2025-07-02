@@ -3,7 +3,7 @@
  * Plugin Name: WeArePlanet
  * Plugin URI: https://wordpress.org/plugins/woo-weareplanet
  * Description: Process WooCommerce payments with WeArePlanet.
- * Version: 3.3.12
+ * Version: 3.3.13
  * Author: Planet Merchant Services Ltd
  * Author URI: https://www.weareplanet.com
  * Text Domain: weareplanet
@@ -11,7 +11,7 @@
  * Requires at least: 6.0
  * Requires PHP: 7.4
  * WC requires at least: 8.0.0
- * WC tested up to 9.8.5
+ * WC tested up to 9.9.5
  * License: Apache-2.0
  * License URI: http://www.apache.org/licenses/LICENSE-2.0
  */
@@ -39,14 +39,14 @@ if ( ! class_exists( 'WooCommerce_WeArePlanet' ) ) {
 		const WEAREPLANET_CK_ORDER_REFERENCE = 'wc_weareplanet_order_reference';
 		const WEAREPLANET_CK_ENFORCE_CONSISTENCY = 'wc_weareplanet_enforce_consistency';
 		const WEAREPLANET_UPGRADE_VERSION = '3.1.1';
-		const WC_MAXIMUM_VERSION = '9.7.0';
+		const WC_MAXIMUM_VERSION = '9.9.5';
 
 		/**
 		 * WooCommerce WeArePlanet version.
 		 *
 		 * @var string
 		 */
-		private $version = '3.3.12';
+		private $version = '3.3.13';
 
 		/**
 		 * The single instance of the class.
@@ -588,6 +588,19 @@ if ( ! class_exists( 'WooCommerce_WeArePlanet' ) ) {
 						// If the order is using our payment method, we want to process it
 						// even if the value of the transaction is 0, which woocommerce by default
 						// process it without payment gateway.
+						$transaction_info = WC_WeArePlanet_Entity_Transaction_Info::load_by_order_id( $order->get_id() );
+						if ( in_array(
+						  $transaction_info->get_state(),
+						  array(
+							\WeArePlanet\Sdk\Model\TransactionState::FULFILL,
+							\WeArePlanet\Sdk\Model\TransactionState::AUTHORIZED,
+							\WeArePlanet\Sdk\Model\TransactionState::FAILED,
+							\WeArePlanet\Sdk\Model\TransactionState::DECLINE,
+						  ),
+						  true
+						) ) {
+							return false;
+						}
 						return true;
 					}
 					return $value;
