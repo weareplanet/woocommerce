@@ -205,7 +205,7 @@ class WC_WeArePlanet_Admin_Settings_Page extends WC_Settings_Page {
 		$settings = array(
 			array(
 				'links' => array(
-					'https://plugin-documentation.weareplanet.com/weareplanet/woocommerce/3.3.14/docs/en/documentation.html' => esc_html__( 'Documentation', 'woo-weareplanet' ),
+					'https://plugin-documentation.weareplanet.com/weareplanet/woocommerce/3.3.15/docs/en/documentation.html' => esc_html__( 'Documentation', 'woo-weareplanet' ),
 					'https://www.weareplanet.com/contact/sales' => esc_html__( 'Sign Up', 'woo-weareplanet' ),
 				),
 				'type'  => 'weareplanet_links',
@@ -408,25 +408,6 @@ TEXT
 				'id' => 'reference_options',
 			),
 
-			array(
-				'title' => esc_html__( 'Virtual Order Status Options', 'woo-weareplanet' ),
-				'type' => 'title',
-				'id' => 'order_status_options',
-			),
-
-			array(
-				'title' => esc_html__( 'Change Virtual Order Status On Completion', 'woo-weareplanet' ),
-				'desc' => esc_html__( 'Enable this setting to automatically set order\'s status to "Completed" when they consist entirely out of virtual products and order\'s total is 0.', 'woo-weareplanet' ),
-				'id' => WooCommerce_WeArePlanet::WEAREPLANET_CK_CHANGE_ORDER_STATUS,
-				'type' => 'checkbox',
-				'default' => 'yes',
-				'css' => 'min-width:300px;',
-			),
-
-			array(
-				'type' => 'sectionend',
-				'id' => 'order_status_options',
-			),
 		);
 
 		return apply_filters( 'weareplanet_settings', $settings );
