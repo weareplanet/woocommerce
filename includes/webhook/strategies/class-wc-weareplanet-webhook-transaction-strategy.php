@@ -82,7 +82,7 @@ class WC_WeArePlanet_Webhook_Transaction_Strategy extends WC_WeArePlanet_Webhook
 				case \WeArePlanet\Sdk\Model\TransactionState::FULFILL:
 					$this->authorize( $transaction, $order );
 					$this->fulfill( $transaction, $order );
-					WC_WeArePlanet_Helper::set_virtual_orders_to_complete( $order );
+					WC_WeArePlanet_Helper::set_virtual_zero_total_orders_to_complete( $order );
 					WC_WeArePlanet_Helper::update_order_status_for_preorder_if_needed( $order );
 					break;
 				case \WeArePlanet\Sdk\Model\TransactionState::VOIDED:

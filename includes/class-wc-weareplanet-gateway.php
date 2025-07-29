@@ -140,6 +140,8 @@ class WC_WeArePlanet_Gateway extends WC_Payment_Gateway {
 			)
 		);
 
+		add_action( 'woocommerce_after_checkout_form', array( $this, 'enqueue_checkout_scripts' ) );
+
 		$this->supports = array(
 			'products',
 			'refunds',
@@ -433,7 +435,7 @@ class WC_WeArePlanet_Gateway extends WC_Payment_Gateway {
 			WooCommerce_WeArePlanet::instance()->log( $e->getMessage(), WC_Log_Levels::DEBUG );
 		}
 
-		return false;
+		return array();
 	}
 
 	/**
@@ -473,7 +475,6 @@ class WC_WeArePlanet_Gateway extends WC_Payment_Gateway {
 
 		parent::payment_fields();
 		$transaction_service = WC_WeArePlanet_Service_Transaction::instance();
-		$woocommerce_data = get_plugin_data( WP_PLUGIN_DIR . '/woocommerce/woocommerce.php', false, false );
 		try {
 			if ( apply_filters( 'wc_weareplanet_is_order_pay_endpoint', is_checkout_pay_page() ) ) { //phpcs:ignore
 				global $wp;
@@ -484,49 +485,6 @@ class WC_WeArePlanet_Gateway extends WC_Payment_Gateway {
 				$transaction = $transaction_service->get_transaction_from_order( $order );
 			} else {
 				$transaction = $transaction_service->get_transaction_from_session();
-			}
-			if ( ! wp_script_is( 'weareplanet-remote-checkout-js', 'enqueued' ) ) {
-				$ajax_url = $transaction_service->get_javascript_url_for_transaction( $transaction );
-				// !isset($wp->query_vars['order-pay'])->If you're not in the "re-pay" checkout.
-				if (
-					( get_option( WooCommerce_WeArePlanet::WEAREPLANET_CK_INTEGRATION ) == WC_WeArePlanet_Integration::WEAREPLANET_LIGHTBOX )
-					&& ( is_checkout()
-					&& ! isset( $wp->query_vars['order-pay'] ) )
-				) {
-					$ajax_url = $transaction_service->get_lightbox_url_for_transaction( $transaction );
-				}
-				wp_enqueue_script(
-					'weareplanet-remote-checkout-js',
-					$ajax_url,
-					array(
-						'jquery',
-					),
-					1,
-					true
-				);
-				wp_enqueue_script(
-					'weareplanet-checkout-js',
-					WooCommerce_WeArePlanet::instance()->plugin_url() . '/assets/js/frontend/checkout.js',
-					array(
-						'jquery',
-						'jquery-blockui',
-						'weareplanet-remote-checkout-js',
-					),
-					1,
-					true
-				);
-				global $wp_version;
-				$localize = array(
-					'i18n_not_complete' => esc_html__( 'Please fill out all required fields.', 'woo-weareplanet' ),
-					'integration' => get_option( WooCommerce_WeArePlanet::WEAREPLANET_CK_INTEGRATION ),
-					'versions' => array(
-						'wordpress' => $wp_version,
-						'woocommerce' => $woocommerce_data['Version'],
-						'weareplanet' => WC_WEAREPLANET_VERSION,
-					),
-				);
-				wp_localize_script( 'weareplanet-checkout-js', 'weareplanet_js_params', $localize );
-
 			}
 			$transaction_nonce = hash_hmac( 'sha256', $transaction->getLinkedSpaceId() . '-' . $transaction->getId(), NONCE_KEY );
 
@@ -547,6 +505,72 @@ class WC_WeArePlanet_Gateway extends WC_Payment_Gateway {
 
 		} catch ( Exception $e ) {
 			WooCommerce_WeArePlanet::instance()->log( $e->getMessage(), WC_Log_Levels::DEBUG );
+		}
+	}
+
+	public function enqueue_checkout_scripts() {
+		if ( ! is_checkout() && ! is_checkout_pay_page() ) {
+			return;
+		}
+		$transaction_service = WC_WeArePlanet_Service_Transaction::instance();
+		$woocommerce_data = get_plugin_data( WP_PLUGIN_DIR . '/woocommerce/woocommerce.php', false, false );
+		if ( apply_filters( 'wc_weareplanet_is_order_pay_endpoint', is_checkout_pay_page() ) ) { //phpcs:ignore
+			global $wp;
+			$order = WC_Order_Factory::get_order( $wp->query_vars['order-pay'] );
+			if ( ! $order ) {
+				return false;
+			}
+			$transaction = $transaction_service->get_transaction_from_order( $order );
+		} else {
+			$transaction = $transaction_service->get_transaction_from_session();
+		}
+		if ( ! wp_script_is( 'weareplanet-remote-checkout-js', 'enqueued' ) ) {
+			$ajax_url = $transaction_service->get_javascript_url_for_transaction( $transaction );
+			// !isset($wp->query_vars['order-pay'])->If you're not in the "re-pay" checkout.
+			if (
+			  ( get_option( WooCommerce_WeArePlanet::WEAREPLANET_CK_INTEGRATION ) == WC_WeArePlanet_Integration::WEAREPLANET_LIGHTBOX )
+			  && ( is_checkout()
+				&& ! isset( $wp->query_vars['order-pay'] ) )
+			) {
+				$ajax_url = $transaction_service->get_lightbox_url_for_transaction( $transaction );
+			}
+
+            if (get_option( WooCommerce_WeArePlanet::WEAREPLANET_CK_INTEGRATION ) == WC_WeArePlanet_Integration::WEAREPLANET_PAYMENTPAGE) {
+                return false;
+			}
+
+			wp_enqueue_script(
+			  'weareplanet-remote-checkout-js',
+			  $ajax_url,
+			  array(
+				'jquery',
+			  ),
+			  1,
+			  true
+			);
+			wp_enqueue_script(
+			  'weareplanet-checkout-js',
+			  WooCommerce_WeArePlanet::instance()->plugin_url() . '/assets/js/frontend/checkout.js',
+			  array(
+				'jquery',
+				'jquery-blockui',
+				'weareplanet-remote-checkout-js',
+			  ),
+			  1,
+			  true
+			);
+			global $wp_version;
+			$localize = array(
+			  'i18n_not_complete' => esc_html__( 'Please fill out all required fields.', 'woo-weareplanet' ),
+			  'integration' => get_option( WooCommerce_WeArePlanet::WEAREPLANET_CK_INTEGRATION ),
+			  'versions' => array(
+				'wordpress' => $wp_version,
+				'woocommerce' => $woocommerce_data['Version'],
+				'weareplanet' => WC_WEAREPLANET_VERSION,
+			  ),
+			);
+			wp_localize_script( 'weareplanet-checkout-js', 'weareplanet_js_params', $localize );
+
 		}
 	}
 
