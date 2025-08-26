@@ -3,7 +3,7 @@
  * Plugin Name: WeArePlanet
  * Plugin URI: https://wordpress.org/plugins/woo-weareplanet
  * Description: Process WooCommerce payments with WeArePlanet.
- * Version: 3.3.17
+ * Version: 3.3.18
  * Author: Planet Merchant Services Ltd
  * Author URI: https://www.weareplanet.com
  * Text Domain: weareplanet
@@ -12,7 +12,7 @@
  * Requires PHP: 7.4
  * Requires Plugins: woocommerce
  * WC requires at least: 8.0.0
- * WC tested up to 10.0.4
+ * WC tested up to 10.1.0
  * License: Apache-2.0
  * License URI: http://www.apache.org/licenses/LICENSE-2.0
  */
@@ -41,14 +41,14 @@ if ( ! class_exists( 'WooCommerce_WeArePlanet' ) ) {
 		const WEAREPLANET_CK_ENFORCE_CONSISTENCY = 'wc_weareplanet_enforce_consistency';
 		const WEAREPLANET_CK_CHANGE_ORDER_STATUS = 'wc_weareplanet_change_order_status';
 		const WEAREPLANET_UPGRADE_VERSION = '3.1.1';
-		const WC_MAXIMUM_VERSION = '10.0.4';
+		const WC_MAXIMUM_VERSION = '10.1.0';
 
 		/**
 		 * WooCommerce WeArePlanet version.
 		 *
 		 * @var string
 		 */
-		private $version = '3.3.17';
+		private $version = '3.3.18';
 
 		/**
 		 * The single instance of the class.
