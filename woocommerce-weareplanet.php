@@ -3,7 +3,7 @@
  * Plugin Name: WeArePlanet
  * Plugin URI: https://wordpress.org/plugins/woo-weareplanet
  * Description: Process WooCommerce payments with WeArePlanet.
- * Version: 3.3.18
+ * Version: 3.3.19
  * Author: Planet Merchant Services Ltd
  * Author URI: https://www.weareplanet.com
  * Text Domain: weareplanet
@@ -48,7 +48,7 @@ if ( ! class_exists( 'WooCommerce_WeArePlanet' ) ) {
 		 *
 		 * @var string
 		 */
-		private $version = '3.3.18';
+		private $version = '3.3.19';
 
 		/**
 		 * The single instance of the class.
@@ -756,7 +756,7 @@ if ( ! class_exists( 'WooCommerce_WeArePlanet' ) ) {
 			);
 
 			add_filter('the_content', function($content) {
-				if (is_checkout()) {
+				if ( is_checkout() && ! is_order_received_page() ) {
 					// When in checkout, we inject the list of payment methods in the HTML.
 					// The goal here is to speed up the process of registering the payment methods.
 					$payment_methods = WC_WeArePlanet_Blocks_Support::get_payment_methods();
@@ -983,11 +983,13 @@ if ( ! class_exists( 'WooCommerce_WeArePlanet' ) ) {
 		 * @return void
 		 */
 		public function set_device_id_cookie() {
-			$value = WC_WeArePlanet_Unique_Id::get_uuid();
-			if ( isset( $_COOKIE['wc_weareplanet_device_id'] ) && ! empty( $_COOKIE['wc_weareplanet_device_id'] ) ) {
-				$value = sanitize_text_field( wp_unslash( $_COOKIE['wc_weareplanet_device_id'] ) );
+			if(!headers_sent()) {
+				$value = WC_WeArePlanet_Unique_Id::get_uuid();
+				if ( isset( $_COOKIE['wc_weareplanet_device_id'] ) && ! empty( $_COOKIE['wc_weareplanet_device_id'] ) ) {
+					$value = sanitize_text_field( wp_unslash( $_COOKIE['wc_weareplanet_device_id'] ) );
+				}
+				setcookie( 'wc_weareplanet_device_id', $value, time() + YEAR_IN_SECONDS, '/' );
 			}
-			setcookie( 'wc_weareplanet_device_id', $value, time() + YEAR_IN_SECONDS, '/' );
 		}
 
 		/**
