@@ -1,9 +1,9 @@
 === WeArePlanet ===
 Contributors: Planet Merchant Services Ltd
-Tags: woocommerce WeArePlanet, woocommerce, WeArePlanet, payment, e-commerce, webshop, psp, invoice, packing slips, pdf, customer invoice, processing
+Tags: payment, WeArePlanet, e-commerce, invoice, psp
 Requires at least: 4.7
 Tested up to: 6.7
-Stable tag: 3.3.19
+Stable tag: 3.3.20
 License: Apache-2.0
 License URI: http://www.apache.org/licenses/LICENSE-2.0
 
@@ -23,7 +23,7 @@ To use this extension, a WeArePlanet account is required. Sign up on [WeArePlane
 
 == Documentation ==
 
-Additional documentation for this plugin is available [here](https://plugin-documentation.weareplanet.com/weareplanet/woocommerce/3.3.19/docs/en/documentation.html).
+Additional documentation for this plugin is available [here](https://plugin-documentation.weareplanet.com/weareplanet/woocommerce/3.3.20/docs/en/documentation.html).
 
 == External Services ==
 
@@ -81,10 +81,11 @@ Enquiries about our terms of use can be made on the [WeArePlanet terms of use si
 == Changelog ==
 
 
-= 3.3.19 - September 1st 2025 =
-- [Feature] Improved webhook performance at checkout
-- [Bugfix] Fixed issue with headers sent early, prevent emails from being sent
+= 3.3.20 - September 17th 2025 =
+- [Feature] 10.2.x Compatibilty
+- [Bugfix] Prevent webhooks from incorrectly closing transactions for other payment methods
+- [Bugfix] Ensure emails can be sent when Germanized plugin is active
 - [Tested Against] PHP 8.2
 - [Tested Against] Wordpress 6.7
-- [Tested Against] Woocommerce 10.1.0
+- [Tested Against] Woocommerce 10.2.0
 - [Tested Against] PHP SDK 4.8.0

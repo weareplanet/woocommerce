@@ -69,6 +69,9 @@ class WC_WeArePlanet_Webhook_Transaction extends WC_WeArePlanet_Webhook_Order_Re
 	 * @throws Exception Exception.
 	 */
 	protected function process_order_related_inner( WC_Order $order, $transaction ) {
+		if ( strpos( $order->get_payment_method(), 'weareplanet' ) === false ) {
+			return;
+		}
 
 		/* @var \WeArePlanet\Sdk\Model\Transaction $transaction */ //phpcs:ignore
 		$transaction_info = WC_WeArePlanet_Entity_Transaction_Info::load_by_order_id( $order->get_id() );
@@ -189,6 +192,10 @@ class WC_WeArePlanet_Webhook_Transaction extends WC_WeArePlanet_Webhook_Order_Re
 	 * @return void
 	 */
 	protected function failed( \WeArePlanet\Sdk\Model\Transaction $transaction, WC_Order $order ) {
+		if ( ! $order->has_status( array( 'pending', 'on-hold' ) ) ) {
+			return;
+		}
+
 		do_action( 'wc_weareplanet_failed', $transaction, $order );
 		$valid_order_statuses = array(
 			// Default pending status.
