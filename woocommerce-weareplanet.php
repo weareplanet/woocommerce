@@ -3,7 +3,7 @@
  * Plugin Name: WeArePlanet
  * Plugin URI: https://wordpress.org/plugins/woo-weareplanet
  * Description: Process WooCommerce payments with WeArePlanet.
- * Version: 3.3.20
+ * Version: 3.3.21
  * Author: Planet Merchant Services Ltd
  * Author URI: https://www.weareplanet.com
  * Text Domain: weareplanet
@@ -12,7 +12,7 @@
  * Requires PHP: 7.4
  * Requires Plugins: woocommerce
  * WC requires at least: 8.0.0
- * WC tested up to 10.2.0
+ * WC tested up to 10.2.2
  * License: Apache-2.0
  * License URI: http://www.apache.org/licenses/LICENSE-2.0
  */
@@ -40,15 +40,17 @@ if ( ! class_exists( 'WooCommerce_WeArePlanet' ) ) {
 		const WEAREPLANET_CK_ORDER_REFERENCE = 'wc_weareplanet_order_reference';
 		const WEAREPLANET_CK_ENFORCE_CONSISTENCY = 'wc_weareplanet_enforce_consistency';
 		const WEAREPLANET_CK_CHANGE_ORDER_STATUS = 'wc_weareplanet_change_order_status';
+		const WEAREPLANET_CK_DISABLE_PENDING_EMAIL = 'wc_weareplanet_disable_pending_email';
+		const WEAREPLANET_CK_ENABLE_CUSTOM_STATUS_MAPPING = 'wc_weareplanet_enable_custom_status_mapping';
 		const WEAREPLANET_UPGRADE_VERSION = '3.1.1';
-		const WC_MAXIMUM_VERSION = '10.2.0';
+		const WC_MAXIMUM_VERSION = '10.2.2';
 
 		/**
 		 * WooCommerce WeArePlanet version.
 		 *
 		 * @var string
 		 */
-		private $version = '3.3.20';
+		private $version = '3.3.21';
 
 		/**
 		 * The single instance of the class.
@@ -801,46 +803,50 @@ if ( ! class_exists( 'WooCommerce_WeArePlanet' ) ) {
 			return false;
 		}
 
-		/**
-		 * Register order statuses.
-		 *
-		 * @return void
-		 */
-		public function register_order_statuses() {
-			register_post_status(
-				'wc-wearep-redirected',
-				array(
-					'label' => 'Processing',
-					'public' => true,
-					'exclude_from_search' => false,
-					'show_in_admin_all_list' => true,
-					'show_in_admin_status_list' => true,
-					/* translators: %s: replaces string */
-					'label_count' => _n_noop( 'WeArePlanet Processing <span class="count">(%s)</span>', 'WeArePlanet Processing <span class="count">(%s)</span>', 'woo-weareplanet' ),
+	/**
+	 * Register order statuses.
+	 *
+	 * @return void
+	 */
+	public function register_order_statuses() {
+		$common_args = array(
+			'public' => true,
+			'exclude_from_search' => false,
+			'show_in_admin_all_list' => true,
+			'show_in_admin_status_list' => true,
+		);
+
+		register_post_status(
+			'wc-wearep-redirected',
+			array_merge(
+					$common_args,
+					array(
+						'label' => 'Processing',
+						/* translators: %s: replaces string */
+						'label_count' => _n_noop( 'WeArePlanet Processing <span class="count">(%s)</span>', 'WeArePlanet Processing <span class="count">(%s)</span>', 'woo-weareplanet' ),
+					)
 				)
 			);
 			register_post_status(
 				'wc-wearep-waiting',
-				array(
-					'label' => 'Waiting',
-					'public' => true,
-					'exclude_from_search' => false,
-					'show_in_admin_all_list' => true,
-					'show_in_admin_status_list' => true,
-					/* translators: %s: replaces string */
-					'label_count' => _n_noop( 'Waiting <span class="count">(%s)</span>', 'Waiting <span class="count">(%s)</span>', 'woo-weareplanet' ),
+				array_merge(
+					$common_args,
+					array(
+						'label' => 'Waiting',
+						/* translators: %s: replaces string */
+						'label_count' => _n_noop( 'Waiting <span class="count">(%s)</span>', 'Waiting <span class="count">(%s)</span>', 'woo-weareplanet' ),
+					)
 				)
 			);
 			register_post_status(
 				'wc-wearep-manual',
-				array(
-					'label' => 'Manual Decision',
-					'public' => true,
-					'exclude_from_search' => false,
-					'show_in_admin_all_list' => true,
-					'show_in_admin_status_list' => true,
-					/* translators: %s: replaces string */
-					'label_count' => _n_noop( 'Manual Decision <span class="count">(%s)</span>', 'Manual Decision <span class="count">(%s)</span>', 'woo-weareplanet' ),
+				array_merge(
+					$common_args,
+					array(
+						'label' => 'Manual Decision',
+						/* translators: %s: replaces string */
+						'label_count' => _n_noop( 'Manual Decision <span class="count">(%s)</span>', 'Manual Decision <span class="count">(%s)</span>', 'woo-weareplanet' ),
+					)
 				)
 			);
 		}
@@ -848,15 +854,15 @@ if ( ! class_exists( 'WooCommerce_WeArePlanet' ) ) {
 		/**
 		 * Add order statuses.
 		 *
-		 * @param mixed $order_statuses order statuses.
-		 * @return mixed
-		 */
-		public function add_order_statuses( $order_statuses ) {
-			$order_statuses['wc-wearep-redirected'] = _x( 'Redirected', 'Order status', 'woocommerce' );
-			$order_statuses['wc-wearep-waiting'] = _x( 'Waiting', 'Order status', 'woocommerce' );
-			$order_statuses['wc-wearep-manual'] = _x( 'Manual Decision', 'Order status', 'woocommerce' );
+	 * @param mixed $order_statuses order statuses.
+	 * @return mixed
+	 */
+	public function add_order_statuses( $order_statuses ) {
+		$order_statuses['wc-wearep-redirected'] = _x( 'Redirected', 'Order status', 'woocommerce' );
+		$order_statuses['wc-wearep-waiting'] = _x( 'Waiting', 'Order status', 'woocommerce' );
+		$order_statuses['wc-wearep-manual'] = _x( 'Manual Decision', 'Order status', 'woocommerce' );
 
-			return $order_statuses;
+		return $order_statuses;
 		}
 
 		/**
@@ -866,11 +872,13 @@ if ( ! class_exists( 'WooCommerce_WeArePlanet' ) ) {
 		 * @param mixed $order order.
 		 * @return mixed
 		 */
-		public function valid_order_statuses_for_payment( $statuses, $order = null ) { //phpcs:ignore
+	public function valid_order_statuses_for_payment( $statuses, $order = null ) { //phpcs:ignore
+		if ( WC_WeArePlanet_Helper::is_custom_status_mapping_enabled() ) {
 			$statuses[] = 'wearep-redirected';
-
-			return $statuses;
 		}
+
+		return $statuses;
+	}
 
 		/**
 		 * Handles AJAX request to save order status changes.
@@ -1066,9 +1074,11 @@ if ( ! class_exists( 'WooCommerce_WeArePlanet' ) ) {
 		 * @return mixed
 		 */
 		public function valid_order_status_for_completion( $statuses, WC_Order $order = null ) { //phpcs:ignore
-			$statuses[] = 'wearep-waiting';
-			$statuses[] = 'wearep-manual';
-			$statuses[] = 'wearep-redirected';
+			if ( WC_WeArePlanet_Helper::is_custom_status_mapping_enabled() ) {
+				$statuses[] = 'wearep-waiting';
+				$statuses[] = 'wearep-manual';
+				$statuses[] = 'wearep-redirected';
+			}
 
 			return $statuses;
 		}

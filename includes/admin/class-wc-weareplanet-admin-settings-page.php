@@ -205,7 +205,7 @@ class WC_WeArePlanet_Admin_Settings_Page extends WC_Settings_Page {
 		$settings = array(
 			array(
 				'links' => array(
-					'https://plugin-documentation.weareplanet.com/weareplanet/woocommerce/3.3.20/docs/en/documentation.html' => esc_html__( 'Documentation', 'woo-weareplanet' ),
+					'https://plugin-documentation.weareplanet.com/weareplanet/woocommerce/3.3.21/docs/en/documentation.html' => esc_html__( 'Documentation', 'woo-weareplanet' ),
 					'https://www.weareplanet.com/contact/sales' => esc_html__( 'Sign Up', 'woo-weareplanet' ),
 				),
 				'type'  => 'weareplanet_links',
@@ -266,6 +266,15 @@ class WC_WeArePlanet_Admin_Settings_Page extends WC_Settings_Page {
 				'default' => 'yes',
 				'css' => 'min-width:300px;',
 			),
+
+            array(
+                'title'   => esc_html__( 'Disable Pending Email', 'woo-weareplanet' ),
+                'desc'    => esc_html__( 'Enable this setting to prevent WooCommerce from sending "pending payment" emails for WeArePlanet payment methods.', 'woo-weareplanet' ),
+                'id'      => WooCommerce_WeArePlanet::WEAREPLANET_CK_DISABLE_PENDING_EMAIL,
+                'type'    => 'checkbox',
+                'default' => 'no',
+                'css'     => 'min-width:300px;',
+            ),
 
 			array(
 				'type' => 'sectionend',
@@ -438,49 +447,64 @@ TEXT
 	 * @return array
 	 */
 	public function get_order_status_settings() {
-		$settings = array(
-			array(
-				'title' => __( 'Order Status Settings', 'woo-weareplanet' ),
-				'type' => 'title',
-				'id' => 'order_status_mapping_options',
-				'desc' => __( 'Map WooCommerce Order Statuses to WeArePlanet Transaction Statuses to ensure seamless integration and consistent order tracking across both platforms.', 'woo-weareplanet' ) . '
-						<table class="form-table" style="width: 100%;">
-							<thead>
-								<tr style="">
-									<th scope="row" class="titledesc">' . __( 'WeArePlanet payment status', 'woo-weareplanet' ) . '</th>
-									<th class="forminp forminp-select" style="width: 100%;"><label style="margin: 0 10px;">' . __( 'WooCommerce Order Status', 'woo-weareplanet' ) . '</label></th>
-								</tr>
-							</thead>
-						</table>',
-			),
+		$settings = [];
+		$is_custom_status_mapping_enabled = WC_WeArePlanet_Helper::is_custom_status_mapping_enabled();
+
+		$settings[] = array(
+		  'title'   => esc_html__( 'Enable Custom Status Mapping', 'woo-weareplanet' ),
+		  'desc'    => esc_html__( 'If enabled, custom statuses (Manual Decision, etc.) will be used instead of WooCommerce defaults.', 'woo-weareplanet' ),
+		  'id'      => WooCommerce_WeArePlanet::WEAREPLANET_CK_ENABLE_CUSTOM_STATUS_MAPPING,
+		  'type'    => 'checkbox',
+		  'default' => 'no',
+		  'css'     => 'min-width:300px;',
 		);
 
-		$woocommerce_statuses = apply_filters( 'weareplanet_woocommerce_statuses', array() );
-		$weareplanet_statuses = apply_filters( 'weareplanet_order_statuses', array() );
-		$default_mappings = apply_filters( 'weareplanet_default_order_status_mappings', array() );
+		$settings[] = array(
+			'title' => __( 'Order Status Settings', 'woo-weareplanet' ),
+			'type' => 'title',
+			'id' => 'order_status_mapping_options',
+			'desc' => $is_custom_status_mapping_enabled
+				? __( 'Map WooCommerce Order Statuses to WeArePlanet Transaction Statuses to ensure seamless integration and consistent order tracking across both platforms.', 'woo-weareplanet' ) . '
+					<table class="form-table" style="width: 100%;">
+						<thead>
+							<tr style="">
+								<th scope="row" class="titledesc">' . __( 'WeArePlanet payment status', 'woo-weareplanet' ) . '</th>
+								<th class="forminp forminp-select" style="width: 100%;"><label style="margin: 0 10px;">' . __( 'WooCommerce Order Status', 'woo-weareplanet' ) . '</label></th>
+							</tr>
+						</thead>
+					</table>'
+				: __( 'Custom statuses are disabled. Enable custom status mapping above to configure individual mappings.', 'woo-weareplanet' ),
+		);
 
-		foreach ( $weareplanet_statuses as $status_key => $status_label ) {
-			$default_mapped_status = isset( $default_mappings[ $status_key ] ) ? $default_mappings[ $status_key ] : '';
+		if ( $is_custom_status_mapping_enabled ) {
+			$woocommerce_statuses = apply_filters( 'weareplanet_woocommerce_statuses', array() );
+			$weareplanet_statuses = apply_filters( 'weareplanet_order_statuses', array() );
+			$default_mappings = apply_filters( 'weareplanet_default_order_status_mappings', array() );
 
-			$settings[] = array(
-				'title' => __( $status_label, 'woo-weareplanet' ), // phpcs:ignore
-				'id' => WC_WeArePlanet_Order_Status_Adapter::WEAREPLANET_ORDER_STATUS_MAPPING_PREFIX . $status_key,
-				'type' => 'select',
-				'options' => array_map( function ( $status ) {
-						return __( $status, 'woo-weareplanet' ); // phpcs:ignore
-					},
-					$woocommerce_statuses
-				),
-				/* translators: %s: replaces string */
-				'default' => sprintf( __( '%s', 'woo-weareplanet' ), $default_mapped_status ), // phpcs:ignore
-				'desc' => sprintf( __( 'Set a custom WooCommerce order status to be applied automatically when a transaction is in the %s state.', 'woo-weareplanet' ), strtolower( __( $status_label, 'woo-weareplanet' ) ) ), // phpcs:ignore
-			);
+			foreach ( $weareplanet_statuses as $status_key => $status_label ) {
+				$default_mapped_status = isset( $default_mappings[ $status_key ] ) ? $default_mappings[ $status_key ] : '';
+
+				$settings[] = array(
+					'title' => __( $status_label, 'woo-weareplanet' ), // phpcs:ignore
+					'id' => WC_WeArePlanet_Order_Status_Adapter::WEAREPLANET_ORDER_STATUS_MAPPING_PREFIX . $status_key,
+					'type' => 'select',
+					'options' => array_map( function ( $status ) {
+							return __( $status, 'woo-weareplanet' ); // phpcs:ignore
+						},
+						$woocommerce_statuses
+					),
+					/* translators: %s: replaces string */
+					'default' => sprintf( __( '%s', 'woo-weareplanet' ), $default_mapped_status ), // phpcs:ignore
+					'desc' => sprintf( __( 'Set a custom WooCommerce order status to be applied automatically when a transaction is in the %s state.', 'woo-weareplanet' ), strtolower( __( $status_label, 'woo-weareplanet' ) ) ), // phpcs:ignore
+				);
+			}
 		}
 
 		$settings[] = array(
 			'type' => 'sectionend',
 			'id' => 'status_mapping_options',
 		);
+
 
 		return apply_filters( 'weareplanet_custom_order_statuses_settings', $settings );
 	}
@@ -489,6 +513,12 @@ TEXT
 	 * Output order statuses section.
 	 */
 	public function get_order_statuses() {
+		$is_custom_status_mapping_enabled = WC_WeArePlanet_Helper::is_custom_status_mapping_enabled();
+
+		if ( ! $is_custom_status_mapping_enabled ) {
+			return array();
+		}
+
 		$settings = array(
 			array( 'type' => 'weareplanet_order_statuses_table' ),
 			array(
@@ -535,6 +565,10 @@ TEXT
 		global $current_section;
 
 		$version = WC_WEAREPLANET_REQUIRED_WC_MAXIMUM_VERSION;
+
+		if ( ! WC_WeArePlanet_Helper::is_custom_status_mapping_enabled() ) {
+			return;
+		}
 
 		// Register scripts.
 		wp_register_script(

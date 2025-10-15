@@ -30,7 +30,12 @@ class WC_WeArePlanet_Webhook_Method_Configuration extends WC_WeArePlanet_Webhook
 	 * @param WC_WeArePlanet_Webhook_Request $request request.
 	 */
 	public function process( WC_WeArePlanet_Webhook_Request $request ) {
-		$payment_method_configuration_service = WC_WeArePlanet_Service_Method_Configuration::instance();
-		$payment_method_configuration_service->synchronize();
+		wc_deprecated_function(
+            __METHOD__,
+            '3.0.12',
+            'WC_WeArePlanet_Webhook_Method_Configuration_Strategy::process'
+        );
+		$strategy = new WC_WeArePlanet_Webhook_Method_Configuration_Strategy();
+		$strategy->process( $request );
 	}
 }
