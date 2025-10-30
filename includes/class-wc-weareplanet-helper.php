@@ -616,7 +616,7 @@ class WC_WeArePlanet_Helper {
 		$version = WC_VERSION;
 
 		$shop_version = str_replace( 'v', '', $version );
-		$plugin_version = '3.3.21';
+		$plugin_version = '3.3.22';
 		list ($major_version, $minor_version) = explode( '.', $shop_version, 3 );
 		return array(
 			self::WEAREPLANET_SHOP_SYSTEM => 'woocommerce',
