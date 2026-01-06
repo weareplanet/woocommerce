@@ -28,6 +28,7 @@ class WC_WeArePlanet_Helper {
 	const WEAREPLANET_CHECKOUT_TYPE_BLOCKS = 'blocks';
 	const WEAREPLANET_CHECKOUT_TYPE_LEGACY = 'legacy';
 	const WEAREPLANET_PLUGIN_VERSION = 'x-meta-plugin-version';
+	const SUBSCRIPTION_TRANSACTION = 'x-meta-subscription-transaction';
 
 	/**
 	 * Instance.
@@ -131,14 +132,26 @@ class WC_WeArePlanet_Helper {
 			if ( ! empty( $user_id ) && ! empty( $user_key ) ) {
 				$this->api_client = new \WeArePlanet\Sdk\ApiClient( $user_id, $user_key );
 				$this->api_client->setBasePath( rtrim( $this->get_base_gateway_url(), '/' ) . '/api' );
-				foreach ( self::get_default_header_data() as $key => $value ) {
-					$this->api_client->addDefaultHeader( $key, $value );
-				}
+				self::add_headers( $this->api_client );
 			} else {
 				throw new Exception( esc_html__( 'The API access data is incomplete.', 'woo-weareplanet' ) );
 			}
 		}
 		return $this->api_client;
+	}
+
+	/**
+	 * Add headers to api client.
+	 *
+	 * @param array $additional_headers Additional headers.
+	 * @return void
+	 */
+	public static function add_headers( &$api_client, array $additional_headers = [] ) {
+		$default_header_data = self::get_default_header_data();
+		$default_header_data = array_merge( $default_header_data, $additional_headers );
+		foreach ( $default_header_data as $key => $value ) {
+			$api_client->addDefaultHeader( $key, $value );
+		}
 	}
 
 	/**
@@ -255,12 +268,20 @@ class WC_WeArePlanet_Helper {
 			$type = $line_item->getType();
 			$name = $line_item->getName();
 
+			// Handle coupons normally
 			if ( $exclude_discounts && \WeArePlanet\Sdk\Model\LineItemType::DISCOUNT === $type
 				&& strpos( $name, WC_WeArePlanet_Packages_Coupon_Discount::WEAREPLANET_COUPON ) !== false
 			) {
-				// convert negative values to positive in order to be able to subtract it.
+				// Convert negative values to positive in order to be able to subtract it.
 				$sum -= abs( $line_item->getAmountIncludingTax() );
-			} else {
+			}
+			// Handle gift cards separately (already negative, do not abs())
+			elseif ( \WeArePlanet\Sdk\Model\LineItemType::DISCOUNT === $type
+				&& stripos( $name, WC_WeArePlanet_Packages_Gift_Card::WEAREPLANET_GIFT_CARD) !== false
+			) {
+				$sum += $line_item->getAmountIncludingTax();
+			}
+			else {
 				$sum += abs( $line_item->getAmountIncludingTax() );
 			}
 		}
@@ -616,7 +637,7 @@ class WC_WeArePlanet_Helper {
 		$version = WC_VERSION;
 
 		$shop_version = str_replace( 'v', '', $version );
-		$plugin_version = '3.3.23';
+		$plugin_version = '3.4.0';
 		list ($major_version, $minor_version) = explode( '.', $shop_version, 3 );
 		return array(
 			self::WEAREPLANET_SHOP_SYSTEM => 'woocommerce',
@@ -796,12 +817,12 @@ class WC_WeArePlanet_Helper {
 	public function get_default_settings() {
 		$settings = array(
 			WooCommerce_WeArePlanet::WEAREPLANET_CK_SHOP_EMAIL => 'yes',
-            WooCommerce_WeArePlanet::WEAREPLANET_CK_CUSTOMER_INVOICE => 'yes',
-            WooCommerce_WeArePlanet::WEAREPLANET_CK_CUSTOMER_PACKING => 'yes',
-            WooCommerce_WeArePlanet::WEAREPLANET_CK_INTEGRATION => WC_WeArePlanet_Integration::WEAREPLANET_PAYMENTPAGE,
-            WooCommerce_WeArePlanet::WEAREPLANET_CK_ENFORCE_CONSISTENCY => 'yes',
-            WooCommerce_WeArePlanet::WEAREPLANET_CK_ORDER_REFERENCE => WC_WeArePlanet_Order_Reference::WEAREPLANET_ORDER_ID,
-            WooCommerce_WeArePlanet::WEAREPLANET_CK_CHANGE_ORDER_STATUS => 'yes',
+			WooCommerce_WeArePlanet::WEAREPLANET_CK_CUSTOMER_INVOICE => 'yes',
+			WooCommerce_WeArePlanet::WEAREPLANET_CK_CUSTOMER_PACKING => 'yes',
+			WooCommerce_WeArePlanet::WEAREPLANET_CK_INTEGRATION => WC_WeArePlanet_Integration::WEAREPLANET_PAYMENTPAGE,
+			WooCommerce_WeArePlanet::WEAREPLANET_CK_ENFORCE_CONSISTENCY => 'yes',
+			WooCommerce_WeArePlanet::WEAREPLANET_CK_ORDER_REFERENCE => WC_WeArePlanet_Order_Reference::WEAREPLANET_ORDER_ID,
+			WooCommerce_WeArePlanet::WEAREPLANET_CK_CHANGE_ORDER_STATUS => 'yes',
 		);
 		return $settings;
 	}

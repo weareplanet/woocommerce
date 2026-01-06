@@ -103,8 +103,8 @@ class WC_WeArePlanet_Admin_Refund {
 					$transaction_info->get_transaction_id()
 				);
 				if ( $existing_refund_job->get_id() > 0 ) {
-					printf( '<span class="weareplanet-action-in-progress">%s</span>', esc_html( esc_html__( 'There is a refund in progress.', 'woo-weareplanet' ) ) );
-					printf( '<button type="button" class="button weareplanet-update-order">%s</button>', esc_html( esc_html__( 'Update', 'woo-weareplanet' ) ) );
+					printf( '<span class="weareplanet-action-in-progress">%s</span>', esc_html__( 'There is a refund in progress.', 'woo-weareplanet' ) );
+					printf( '<button type="button" class="button weareplanet-update-order">%s</button>', esc_html__( 'Update', 'woo-weareplanet' ) );
 					printf( '<span id="weareplanet-remove-refund" style="display:none;"></span>' );
 				}
 				printf( '<span id="weareplanet-refund-restrictions" style="display:none;"></span>' );

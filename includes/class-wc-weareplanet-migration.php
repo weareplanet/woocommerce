@@ -187,7 +187,7 @@ class WC_WeArePlanet_Migration {
 	 * @return void
 	 */
 	public static function wp_initialize_site( WP_Site $site, array $args ) { //phpcs:ignore
-		if ( is_plugin_active_for_network( 'woo-weareplanet/woocommerce-weareplanet.php' ) ) {
+		if ( is_plugin_active_for_network( 'woo-weareplanet/weareplanet.php' ) ) {
 			$blog_id = $site->blog_id;
 			// Defensive check: blog_id should always be set, otherwise will be shown as weareplanet error
 			if ( ! $blog_id ) {
@@ -278,7 +278,7 @@ class WC_WeArePlanet_Migration {
 	public static function plugin_row_meta( $links, $file ) {
 		if ( WC_WEAREPLANET_PLUGIN_BASENAME === $file ) {
 			$row_meta = array(
-				'docs' => '<a href="https://plugin-documentation.weareplanet.com/weareplanet/woocommerce/3.3.23/docs/en/documentation.html" aria-label="' . esc_html__( 'View Documentation', 'woo-weareplanet' ) . '">' . esc_html__( 'Documentation', 'woo-weareplanet' ) . '</a>',
+				'docs' => '<a href="https://plugin-documentation.weareplanet.com/weareplanet/woocommerce/3.4.0/docs/en/documentation.html" aria-label="' . esc_html__( 'View Documentation', 'woo-weareplanet' ) . '">' . esc_html__( 'Documentation', 'woo-weareplanet' ) . '</a>',
 			);
 
 			return array_merge( $links, $row_meta );

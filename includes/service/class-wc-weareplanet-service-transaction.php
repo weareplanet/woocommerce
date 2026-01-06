@@ -561,9 +561,10 @@ class WC_WeArePlanet_Service_Transaction extends WC_WeArePlanet_Service_Abstract
 	 *
 	 * @param WC_Order                                                    $order order.
 	 * @param \WeArePlanet\Sdk\Model\AbstractTransactionPending $transaction transaction.
+	 * @param bool $set_line_items Set line items.
 	 * @throws WC_WeArePlanet_Exception_Invalid_Transaction_Amount WC_WeArePlanet_Exception_Invalid_Transaction_Amount.
 	 */
-	protected function assemble_order_transaction_data( WC_Order $order, \WeArePlanet\Sdk\Model\AbstractTransactionPending $transaction ) {
+	protected function assemble_order_transaction_data( WC_Order $order, \WeArePlanet\Sdk\Model\AbstractTransactionPending $transaction, bool $set_line_items = true ) {
 		$transaction->setCurrency( $order->get_currency() );
 		$transaction->setBillingAddress( $this->get_order_billing_address( $order ) );
 		$transaction->setShippingAddress( $this->get_order_shipping_address( $order ) );
@@ -586,7 +587,9 @@ class WC_WeArePlanet_Service_Transaction extends WC_WeArePlanet_Service_Abstract
 		$order_reference = $this->getOrderReference( $order );
 		$transaction->setMerchantReference( $order_reference );
 		$transaction->setInvoiceMerchantReference( $this->fix_length( $this->remove_non_ascii( $order->get_order_number() ), 100 ) );
-		$this->set_order_line_items( $order, $transaction );
+		if ( $set_line_items ) {
+			$this->set_order_line_items( $order, $transaction );
+		}
 		$this->set_order_return_urls( $order, $transaction );
 	}
 
@@ -1177,5 +1180,99 @@ class WC_WeArePlanet_Service_Transaction extends WC_WeArePlanet_Service_Abstract
 				$address->setGender( \WeArePlanet\Sdk\Model\Gender::FEMALE );
 			}
 		}
+	}
+
+	/**
+	 * Set modified order line items.
+	 *
+	 * @param WC_Order                                                    $order       Order.
+	 * @param mixed                                                       $order_total Order total.
+	 * @param \WeArePlanet\Sdk\Model\AbstractTransactionPending $transaction Transaction.
+	 *
+	 * @return void
+	 */
+	protected function set_modified_order_line_items( WC_Order $order, $order_total, \WeArePlanet\Sdk\Model\AbstractTransactionPending $transaction ) {
+		$transaction->setLineItems( WC_WeArePlanet_Service_Line_Item::instance()->get_items_for_renewal( $order, $order_total, $transaction ) );
+	}
+
+	/**
+	 * Creates a transaction for the given order.
+	 *
+	 * @param WC_Order $order Order.
+	 * @param mixed $order_total Order total.
+	 * @param int $token_id Token id.
+	 *
+	 * @return \WeArePlanet\Sdk\Model\Transaction
+	 * @throws Exception
+	 * 	 If the transaction being created is not valid.
+	 */
+	public function create_transaction_by_renewal_order( WC_Order $order, $order_total, $token_id ) {
+		$space_id = get_option( WooCommerce_WeArePlanet::WEAREPLANET_CK_SPACE_ID );
+		$create_transaction = new \WeArePlanet\Sdk\Model\TransactionCreate();
+		$create_transaction->setCustomersPresence( \WeArePlanet\Sdk\Model\CustomersPresence::VIRTUAL_PRESENT );
+		$space_view_id = get_option( WooCommerce_WeArePlanet::WEAREPLANET_CK_SPACE_VIEW_ID );
+		if ( is_numeric( $space_view_id ) ) {
+			$create_transaction->setSpaceViewId( $space_view_id );
+		}
+		$create_transaction->setToken( $token_id );
+		$this->assemble_order_transaction_data( $order, $create_transaction, false );
+		$this->set_modified_order_line_items( $order, $order_total, $create_transaction );
+
+		$create_transaction = apply_filters( 'wc_weareplanet_subscription_create_transaction', $create_transaction, $order );
+		if (!$create_transaction->valid()) {
+			throw new Exception("The transaction you are trying to create is not valid.");
+		}
+		WC_WeArePlanet_Helper::instance()->add_headers( $this->api_client, [
+			WC_WeArePlanet_Helper::SUBSCRIPTION_TRANSACTION => true
+		]);
+		$transaction = $this->get_transaction_service()->create( $space_id, $create_transaction );
+		$this->update_transaction_info( $transaction, $order );
+		return $transaction;
+	}
+
+	/**
+	 * Creates a transaction for the given order.
+	 *
+	 * @param WC_Order                                     $order       Order.
+	 * @param mixed                                        $order_total Order total.
+	 * @param int                                          $token_id    Token id.
+	 * @param \WeArePlanet\Sdk\Model\Transaction $transaction Transaction.
+	 *
+	 * @return \WeArePlanet\Sdk\Model\Transaction
+	 *
+	 * @throws Exception Exception.
+	 */
+	public function update_transaction_by_renewal_order( WC_Order $order, $order_total, $token_id, \WeArePlanet\Sdk\Model\Transaction $transaction ) {
+		$last = new \WeArePlanet\Sdk\VersioningException();
+		for ( $i = 0; $i < 5; $i++ ) {
+			try {
+				$pending_transaction = new \WeArePlanet\Sdk\Model\TransactionPending();
+				$pending_transaction->setId( $transaction->getId() );
+				$pending_transaction->setVersion( $transaction->getVersion() );
+				$pending_transaction->setToken( $token_id );
+				$this->assemble_order_transaction_data( $order, $pending_transaction, false );
+				$this->set_modified_order_line_items( $order, $order_total, $pending_transaction );
+				$pending_transaction = apply_filters( 'wc_weareplanet_subscription_update_transaction', $pending_transaction, $order );
+				WC_WeArePlanet_Helper::instance()->add_headers( $this->api_client, [
+					WC_WeArePlanet_Helper::SUBSCRIPTION_TRANSACTION => true
+				]);
+				return $this->get_transaction_service()->update( $transaction->getLinkedSpaceId(), $pending_transaction );
+			} catch ( \WeArePlanet\Sdk\VersioningException $e ) {
+				$last = $e;
+			}
+		}
+		throw $last;
+	}
+
+	/**
+	 * Process transaction without user interaction.
+	 *
+	 * @param mixed $space_id       Space id.
+	 * @param mixed $transaction_id Transaction id.
+	 *
+	 * @return mixed
+	 */
+	public function process_transaction_without_user_interaction( $space_id, $transaction_id ) {
+		return $this->get_transaction_service()->processWithoutUserInteraction( $space_id, $transaction_id );
 	}
 }
