@@ -205,7 +205,7 @@ msgstr "Einstellungen"
 
 #: includes/admin/class-wc-weareplanet-admin.php:256
 #: includes/admin/class-wc-weareplanet-admin.php:267
-msgid "Send attribute to WeArePlanet."
+msgid "Send attribute to WeArePlanet"
 msgstr "Übermittle das Attribute an WeArePlanet."
 
 #: includes/admin/class-wc-weareplanet-admin-refund.php:60

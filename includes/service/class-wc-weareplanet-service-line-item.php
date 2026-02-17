@@ -1053,7 +1053,8 @@ class WC_WeArePlanet_Service_Line_Item extends WC_WeArePlanet_Service_Abstract {
 			// Create Line Items for gift cards
 			$line_item = new \WeArePlanet\Sdk\Model\LineItemCreate();
 			$line_item->setAmountIncludingTax( -1 * abs( $used_amount ) );
-			$line_item->setName( sprintf( __( 'Gift Card (%s)', 'woocommerce' ), $code ) );
+			/* translators: %s: gift card code */
+			$line_item->setName( sprintf( __( 'Gift Card (%s)', 'woo-weareplanet' ), $code ) );
 			$line_item->setQuantity( 1 );
 			$line_item->setShippingRequired( false );
 			$line_item->setSku( 'gift-card-' . $code );
@@ -1124,7 +1125,8 @@ class WC_WeArePlanet_Service_Line_Item extends WC_WeArePlanet_Service_Abstract {
 			$line_item = new \WeArePlanet\Sdk\Model\LineItemCreate();
 			// WeArePlanet expects discounts as negative values
 			$line_item->setAmountIncludingTax( -1 * abs( $used_amount ) );
-			$line_item->setName( sprintf( __( 'Gift Card (%s)', 'woocommerce' ), $code ) );
+			/* translators: %s: gift card code */
+			$line_item->setName( sprintf( __( 'Gift Card (%s)', 'woo-weareplanet' ), $code ) );
 			$line_item->setQuantity( 1 );
 			$line_item->setShippingRequired( false );
 			$line_item->setSku( 'gift-card-' . $code );

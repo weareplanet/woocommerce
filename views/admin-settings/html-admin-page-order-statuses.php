@@ -49,7 +49,7 @@ defined( 'ABSPATH' ) || exit;
 				<header class="wc-backbone-modal-header">
 					<h1><?php esc_html_e( 'Add custom status', 'woo-weareplanet' ); ?></h1>
 					<button class="modal-close modal-close-link dashicons dashicons-no-alt">
-						<span class="screen-reader-text"><?php esc_html_e( 'Close modal panel', 'woocommerce' ); ?></span>
+						<span class="screen-reader-text"><?php esc_html_e( 'Close modal panel', 'woo-weareplanet' ); ?></span>
 					</button>
 				</header>
 				<article>
@@ -87,8 +87,8 @@ defined( 'ABSPATH' ) || exit;
 				<footer>
 					<div class="inner">
 						<button id="btn-ok" disabled class="button button-primary button-large disabled">
-							<div class="wc-backbone-modal-action-{{ data.action === 'create' ? 'active' : 'inactive' }}"><?php esc_html_e( 'Create', 'woocommerce' ); ?></div>
-							<div class="wc-backbone-modal-action-{{ data.action === 'edit' ? 'active' : 'inactive' }}"><?php esc_html_e( 'Save', 'woocommerce' ); ?></div>
+							<div class="wc-backbone-modal-action-{{ data.action === 'create' ? 'active' : 'inactive' }}"><?php esc_html_e( 'Create', 'woo-weareplanet' ); ?></div>
+							<div class="wc-backbone-modal-action-{{ data.action === 'edit' ? 'active' : 'inactive' }}"><?php esc_html_e( 'Save', 'woo-weareplanet' ); ?></div>
 						</button>
 					</div>
 				</footer>
@@ -125,7 +125,7 @@ defined( 'ABSPATH' ) || exit;
 		?>
 		<td class="weareplanet-order-statuses-actions wc-shipping-zone-actions">
 			<div class="actions-container" data-type="{{ data.type }}">
-				<a href="#" class="weareplanet-order-status-delete wc-shipping-class-delete wc-shipping-zone-actions"><?php esc_html_e( 'Delete', 'woocommerce' ); ?></a>
+				<a href="#" class="weareplanet-order-status-delete wc-shipping-class-delete wc-shipping-zone-actions"><?php esc_html_e( 'Delete', 'woo-weareplanet' ); ?></a>
 			</div>
 		</td>
 	</tr>

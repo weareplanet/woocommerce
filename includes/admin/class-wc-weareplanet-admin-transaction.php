@@ -60,7 +60,7 @@ class WC_WeArePlanet_Admin_Transaction {
 			: 'shop_order';
 		add_meta_box(
 			'woocommerce-order-weareplanet-transaction',
-			__( 'WeArePlanet Transaction', 'woocommerce-weareplanet' ),
+			__( 'WeArePlanet Transaction', 'woo-weareplanet' ),
 			array(
 				__CLASS__,
 				'output',
