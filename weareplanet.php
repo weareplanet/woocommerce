@@ -3,7 +3,7 @@
  * Plugin Name: WeArePlanet
  * Plugin URI: https://wordpress.org/plugins/woo-weareplanet
  * Description: Process WooCommerce payments with WeArePlanet.
- * Version: 3.4.4
+ * Version: 3.4.5
  * Author: Planet Merchant Services Ltd
  * Author URI: https://www.weareplanet.com
  * Text Domain: woo-weareplanet
@@ -51,7 +51,7 @@ if ( ! class_exists( 'WooCommerce_WeArePlanet' ) ) {
 		 *
 		 * @var string
 		 */
-		private $version = '3.4.4';
+		private $version = '3.4.5';
 
 		/**
 		 * The single instance of the class.
@@ -620,6 +620,7 @@ if ( ! class_exists( 'WooCommerce_WeArePlanet' ) ) {
 						  array(
 							\WeArePlanet\Sdk\Model\TransactionState::FULFILL,
 							\WeArePlanet\Sdk\Model\TransactionState::AUTHORIZED,
+							\WeArePlanet\Sdk\Model\TransactionState::COMPLETED,
 							\WeArePlanet\Sdk\Model\TransactionState::FAILED,
 							\WeArePlanet\Sdk\Model\TransactionState::DECLINE,
 						  ),
