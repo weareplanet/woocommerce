@@ -25,7 +25,7 @@ use \WeArePlanet\Sdk\ObjectSerializer;
  * CardAuthenticationVersion model
  *
  * @category    Class
- * @description This model defines the card authentication versions.
+ * @description 
  * @package     WeArePlanet\Sdk
  * @author      Planet Merchant Services Ltd.
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache License v2

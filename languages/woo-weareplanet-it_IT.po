@@ -966,3 +966,11 @@ msgstr "Scegli quale stato ordine di WooCommerce deve essere utilizzato per cias
 #: views/admin-notices/subscription-plugin-deactivate.php:11
 msgid "WeArePlanet Subscription plugin has been deactivated because subscriptions are now handled directly by the WeArePlanet plugin. You can safely remove the old plugin"
 msgstr "Il plugin WeArePlanet Subscription è stato disattivato perché gli abbonamenti sono ora gestiti direttamente dal plugin WeArePlanet. Puoi rimuovere tranquillamente il vecchio plugin."
+
+#: includes/class-wc-weareplanet-blocks-support.php:67
+msgid "Loading payment method..."
+msgstr "Caricamento del metodo di pagamento..."
+
+#: includes/class-wc-weareplanet-blocks-support.php:68
+msgid "Unable to load this payment method. Please refresh the page and try again."
+msgstr "Impossibile caricare questo metodo di pagamento. Aggiorna la pagina e riprova."

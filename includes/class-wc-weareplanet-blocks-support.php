@@ -57,7 +57,7 @@ final class WC_WeArePlanet_Blocks_Support extends AbstractPaymentMethodType {
 	 */
 	public function get_payment_method_script_handles() {
 		$dependencies = array();
-		$version = '3.4.6';
+		$version = '3.4.7';
 
 		wp_register_script(
 			'WooCommerce_WeArePlanet_blocks_support',
@@ -72,6 +72,10 @@ final class WC_WeArePlanet_Blocks_Support extends AbstractPaymentMethodType {
 			'weareplanet_block_params',
 			array(
 				'weareplanet_nonce' => wp_create_nonce( 'weareplanet_nonce_block' ),
+				'i18n' => array(
+					'loading' => __( 'Loading payment method...', 'woo-weareplanet' ),
+					'load_error' => __( 'Unable to load this payment method. Please refresh the page and try again.', 'woo-weareplanet' ),
+				),
 			)
 		);
 

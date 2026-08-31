@@ -48,7 +48,7 @@ final class ApiClient {
 	 * @var array
 	 */
 	private $defaultHeaders = [
-        'x-meta-sdk-version' => "4.8.0",
+        'x-meta-sdk-version' => "4.9.1",
         'x-meta-sdk-language' => 'php',
         'x-meta-sdk-provider' => "WeArePlanet",
     ];
@@ -58,7 +58,7 @@ final class ApiClient {
 	 *
 	 * @var string
 	 */
-	private $userAgent = 'PHP-Client/4.8.0/php';
+	private $userAgent = 'PHP-Client/4.9.1/php';
 
 	/**
 	 * The path to the certificate authority file.
@@ -751,6 +751,30 @@ final class ApiClient {
             $this->deliveryIndicationService = new \WeArePlanet\Sdk\Service\DeliveryIndicationService($this);
         }
         return $this->deliveryIndicationService;
+    }
+    
+    protected $documentTemplateService;
+
+    /**
+     * @return \WeArePlanet\Sdk\Service\DocumentTemplateService
+     */
+    public function getDocumentTemplateService() {
+        if(is_null($this->documentTemplateService)){
+            $this->documentTemplateService = new \WeArePlanet\Sdk\Service\DocumentTemplateService($this);
+        }
+        return $this->documentTemplateService;
+    }
+    
+    protected $documentTemplateTypeService;
+
+    /**
+     * @return \WeArePlanet\Sdk\Service\DocumentTemplateTypeService
+     */
+    public function getDocumentTemplateTypeService() {
+        if(is_null($this->documentTemplateTypeService)){
+            $this->documentTemplateTypeService = new \WeArePlanet\Sdk\Service\DocumentTemplateTypeService($this);
+        }
+        return $this->documentTemplateTypeService;
     }
     
     protected $humanUserService;
