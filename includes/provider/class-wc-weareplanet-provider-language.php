@@ -88,6 +88,16 @@ class WC_WeArePlanet_Provider_Language extends WC_WeArePlanet_Provider_Abstract 
 	 * @throws \WeArePlanet\Sdk\VersioningException VersioningException.
 	 */
 	protected function fetch_data() {
+		// LanguageService::all() decodes languages.json into associative arrays, which the
+		// ObjectSerializer cannot map onto models, so every language ends up without codes.
+		$sdk_service = new \ReflectionClass( \WeArePlanet\Sdk\Service\LanguageService::class );
+		$json_file   = dirname( $sdk_service->getFileName() ) . '/../languages.json';
+		if ( is_readable( $json_file ) ) {
+			$languages = json_decode( file_get_contents( $json_file ) ); //phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
+			if ( ! empty( $languages ) && is_array( $languages ) ) {
+				return \WeArePlanet\Sdk\ObjectSerializer::deserialize( $languages, '\WeArePlanet\Sdk\Model\RestLanguage[]' );
+			}
+		}
 		$language_service = new \WeArePlanet\Sdk\Service\LanguageService( WC_WeArePlanet_Helper::instance()->get_api_client() );
 		return $language_service->all();
 	}

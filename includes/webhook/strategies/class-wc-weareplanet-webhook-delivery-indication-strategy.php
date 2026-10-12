@@ -62,18 +62,6 @@ class WC_WeArePlanet_Webhook_Delivery_Indication_Strategy extends WC_WeArePlanet
 	}
 
 	/**
-	 * Meant to bridge code from deprecated processor.
-	 *
-	 * @param WC_Order $order The WooCommerce order linked to the delivery indication.
-	 * @param \WeArePlanet\Sdk\Model\DeliveryIndication $delivery_indication The delivery indication object.
-	 * @param WC_WeArePlanet_Webhook_Request $request The webhook request.
-	 * @return void
-	 */
-	public function bridge_process_order_related_inner( WC_Order $order, \WeArePlanet\Sdk\Model\DeliveryIndication $delivery_indication, WC_WeArePlanet_Webhook_Request $request ) {
-        $this->process_order_related_inner( $order, $delivery_indication, $request, true );
-    }
-
-	/**
 	 * Processes the incoming webhook request pertaining to delivery indications.
 	 *
 	 * This method retrieves the delivery indication details from the API and updates the associated
@@ -94,14 +82,13 @@ class WC_WeArePlanet_Webhook_Delivery_Indication_Strategy extends WC_WeArePlanet
 	/**
 	 * Additional processing on the order based on the state of the delivery indication.
 	 *
-	 * @param WC_Order $order The WooCommerce order linked to the delivery indication.
+	 * @param WC_Order                                            $order The WooCommerce order linked to the delivery indication.
 	 * @param \WeArePlanet\Sdk\Model\DeliveryIndication $delivery_indication The delivery indication object.
-	 * @param WC_WeArePlanet_Webhook_Request $request The webhook request.
-	 * @param bool $legacy_mode legacy code used.
+	 * @param WC_WeArePlanet_Webhook_Request            $request The webhook request.
 	 * @return void
 	 */
-	protected function process_order_related_inner( WC_Order $order, \WeArePlanet\Sdk\Model\DeliveryIndication $delivery_indication, WC_WeArePlanet_Webhook_Request $request, $legacy_mode = false ) {
-		$entity_state = $legacy_mode ? $delivery_indication->getState() : $request->get_state();
+	protected function process_order_related_inner( WC_Order $order, \WeArePlanet\Sdk\Model\DeliveryIndication $delivery_indication, WC_WeArePlanet_Webhook_Request $request ) {
+		$entity_state = $request->get_state();
 		switch ( $entity_state ) {
 			case \WeArePlanet\Sdk\Model\DeliveryIndicationState::MANUAL_CHECK_REQUIRED:
 				$this->review( $order );

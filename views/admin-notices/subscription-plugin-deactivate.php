@@ -18,7 +18,7 @@ defined( 'ABSPATH' ) || exit;
 
 ?>
 <div class="error notice notice-error">
-    <p>
-        <?php esc_html_e( 'WeArePlanet Subscription plugin has been deactivated because subscriptions are now handled directly by the WeArePlanet plugin. You can safely remove the old plugin', 'woo-weareplanet' ); ?>
-    </p>
+	<p>
+		<?php esc_html_e( 'WeArePlanet Subscription plugin has been deactivated because subscriptions are now handled directly by the WeArePlanet plugin. You can safely remove the old plugin', 'woo-weareplanet' ); ?>
+	</p>
 </div>

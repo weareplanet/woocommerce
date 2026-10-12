@@ -37,27 +37,16 @@ class WC_WeArePlanet_Webhook_Transaction_Strategy extends WC_WeArePlanet_Webhook
 	}
 
 	/**
-	 * Meant to bridge code from deprecated processor.
-	 *
-	 * @param WC_Order $order order.
-	 * @param mixed $transaction transaction.
-	 * @return mixed The result of the processing.
-	 */
-	public function bridge_process_order_related_inner( WC_Order $order, $transaction ) {
-        $this->process_order_related_inner( $order, $transaction, true );
-    }
-
-	/**
 	 * Process the webhook request.
 	 *
-	 * @param \WeArePlanet\Sdk\Model\Transaction $transaction The webhook request object.
+	 * @param WC_WeArePlanet_Webhook_Request $request The webhook request.
 	 * @return mixed The result of the processing.
 	 */
 	public function process( WC_WeArePlanet_Webhook_Request $request ) {
 		$order = $this->get_order( $request );
 		$entity = $this->load_entity( $request );
 
-		// retry orphaned transaction, fall back to merchant reference
+		// Retry orphaned transaction, fall back to merchant reference.
 		if ( ( false === $order || ! $order->get_id() ) && $entity ) {
 			$merchant_ref = $entity->getMerchantReference();
 			if ( ! empty( $merchant_ref ) ) {
@@ -67,7 +56,7 @@ class WC_WeArePlanet_Webhook_Transaction_Strategy extends WC_WeArePlanet_Webhook
 
 		if ( false != $order && $order->get_id() ) {
 			$this->process_order_related_inner( $order, $entity );
-			if ($request->get_state() === \WeArePlanet\Sdk\Model\TransactionState::AUTHORIZED) {
+			if ( $request->get_state() === \WeArePlanet\Sdk\Model\TransactionState::AUTHORIZED ) {
 				do_action( 'weareplanet_transaction_authorized_send_email', $order->get_id() );
 			}
 		}
@@ -78,11 +67,10 @@ class WC_WeArePlanet_Webhook_Transaction_Strategy extends WC_WeArePlanet_Webhook
 	 *
 	 * @param WC_Order $order order.
 	 * @param mixed $transaction transaction.
-	 * @param bool $legacy_mode legacy code used.
 	 * @return void
 	 * @throws Exception Exception.
 	 */
-	protected function process_order_related_inner( WC_Order $order, $transaction, $legacy_mode = false ) {
+	protected function process_order_related_inner( WC_Order $order, $transaction ) {
 		if ( strpos( $order->get_payment_method(), 'weareplanet' ) === false ) {
 			return;
 		}
@@ -107,9 +95,6 @@ class WC_WeArePlanet_Webhook_Transaction_Strategy extends WC_WeArePlanet_Webhook
 				case \WeArePlanet\Sdk\Model\TransactionState::FULFILL:
 					$this->authorize( $transaction, $order );
 					$this->fulfill( $transaction, $order );
-					if ( $legacy_mode ) {
-						do_action( 'weareplanet_transaction_authorized_send_email', $order->get_id() );
-					}
 					WC_WeArePlanet_Helper::set_virtual_zero_total_orders_to_complete( $order );
 					WC_WeArePlanet_Helper::update_order_status_for_preorder_if_needed( $order );
 					break;
@@ -126,21 +111,13 @@ class WC_WeArePlanet_Webhook_Transaction_Strategy extends WC_WeArePlanet_Webhook
 			}
 			WC_WeArePlanet_Service_Transaction::instance()->update_transaction_info( $transaction, $order );
 		}
-
-		if ( $legacy_mode ) {
-			// This is edge case for deferred payment methods
-			$transaction_info = WC_WeArePlanet_Entity_Transaction_Info::load_by_order_id( $order->get_id() );
-			if ($transaction_info->get_state() === \WeArePlanet\Sdk\Model\TransactionState::AUTHORIZED) {
-				do_action( 'weareplanet_transaction_authorized_send_email', $order->get_id() );
-			}
-		}
 	}
 
 	/**
 	 * Confirm.
 	 *
 	 * @param \WeArePlanet\Sdk\Model\Transaction $transaction transaction.
-	 * @param WC_Order $order order.
+	 * @param WC_Order                                     $order order.
 	 * @return void
 	 */
 	protected function confirm( \WeArePlanet\Sdk\Model\Transaction $transaction, WC_Order $order ) {
@@ -161,7 +138,7 @@ class WC_WeArePlanet_Webhook_Transaction_Strategy extends WC_WeArePlanet_Webhook
 	 * Authorize.
 	 *
 	 * @param \WeArePlanet\Sdk\Model\Transaction $transaction transaction.
-	 * @param \WC_Order $order order.
+	 * @param \WC_Order                                    $order order.
 	 */
 	protected function authorize( \WeArePlanet\Sdk\Model\Transaction $transaction, WC_Order $order ) {
 		if ( ! $order->get_meta( '_weareplanet_authorized', true ) ) {
@@ -180,7 +157,7 @@ class WC_WeArePlanet_Webhook_Transaction_Strategy extends WC_WeArePlanet_Webhook
 	 * Waiting.
 	 *
 	 * @param \WeArePlanet\Sdk\Model\Transaction $transaction transaction.
-	 * @param WC_Order $order order.
+	 * @param WC_Order                                     $order order.
 	 * @return void
 	 */
 	protected function waiting( \WeArePlanet\Sdk\Model\Transaction $transaction, WC_Order $order ) {
@@ -199,7 +176,7 @@ class WC_WeArePlanet_Webhook_Transaction_Strategy extends WC_WeArePlanet_Webhook
 	 * Decline.
 	 *
 	 * @param \WeArePlanet\Sdk\Model\Transaction $transaction transaction.
-	 * @param WC_Order $order order.
+	 * @param WC_Order                                     $order order.
 	 * @return void
 	 */
 	protected function decline( \WeArePlanet\Sdk\Model\Transaction $transaction, WC_Order $order ) {
@@ -216,7 +193,7 @@ class WC_WeArePlanet_Webhook_Transaction_Strategy extends WC_WeArePlanet_Webhook
 	 * Failed.
 	 *
 	 * @param \WeArePlanet\Sdk\Model\Transaction $transaction transaction.
-	 * @param WC_Order $order order.
+	 * @param WC_Order                                     $order order.
 	 * @return void
 	 */
 	protected function failed( \WeArePlanet\Sdk\Model\Transaction $transaction, WC_Order $order ) {
@@ -230,7 +207,7 @@ class WC_WeArePlanet_Webhook_Transaction_Strategy extends WC_WeArePlanet_Webhook
 			'pending',
 			// Custom order statuses mapped.
 			apply_filters( 'weareplanet_wc_status_for_transaction', 'confirmed' ),
-			apply_filters( 'weareplanet_wc_status_for_transaction', 'failed' )
+			apply_filters( 'weareplanet_wc_status_for_transaction', 'failed' ),
 		);
 		if ( in_array( $order->get_status( 'edit' ), $valid_order_statuses ) ) {
 			$default_status = apply_filters( 'wc_weareplanet_failed_status', 'failed', $order );
@@ -243,7 +220,7 @@ class WC_WeArePlanet_Webhook_Transaction_Strategy extends WC_WeArePlanet_Webhook
 	 * Fulfill.
 	 *
 	 * @param \WeArePlanet\Sdk\Model\Transaction $transaction transaction.
-	 * @param WC_Order $order order.
+	 * @param WC_Order                                     $order order.
 	 * @return void
 	 */
 	protected function fulfill( \WeArePlanet\Sdk\Model\Transaction $transaction, WC_Order $order ) {
@@ -273,7 +250,7 @@ class WC_WeArePlanet_Webhook_Transaction_Strategy extends WC_WeArePlanet_Webhook
 	 * Voided.
 	 *
 	 * @param \WeArePlanet\Sdk\Model\Transaction $transaction transaction.
-	 * @param WC_Order $order order.
+	 * @param WC_Order                                     $order order.
 	 * @return void
 	 */
 	protected function voided( \WeArePlanet\Sdk\Model\Transaction $transaction, WC_Order $order ) {

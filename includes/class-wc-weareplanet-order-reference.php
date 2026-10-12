@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Plugin Name: WeArePlanet
  * Author: Planet Merchant Services Ltd
